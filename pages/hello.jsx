@@ -6,7 +6,7 @@ const Hello = () => {
     <div>
       <Text as="h1">Hello Page</Text>
       <br />
-      <LinkButton text="Home Page" to="/" />
+      <LinkButton text="Go Home" to="/" />
     </div>
   );
 };

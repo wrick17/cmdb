@@ -8,11 +8,11 @@ export default function Home() {
       <Text as="h1">Home Page</Text>
       <br />
       <Link to="/hello">
-        <Text>Hello page</Text>
+        <Text>Say Hello</Text>
       </Link>
       <br />
       <br />
-      <LinkButton text="Hello Page" to="/hello" />
+      <LinkButton text="Say Hello" to="/hello" />
     </div>
   );
 }
