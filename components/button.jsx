@@ -28,7 +28,7 @@ const bleepsSettings = {
   click: { player: "click" },
 };
 
-const Button = ({ text, onClick }) => {
+const Button = ({ text, onClick, ...props }) => {
   const route = useSelector((state) => state.route);
 
   return (
@@ -40,7 +40,11 @@ const Button = ({ text, onClick }) => {
         bleepsSettings={bleepsSettings}
       >
         <AnimatorGeneralProvider animator={animatorGeneral}>
-          <AButton animator={{ activate: !route.routing }} onClick={onClick}>
+          <AButton
+            animator={{ activate: !route.routing }}
+            onClick={onClick}
+            {...props}
+          >
             <Text>{text}</Text>
           </AButton>
         </AnimatorGeneralProvider>
