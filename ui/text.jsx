@@ -11,7 +11,8 @@ const animatorGeneral = {
 
 const Text = memo((props) => {
   const { ref, animator } = useAnimator(props);
-  const { children, style, containerStyles, stagger, ...rest } = props;
+  const { children, style, containerStyles, activated, stagger, ...rest } =
+    props;
 
   return (
     <span ref={ref} style={{ ...containerStyles }}>
@@ -33,7 +34,12 @@ const Text = memo((props) => {
               : animatorGeneral
           }
         >
-          <AText blink={false} animator={animator} style={style} {...rest}>
+          <AText
+            blink={false}
+            animator={{ ...animator, ...(activated && { animate: false }) }}
+            style={style}
+            {...rest}
+          >
             <div className={`figo ${animator.activate ? "show" : ""}`}>
               {children}
             </div>

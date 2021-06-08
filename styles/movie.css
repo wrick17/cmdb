@@ -221,11 +221,19 @@
   width: 100%;
 }
 
-.movie-page .loading-block {
+.loading-block {
   height: 400px;
+  max-width: 1180px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0 auto 16px;
+}
+
+.loading-block.bordered {
+  border: 1px solid #00f8f8;
+  box-shadow: 0 0 4px #00f8f8aa, 0 0 4px #00f8f8aa inset;
 }
 
 @media (max-width: 768px) {
