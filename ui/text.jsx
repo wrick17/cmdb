@@ -1,6 +1,6 @@
 import { AnimatorGeneralProvider } from "@arwes/animation";
 import { ArwesThemeProvider, StylesBaseline, Text as AText } from "@arwes/core";
-import { memo } from 'react';
+import { memo } from "react";
 import { staggerDuration } from "../utils/constants";
 import { useAnimator } from "../utils/hooks";
 
@@ -11,7 +11,7 @@ const animatorGeneral = {
 
 const Text = memo((props) => {
   const { ref, animator } = useAnimator(props);
-  const { children, style, containerStyles, ...rest } = props;
+  const { children, style, containerStyles, stagger, ...rest } = props;
 
   return (
     <span ref={ref} style={{ ...containerStyles }}>
@@ -21,13 +21,22 @@ const Text = memo((props) => {
             body: { fontFamily: FONT_FAMILY_ROOT },
           }}
         />
-        <AnimatorGeneralProvider animator={animatorGeneral}>
-          <AText
-            animator={animator}
-            style={style}
-            {...rest}
-          >
-            <div className={`figo ${animator.activate ? "show" : ""}`}>{children}</div>
+        <AnimatorGeneralProvider
+          animator={
+            stagger
+              ? {
+                  duration: {
+                    enter: stagger,
+                    exit: stagger,
+                  },
+                }
+              : animatorGeneral
+          }
+        >
+          <AText blink={false} animator={animator} style={style} {...rest}>
+            <div className={`figo ${animator.activate ? "show" : ""}`}>
+              {children}
+            </div>
           </AText>
         </AnimatorGeneralProvider>
       </ArwesThemeProvider>

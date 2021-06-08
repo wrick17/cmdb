@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { forwardRef, useEffect } from "react";
 import { useNavigation } from "./navigation";
 
-export const Link = ({ to, children }) => {
+const Link = forwardRef(({ to, children, style }, ref) => {
   const navigate = useNavigation();
   const router = useRouter();
 
@@ -12,13 +12,17 @@ export const Link = ({ to, children }) => {
 
   return (
     <a
+      ref={ref}
       href={to}
       onClick={(e) => {
         e.preventDefault();
         navigate(to);
       }}
+      style={style}
     >
       {children}
     </a>
   );
-};
+});
+
+export default Link;

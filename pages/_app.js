@@ -7,6 +7,8 @@ import "../styles/globals.css";
 import "../styles/ui.css";
 import "../styles/home.css";
 import "../styles/movie.css";
+import Header from '../components/header';
+import Footer from '../components/footer';
 
 function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState);
@@ -21,7 +23,9 @@ function MyApp({ Component, pageProps }) {
             rel="stylesheet"
           />
         </Head>
+        <Header />
         <Component {...pageProps} />
+        <Footer />
       </Layout>
     </Provider>
   );
