@@ -1,13 +1,13 @@
 const initialState = { loading: false };
 
-export const homeReducer = (state = initialState, action) => {
+export const tvReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "HOME/LOAD_HOME": {
+    case "TV/LOAD_DETAILS": {
       return {
         loading: true,
       };
     }
-    case "HOME/SET_HOME": {
+    case "TV/SET_DETAILS": {
       return {
         ...state,
         ...action.payload,

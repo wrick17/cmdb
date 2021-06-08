@@ -1,0 +1,257 @@
+.movie-page {
+  max-width: 1180px;
+  margin: auto;
+}
+
+.movie-page .movie-details {
+  display: flex;
+}
+
+.movie-page .image {
+  margin-right: 32px;
+  margin-top: 12px;
+}
+
+.movie-page .movie-details .right-section {
+  flex: 1;
+}
+
+.movie-page .movie-name {
+  font-size: 36px;
+  /* margin-top: 24px; */
+}
+
+.movie-page .movie-name .year {
+  font-weight: normal;
+  font-size: 28px;
+  opacity: 0.8;
+}
+
+.movie-page .movie-date {
+  font-weight: bold;
+}
+
+.movie-page .movie-date .arwes-text {
+  margin-right: 32px;
+}
+
+.movie-page .status {
+  border: 1px solid #00f8f8;
+  box-shadow: 0 0 4px #00f8f8aa, 0 0 4px #00f8f8aa inset;
+  padding: 2px 8px;
+  text-transform: uppercase;
+}
+
+.movie-page .rating-container {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.movie-page .stars > span {
+  margin-right: 2px;
+}
+
+.movie-page .rating {
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.movie-page .tagline {
+  font-style: italic;
+}
+
+.movie-page .sub-heading {
+  margin-bottom: 8px;
+  border-bottom: 1px solid #00f8f855;
+  padding-bottom: 4px;
+}
+
+.movie-page .crew {
+  display: flex;
+}
+
+.movie-page .crew-member {
+  flex: 1;
+  max-width: 200px;
+}
+
+.movie-page .crew-member label {
+  display: block;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.movie-page .crew-member p {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.movie-page .detail-block {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.movie-page .detail-block .arwes-text {
+  margin: 8px;
+}
+
+.movie-page .cast {
+  margin-top: 32px;
+}
+
+.movie-page .cast-list {
+  display: flex;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 8px 0;
+}
+
+.movie-page .cast-list .actor-card {
+  flex: 0 0 120px;
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+.movie-page .cast-list .actor-card img {
+  height: 130px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.movie-page .cast-list .actor-card .arwes-frame {
+  padding: 0 !important;
+  height: 100%;
+  max-width: 100%;
+}
+
+.movie-page .cast-list .actor-card .arwes-frame__structure {
+  z-index: 1;
+}
+
+.movie-page .cast-list .actor-card .arwes-frame__structure svg > g > g {
+  display: none;
+}
+
+.movie-page .cast-list .actor-card .arwes-frame__content {
+  padding: 0;
+}
+
+.movie-page .actor-details {
+  padding: 8px;
+}
+
+.movie-page .actor-details .name {
+  margin-bottom: 0;
+  font-weight: bold;
+  font-size: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.movie-page .actor-details .character {
+  margin-bottom: 0;
+  font-size: 12px;
+}
+
+.movie-page .reviews-list {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 8px;
+  margin-top: 8px;
+}
+
+.movie-page .reviews-list .review {
+  flex: 1 0 300px;
+}
+
+.movie-page .reviews-list .review:not(:last-child) {
+  margin-right: 24px;
+}
+
+.movie-page .reviews-list .review .arwes-frame {
+  height: 100%;
+  width: 100%;
+  word-break: break-word;
+}
+
+.movie-page .reviews-list .review p {
+  margin: 0;
+}
+
+.movie-page .reviews-list .review .name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.movie-page .reviews-list .review .time {
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.movie-page .season-name {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.movie-page .episodes {
+  margin-top: 32px;
+}
+
+.movie-page .episodes .episode {
+  margin-bottom: 16px;
+}
+
+.movie-page .episodes .episode .episode-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.movie-page .episodes .episode .arwes-frame {
+  width: 100%;
+}
+
+.movie-page .loading-block {
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .movie-page .movie-details {
+    flex-direction: column;
+    align-items: center;
+  }
+  .movie-page .image {
+    margin-right: 0;
+    margin-bottom: 32px;
+  }
+  .movie-page .movie-details .movie-name {
+    text-align: center;
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+  .movie-page .detail-block {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .movie-page .detail-block .arwes-text {
+    text-align: center;
+    margin-right: 0;
+    white-space: nowrap;
+  }
+  .movie-page .rating-container {
+    justify-content: center;
+  }
+}

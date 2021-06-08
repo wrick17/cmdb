@@ -1,6 +1,8 @@
 export const loadHome = () => ({
   type: "HOME/LOAD_HOME",
-  payload: {
-    loading: true,
-  },
+});
+
+export const setHome = (payload) => ({
+  type: "HOME/SET_HOME",
+  payload,
 });

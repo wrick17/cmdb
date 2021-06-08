@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { startNavigationTransition } from "../redux/actions/routeActionCreators";
+import { staggerDuration } from './constants';
 
 export const useNavigation = () => {
   const router = useRouter();
@@ -9,8 +10,8 @@ export const useNavigation = () => {
   const navigate = (to) => {
     dispatch(startNavigationTransition());
     setTimeout(() => {
-      router.push(to, undefined, { shallow: true });
-    }, 250);
+      router.push(to, to, { shallow: true });
+    }, staggerDuration);
   };
 
   return navigate;

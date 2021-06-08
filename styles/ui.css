@@ -1,0 +1,117 @@
+.image {
+  font-size: 0;
+  width: 200px;
+  min-height: 285px;
+  max-height: 285px;
+  display: flex;
+  align-items: center;
+}
+
+.image .arwes-frame {
+  padding: 0 !important;
+}
+
+.image .arwes-frame__structure {
+  z-index: 1;
+}
+
+.image .arwes-frame__structure svg > g > g {
+  display: none;
+}
+
+.image .arwes-frame__content {
+  font-size: 0;
+  display: flex;
+  align-items: center;
+}
+
+.image .arwes-frame__content img {
+  width: 100%;
+  height: 0;
+  flex: 0 0 100%;
+  object-fit: cover;
+  transform: translate3d(0, 0, 0);
+  transition: height 300ms ease-in-out;
+}
+
+.image .arwes-frame__content img.show {
+  height: 285px;
+  transition: height 300ms ease-in-out;
+}
+
+.section {
+  position: relative;
+}
+
+.section .section-title {
+  position: absolute;
+  transform: translateY(-55%);
+  z-index: 10;
+  padding: 0;
+  top: 0;
+  left: 16px;
+  height: 28px;
+}
+
+.section .section-title .secton-title-text {
+  margin-bottom: 0;
+  padding: 4px 24px;
+}
+
+.section .section-title > .arwes-frame {
+  padding: 0 !important;
+  height: 30px;
+}
+
+.section .section-title > .arwes-frame > .arwes-frame__structure {
+  z-index: 1;
+}
+
+.section .section-title > .arwes-frame {
+  background-color: #021114;
+  opacity: 1;
+}
+
+.section .section-frame {
+  margin-top: 48px;
+  padding: 24px 10px 10px;
+}
+
+.section .section-frame > .arwes-frame {
+  width: 100%;
+  padding-top: 24px;
+}
+
+.section
+  .section-frame
+  > .arwes-frame
+  > .arwes-frame__structure
+  svg
+  > g
+  > g
+  > path {
+  fill: transparent;
+}
+
+.frame {
+  position: relative;
+  padding: 8px;
+}
+
+.frame > .arwes-frame {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+@keyframes expand {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: 285px;
+  }
+}

@@ -1,18 +1,37 @@
-import LinkButton from "../components/linkButton";
-import Text from "../components/text";
-import { Link } from '../utils/link';
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useHomeService } from "../services/homeServices";
+import MovieCard from "../components/movieCard";
+import CardsList from "../components/cardsList";
+import CardsSection from "../components/cardsSection";
 
-export default function Home() {
+const Home = () => {
+  const { fetchDiscoverMovies } = useHomeService();
+  const home = useSelector((state) => state.home);
+  const config = useSelector((state) => state.config);
+
+  useEffect(() => {
+    fetchDiscoverMovies();
+  }, []);
+
+  if (!(config?.images && home.movies)) {
+    return null;
+  }
+
   return (
     <div>
-      <Text as="h1">Home Page</Text>
-      <br />
-      <Link to="/hello">
-        <Text>Say Hello</Text>
-      </Link>
-      <br />
-      <br />
-      <LinkButton text="Say Hello" to="/hello" />
+      {home.movies.data.results && (
+        <CardsSection title={home.movies.label}>
+          <CardsList card={MovieCard} data={home.movies.data.results} type="movie" />
+        </CardsSection>
+      )}
+      {home.tv.data.results && (
+        <CardsSection title={home.tv.label}>
+          <CardsList card={MovieCard} data={home.tv.data.results} type="tv" />
+        </CardsSection>
+      )}
     </div>
   );
-}
+};
+
+export default Home;

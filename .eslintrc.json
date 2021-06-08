@@ -8,11 +8,7 @@
   "parser": "babel-eslint",
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:jsx-a11y/recommended",
-    "prettier"
+    "plugin:react/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -35,18 +31,8 @@
     "react-hooks"
   ],
   "rules": {
-    // NextJs specific fix: suppress errors for missing 'import React' in files for nextjs
     "react/react-in-jsx-scope": "off",
-    // NextJs specific fix: allow jsx syntax in js files
-    // "react/jsx-filename-extension": [
-    //   {
-    //     "extensions": [
-    //       ".js",
-    //       ".jsx"
-    //     ]
-    //   }
-    // ], 
-    //should add ".ts" if typescript project
-    "react/display-name": 1
+    "react/display-name": "off",
+    "react/prop-types": "off"
   }
 }

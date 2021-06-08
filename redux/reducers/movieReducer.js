@@ -1,13 +1,13 @@
 const initialState = { loading: false };
 
-export const homeReducer = (state = initialState, action) => {
+export const movieReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "HOME/LOAD_HOME": {
+    case "MOVIE/LOAD_DETAILS": {
       return {
         loading: true,
       };
     }
-    case "HOME/SET_HOME": {
+    case "MOVIE/SET_DETAILS": {
       return {
         ...state,
         ...action.payload,

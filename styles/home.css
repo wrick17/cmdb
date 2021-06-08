@@ -1,0 +1,138 @@
+.movies {
+  max-width: 1000px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 16px 16px;
+  border: 1px solid #00f8f8;
+  box-shadow: 0 0 4px #00f8f8aa, 0 0 4px #00f8f8aa inset;
+}
+
+.movie-card {
+  flex: 0 0 200px;
+  max-width: 200px;
+  margin-right: 16px;
+  font-size: 0;
+  cursor: pointer;
+}
+
+.movie-card .arwes-frame {
+  padding: 0 !important;
+  height: 100%;
+  max-width: 100%;
+  width: 100%;
+}
+
+.movie-card .arwes-frame__structure {
+  z-index: 1;
+}
+
+.movie-card .arwes-frame__structure svg > g > g {
+  display: none;
+}
+
+.movie-card .arwes-frame__content {
+  padding: 0;
+}
+
+.movie-card .movie-details {
+  padding: 8px;
+}
+
+.movie-card .movie-name {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  height: 45px;
+}
+
+.movie-card .movie-name span {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.movie-card img {
+  width: 100%;
+  height: 285px;
+  object-fit: cover;
+}
+
+.movie-card .rating-container {
+  display: flex;
+  align-items: center;
+}
+
+.movie-card .stars {
+  margin-right: 8px;
+}
+
+.movie-card .stars > span {
+  margin-right: 2px;
+}
+
+.movie-card .rating {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.movie-card .release-date {
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.cards-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.cards-section .section-name {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+  min-width: 164px;
+  max-width: 164px;
+  text-align: center;
+}
+
+.cards-section .section-name .frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 430px;
+}
+
+.cards-section .section-name .arwes-frame {
+  height: 430px;
+}
+
+.cards-section .section-content {
+  max-width: 100%;
+}
+
+@media (max-width: 1210px) {
+  .cards-section {
+    flex-direction: column;
+  }
+  .cards-section .section-name {
+    margin-right: 0;
+    margin-bottom: 16px;
+    min-width: 0;
+    max-width: 1000px;
+    width: 100%;
+  }
+  .cards-section .section-name .arwes-frame,
+  .cards-section .section-name .frame {
+    height: 100%;
+    width: 100%;
+  }
+}
