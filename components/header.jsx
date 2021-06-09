@@ -29,9 +29,10 @@ const Header = () => {
       style={{
         display: "block",
         textAlign: "center",
-        margin: '0 auto 48px',
+        margin: "0 auto 48px",
         borderBottom: "1px solid",
         width: "80%",
+        maxWidth: "800px",
       }}
       ref={ref}
     >

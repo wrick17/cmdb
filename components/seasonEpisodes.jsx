@@ -26,8 +26,6 @@ const SeasonEpisodes = ({ season }) => {
     return null;
   }
 
-  console.log(details);
-
   if (loading) {
     return (
       <div className="loading-block">

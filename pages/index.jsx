@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useHomeService } from "../services/homeServices";
-import MovieCard from "../components/movieCard";
-import CardsList from "../components/cardsList";
-import CardsSection from "../components/cardsSection";
-import Loading from "../ui/loading";
+import DiscoverSection from '../components/discoverSection';
 
 const Home = () => {
   const { fetchDiscoverMovies } = useHomeService();
@@ -21,28 +18,9 @@ const Home = () => {
 
   return (
     <div>
-      {home?.movies?.data?.results ? (
-        <CardsSection title={home.movies.label}>
-          <CardsList
-            card={MovieCard}
-            data={home.movies.data.results}
-            type="movie"
-          />
-        </CardsSection>
-      ) : (
-        <div className="loading-block bordered">
-          <Loading full={false} style={{ marginTop: "16px" }} />
-        </div>
-      )}
-      {home?.tv?.data?.results ? (
-        <CardsSection title={home.tv.label}>
-          <CardsList card={MovieCard} data={home.tv.data.results} type="tv" />
-        </CardsSection>
-      ) : (
-        <div className="loading-block bordered">
-          <Loading full={false} style={{ marginTop: "16px" }} />
-        </div>
-      )}
+      <DiscoverSection sectionData={home?.movies} type="movie" />
+      <DiscoverSection sectionData={home?.tv} type="tv" />
+      <DiscoverSection sectionData={home?.anime} type="tv" />
     </div>
   );
 };

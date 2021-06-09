@@ -14,7 +14,10 @@ const MovieCard = memo((props) => {
   const navigate = useNavigation();
   const { fetchMovieDetails } = useMovieService();
   const { fetchTvDetails } = useTvService();
-  const { ref, animator: { activate } } = useAnimator(props);
+  const {
+    ref,
+    animator: { activate },
+  } = useAnimator(props);
 
   const { data, type, ...rest } = props;
   const { id, name, title, poster_path, vote_average, release_date } = data;
@@ -44,8 +47,12 @@ const MovieCard = memo((props) => {
         className={`figo ${activate ? "show" : ""}`}
         ref={ref}
       />
-      <div className="movie-details">
-        <Text className="movie-name" title={title || name}>
+      <div className="movie-card-details">
+        <Text
+          className="movie-name"
+          title={title || name}
+          containerStyles={{ display: "block" }}
+        >
           {title || name}
         </Text>
         <div className={`rating-container figo ${activate ? "show" : ""}`}>

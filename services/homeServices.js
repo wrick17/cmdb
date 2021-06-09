@@ -11,15 +11,20 @@ export const useHomeService = () => {
       return null;
     }
 
-    const apis = ["/api/discover/movie", "/api/discover/tv"];
+    const apis = [
+      "/api/discover/movie",
+      "/api/discover/tv",
+      "/api/discover/tv?with_keywords=210024",
+    ];
 
     dispatch(loadHome());
     fetchMultiple(apis)
-      .then(([movies, tv]) =>
+      .then(([movies, tv, anime]) =>
         dispatch(
           setHome({
             movies: { label: "Disover Movies", data: movies },
             tv: { label: "Disover TV", data: tv },
+            anime: { label: "Discover Anime", data: anime },
           })
         )
       )

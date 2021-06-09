@@ -17,14 +17,16 @@ export const useTvService = () => {
       `/api/tv/${id}`,
       `/api/tv/${id}/credits`,
       `/api/tv/${id}/reviews`,
+      `/api/tv/${id}/similar`,
     ];
 
-    fetchMultiple(apis).then(([info, credits, reviews]) => {
+    fetchMultiple(apis).then(([info, credits, reviews, similar]) => {
       dispatch(
         setTvDetails({
           info,
           credits,
           reviews,
+          similar,
         })
       );
     });

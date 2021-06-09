@@ -12,7 +12,11 @@ const CardsSection = memo(({ title, children }) => {
           </Text>
         </Frame>
       </div>
-      <div className="section-content">{children}</div>
+      <div className="section-content">
+        <Frame frame="box" className="movies-frame">
+          {children}
+        </Frame>
+      </div>
     </div>
   );
 });

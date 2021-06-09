@@ -7,18 +7,22 @@ import { useSelector } from "react-redux";
 import { formatDate, formatYear } from "../../utils/utils";
 import ReactStars from "react-stars";
 import PeopleList from "../../components/peopleList";
-import ReviewList from '../../components/reviewList';
+import ReviewList from "../../components/reviewList";
+import CardsList from "../../components/cardsList";
+import MovieCard from "../../components/movieCard";
+import Section from "../../ui/section";
+import { useRouter } from 'next/router';
 
 const Movie = ({ params }) => {
+  const router = useRouter();
   const { fetchMovieDetails } = useMovieService();
   const { config, movie } = useSelector((state) => state);
 
-  console.log(movie);
-  const { info, credits, reviews } = movie;
+  const { info, credits, reviews, similar } = movie;
 
   useEffect(() => {
-    fetchMovieDetails(params.id);
-  }, []);
+    fetchMovieDetails(router.query.id || params.id);
+  }, [router.query.id, params.id]);
 
   if (!config?.images) {
     return null;
@@ -114,6 +118,9 @@ const Movie = ({ params }) => {
       <PeopleList title="Cast" list={credits.cast} sub="character" />
       <PeopleList title="Crew" list={credits.crew} sub="job" />
       <ReviewList reviews={reviews} />
+      <Section title="Similar Movies">
+        <CardsList card={MovieCard} data={similar.results} type="movie" />
+      </Section>
     </div>
   );
 };

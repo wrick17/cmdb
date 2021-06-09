@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { startNavigationTransition } from "../redux/actions/routeActionCreators";
-import { staggerDuration } from './constants';
+import { staggerDuration } from "./constants";
 
 export const useNavigation = () => {
   const router = useRouter();
@@ -11,6 +11,7 @@ export const useNavigation = () => {
     dispatch(startNavigationTransition());
     setTimeout(() => {
       router.push(to, to, { shallow: true });
+      scrollTo(0, 0);
     }, staggerDuration);
   };
 

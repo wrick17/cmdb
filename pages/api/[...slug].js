@@ -4,7 +4,9 @@ const apiKey = "f4fcbbc0d3afaea558736f65edfdb7ad";
 const baseUrl = "https://api.themoviedb.org/3";
 
 export default async ({ url, method }, res) => {
-  const apiSlug = url.replace("/api", "") + `?api_key=${apiKey}`;
+  const apiSlug =
+    url.replace("/api", "") +
+    `${url.indexOf("?") !== -1 ? "&" : "?"}api_key=${apiKey}`;
   const apiUrl = `${baseUrl}${apiSlug}`;
 
   try {

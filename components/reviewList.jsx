@@ -3,9 +3,10 @@ import Section from "../ui/section";
 import { formatDate } from "../utils/utils";
 
 const ReviewList = ({ reviews }) => {
-  if (!reviews?.length) {
+  if (!reviews?.results?.length) {
     return null;
   }
+
   return (
     <div className="cast reviews">
       <Section title="Reviews">

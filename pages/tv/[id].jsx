@@ -10,8 +10,13 @@ import ReviewList from "../../components/reviewList";
 import { useTvService } from "../../services/tvServices";
 import Seasons from "../../components/seasons";
 import { useAnimator } from "../../utils/hooks";
+import Section from '../../ui/section';
+import MovieCard from '../../components/movieCard';
+import CardsList from '../../components/cardsList';
+import { useRouter } from 'next/router';
 
 const Tv = (props) => {
+  const router = useRouter();
   const { fetchTvDetails } = useTvService();
   const { config, tv } = useSelector((state) => state);
   const {
@@ -20,11 +25,11 @@ const Tv = (props) => {
   } = useAnimator(props);
 
   const { params } = props;
-  const { info, credits, reviews } = tv;
+  const { info, credits, reviews, similar } = tv;
 
   useEffect(() => {
-    fetchTvDetails(params.id);
-  }, []);
+    fetchTvDetails(router.query.id || params.id);
+  }, [router.query.id, params.id]);
 
   if (!config?.images) {
     return null;
@@ -110,6 +115,9 @@ const Tv = (props) => {
       <PeopleList title="Crew" list={credits.crew} sub="job" />
       <Seasons data={seasons} />
       <ReviewList reviews={reviews} />
+      <Section title="Similar TV Shows">
+        <CardsList card={MovieCard} data={similar.results} type="tv" />
+      </Section>
     </div>
   );
 };

@@ -16,7 +16,7 @@
   flex: 1;
 }
 
-.movie-page .movie-name {
+.movie-page .movie-details .right-section .movie-name {
   font-size: 36px;
   /* margin-top: 24px; */
 }
@@ -245,7 +245,7 @@
     margin-right: 0;
     margin-bottom: 32px;
   }
-  .movie-page .movie-details .movie-name {
+  .movie-page .movie-details .right-section .movie-name {
     text-align: center;
     line-height: 1;
     margin-bottom: 24px;

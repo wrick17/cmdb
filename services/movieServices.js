@@ -9,7 +9,7 @@ export const useMovieService = () => {
   const fetchMovieDetails = (slug) => {
     const id = slug.split("-")[0];
 
-    if (movie.info?.id.toString() === id || movie.loading) {
+    if (movie.info?.id.toString() === id.toString() || movie.loading) {
       return;
     }
 
@@ -17,14 +17,16 @@ export const useMovieService = () => {
       `/api/movie/${id}`,
       `/api/movie/${id}/credits`,
       `/api/movie/${id}/reviews`,
+      `/api/movie/${id}/similar`,
     ];
 
-    fetchMultiple(apis).then(([info, credits, reviews]) => {
+    fetchMultiple(apis).then(([info, credits, reviews, similar]) => {
       dispatch(
         setMovieDetails({
           info,
           credits,
           reviews,
+          similar,
         })
       );
     });

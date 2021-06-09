@@ -1,13 +1,23 @@
 .movies {
-  max-width: 1000px;
   width: 100%;
   margin: auto;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
-  padding: 16px 16px;
-  border: 1px solid #00f8f8;
-  box-shadow: 0 0 4px #00f8f8aa, 0 0 4px #00f8f8aa inset;
+  overflow-y: hidden;
+  padding-bottom: 8px;
+}
+
+.movies-frame, .movies-frame > .arwes-frame {
+  padding: 0 !important;
+}
+
+.movies-frame > .arwes-frame > .arwes-frame__structure > svg > g > g > path {
+  fill: transparent;
+}
+
+.movies-frame .movies {
+  padding: 16px;
 }
 
 .movie-card {
@@ -37,8 +47,15 @@
   padding: 0;
 }
 
-.movie-card .movie-details {
+.movie-card .movie-card-details {
   padding: 8px;
+}
+
+.movie-card .movie-card-details > span,
+.movie-card .movie-card-details > div {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
 }
 
 .movie-card .movie-name {
@@ -55,6 +72,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   max-width: 100%;
+  font-size: 18px;
 }
 
 .movie-card img {
@@ -63,9 +81,10 @@
   object-fit: cover;
 }
 
-.movie-card .rating-container {
+.movie-card .movie-card-details .rating-container {
   display: flex;
   align-items: center;
+  margin: 0;
 }
 
 .movie-card .stars {
@@ -116,7 +135,8 @@
 }
 
 .cards-section .section-content {
-  max-width: 100%;
+  width: 100%;
+  max-width: 1000px;
 }
 
 @media (max-width: 1210px) {
