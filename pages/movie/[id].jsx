@@ -11,12 +11,16 @@ import ReviewList from "../../components/reviewList";
 import CardsList from "../../components/cardsList";
 import MovieCard from "../../components/movieCard";
 import Section from "../../ui/section";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 const Movie = ({ params }) => {
   const router = useRouter();
   const { fetchMovieDetails } = useMovieService();
-  const { config, movie, route: { routing } } = useSelector((state) => state);
+  const {
+    config,
+    movie,
+    route: { routing },
+  } = useSelector((state) => state);
 
   const { info, credits, reviews, similar, loading } = movie;
 
@@ -26,8 +30,11 @@ const Movie = ({ params }) => {
 
   const { images } = config || {};
   const { secure_base_url, poster_sizes } = images || {};
-  
-  if (!(config?.images && info && credits && reviews) || (loading && !routing)) {
+
+  if (
+    !(config?.images && info && credits && reviews) ||
+    (loading && !routing)
+  ) {
     return <Loading />;
   }
 
@@ -59,14 +66,21 @@ const Movie = ({ params }) => {
     <div className="movie-page">
       <div className="movie-details">
         <Image
-          src={`${secure_base_url}${
-            poster_sizes[poster_sizes.length - 2]
-          }${poster_path}`}
+          src={
+            poster_path
+              ? `${secure_base_url}${
+                  poster_sizes[poster_sizes.length - 2]
+                }${poster_path}`
+              : "/placeholders/placeholder.png"
+          }
           alt={title}
         />
         <div className="right-section">
           <Text as="h1" className="movie-name block">
-            {title} <span className="year">[{formatYear(release_date)}]</span>
+            {title}{" "}
+            {release_date && (
+              <span className="year">[{formatYear(release_date)}]</span>
+            )}
           </Text>
           <div className="movie-date">
             <div className="detail-block">
@@ -114,9 +128,11 @@ const Movie = ({ params }) => {
       <PeopleList title="Cast" list={credits.cast} sub="character" />
       <PeopleList title="Crew" list={credits.crew} sub="job" />
       <ReviewList reviews={reviews} />
-      <Section title="Similar Movies">
-        <CardsList card={MovieCard} data={similar.results} type="movie" />
-      </Section>
+      {similar?.results?.length ? (
+        <Section title="Similar Movies">
+          <CardsList card={MovieCard} data={similar.results} type="movie" />
+        </Section>
+      ) : null}
     </div>
   );
 };

@@ -35,7 +35,10 @@ const Tv = (props) => {
     fetchTvDetails(router.query.id || params.id);
   }, [router.query.id, params.id]);
 
-  if (!(config?.images && info && credits && reviews) || (loading && !routing)) {
+  if (
+    !(config?.images && info && credits && reviews) ||
+    (loading && !routing)
+  ) {
     return <Loading />;
   }
 
@@ -61,16 +64,22 @@ const Tv = (props) => {
     <div className="movie-page">
       <div className="movie-details" ref={ref}>
         <Image
-          src={`${secure_base_url}${
-            poster_sizes[poster_sizes.length - 2]
-          }${poster_path}`}
+          src={
+            poster_path
+              ? `${secure_base_url}${
+                  poster_sizes[poster_sizes.length - 2]
+                }${poster_path}`
+              : "/placeholders/placeholder.png"
+          }
           alt={title || name}
           className={`figo ${activate ? "show" : ""}`}
         />
         <div className="right-section">
           <Text as="h1" className="movie-name block">
             {title || name}{" "}
-            <span className="year">[{formatYear(release_date)}]</span>
+            {release_date && (
+              <span className="year">[{formatYear(release_date)}]</span>
+            )}
           </Text>
           <div className="movie-date">
             <div className="detail-block">
@@ -115,9 +124,11 @@ const Tv = (props) => {
       <PeopleList title="Crew" list={credits.crew} sub="job" />
       <Seasons data={seasons} />
       <ReviewList reviews={reviews} />
-      <Section title="Similar TV Shows">
-        <CardsList card={MovieCard} data={similar.results} type="tv" />
-      </Section>
+      {similar?.results?.length ? (
+        <Section title="Similar TV Shows">
+          <CardsList card={MovieCard} data={similar.results} type="tv" />
+        </Section>
+      ) : null}
     </div>
   );
 };

@@ -46,9 +46,13 @@ const Person = (props) => {
     <div className="movie-page">
       <div className="movie-details" re={ref}>
         <Image
-          src={`${secure_base_url}${
-            poster_sizes[poster_sizes.length - 2]
-          }${profile_path}`}
+          src={
+            profile_path
+              ? `${secure_base_url}${
+                  poster_sizes[poster_sizes.length - 2]
+                }${profile_path}`
+              : "/placeholders/placeholder.png"
+          }
           alt={name}
           className={`figo ${activate ? "show" : ""}`}
         />
