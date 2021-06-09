@@ -4,6 +4,7 @@ export const tvReducer = (state = initialState, action) => {
   switch (action.type) {
     case "TV/LOAD_DETAILS": {
       return {
+        ...state,
         loading: true,
       };
     }

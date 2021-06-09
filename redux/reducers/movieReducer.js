@@ -4,6 +4,7 @@ export const movieReducer = (state = initialState, action) => {
   switch (action.type) {
     case "MOVIE/LOAD_DETAILS": {
       return {
+        ...state,
         loading: true,
       };
     }

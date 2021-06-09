@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setTvDetails } from '../redux/actions/tvActionCreators';
+import { loadTvDetails, setTvDetails } from '../redux/actions/tvActionCreators';
 import { fetchMultiple } from "../utils/utils";
 
 export const useTvService = () => {
@@ -7,6 +7,7 @@ export const useTvService = () => {
   const tv = useSelector((state) => state.tv);
 
   const fetchTvDetails = (slug) => {
+    dispatch(loadTvDetails());
     const id = slug.split("-")[0];
 
     if (tv.info?.id.toString() === id || tv.loading) {

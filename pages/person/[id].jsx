@@ -1,13 +1,13 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import CardsList from '../../components/cardsList';
-import MovieCard from '../../components/movieCard';
-import Work from '../../components/work';
+import CardsList from "../../components/cardsList";
+import MovieCard from "../../components/movieCard";
+import Work from "../../components/work";
 import { usePersonService } from "../../services/personServices";
 import Image from "../../ui/image";
-import Loading from '../../ui/loading';
-import Section from '../../ui/section';
+import Loading from "../../ui/loading";
+import Section from "../../ui/section";
 import Text from "../../ui/text";
 import { useAnimator } from "../../utils/hooks";
 import { formatDate, getAge, sortTitles } from "../../utils/utils";
@@ -19,28 +19,28 @@ const Person = (props) => {
     ref,
     animator: { activate },
   } = useAnimator(props);
-  const { config, person } = useSelector((state) => state);
+  const {
+    config,
+    person,
+    route: { routing },
+  } = useSelector((state) => state);
 
   const { params } = props;
+  const { info, credits, loading } = person;
 
   useEffect(() => {
     fetchPersonDetails(router.query.id || params.id);
   }, [router.query.id, params.id]);
-  
-  if (!(config?.images && person.info)) {
+
+  if (!(config?.images && person.info) || (loading && !routing)) {
     return <Loading />;
   }
-  
-  
+
   const { images } = config || {};
   const { secure_base_url, poster_sizes } = images || {};
-  
-  const { info, credits } = person;
+
   const { name, profile_path, biography, known_for_department, birthday } =
-  info;
-  
-  console.log(credits);
-  console.log(sortTitles(credits?.cast));
+    info;
 
   return (
     <div className="movie-page">

@@ -16,9 +16,9 @@ import { useRouter } from 'next/router';
 const Movie = ({ params }) => {
   const router = useRouter();
   const { fetchMovieDetails } = useMovieService();
-  const { config, movie } = useSelector((state) => state);
+  const { config, movie, route: { routing } } = useSelector((state) => state);
 
-  const { info, credits, reviews, similar } = movie;
+  const { info, credits, reviews, similar, loading } = movie;
 
   useEffect(() => {
     fetchMovieDetails(router.query.id || params.id);
@@ -27,7 +27,7 @@ const Movie = ({ params }) => {
   const { images } = config || {};
   const { secure_base_url, poster_sizes } = images || {};
 
-  if (!(config?.images && info && credits && reviews)) {
+  if (!(config?.images && info && credits && reviews) || (loading && !routing)) {
     return <Loading />;
   }
 

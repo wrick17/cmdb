@@ -1,5 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setPersonDetails } from "../redux/actions/personActionCreators";
+import {
+  loadPersonDetails,
+  setPersonDetails,
+} from "../redux/actions/personActionCreators";
 import { fetchMultiple } from "../utils/utils";
 
 export const usePersonService = () => {
@@ -7,36 +10,23 @@ export const usePersonService = () => {
   const person = useSelector((state) => state.person);
 
   const fetchPersonDetails = (slug) => {
+    dispatch(loadPersonDetails());
     const id = slug.split("-")[0];
 
     if (person.info?.id.toString() === id.toString() || person.loading) {
       return;
     }
 
-    const apis = [
-      `/api/person/${id}`,
-      `/api/person/${id}/combined_credits`,
-      // `/api/person/${id}/reviews`,
-      // `/api/person/${id}/similar`,
-    ];
+    const apis = [`/api/person/${id}`, `/api/person/${id}/combined_credits`];
 
-    fetchMultiple(apis).then(
-      ([
-        info,
-        credits, 
-        // reviews, 
-        // similar
-      ]) => {
-        dispatch(
-          setPersonDetails({
-            info,
-            credits,
-            // reviews,
-            // similar,
-          })
-        );
-      }
-    );
+    fetchMultiple(apis).then(([info, credits]) => {
+      dispatch(
+        setPersonDetails({
+          info,
+          credits,
+        })
+      );
+    });
   };
 
   return { fetchPersonDetails };

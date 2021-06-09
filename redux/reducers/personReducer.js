@@ -4,6 +4,7 @@ export const personReducer = (state = initialState, action) => {
   switch (action.type) {
     case "PERSON/LOAD_DETAILS": {
       return {
+        ...state,
         loading: true,
       };
     }

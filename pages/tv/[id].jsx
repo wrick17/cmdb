@@ -18,20 +18,24 @@ import { useRouter } from "next/router";
 const Tv = (props) => {
   const router = useRouter();
   const { fetchTvDetails } = useTvService();
-  const { config, tv } = useSelector((state) => state);
+  const {
+    config,
+    tv,
+    route: { routing },
+  } = useSelector((state) => state);
   const {
     ref,
     animator: { activate },
   } = useAnimator(props);
 
   const { params } = props;
-  const { info, credits, reviews, similar } = tv;
+  const { info, credits, reviews, similar, loading } = tv;
 
   useEffect(() => {
     fetchTvDetails(router.query.id || params.id);
   }, [router.query.id, params.id]);
 
-  if (!(config?.images && info && credits && reviews)) {
+  if (!(config?.images && info && credits && reviews) || (loading && !routing)) {
     return <Loading />;
   }
 

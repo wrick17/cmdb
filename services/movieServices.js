@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setMovieDetails } from "../redux/actions/movieActionCreators";
+import { loadMovieDetails, setMovieDetails } from "../redux/actions/movieActionCreators";
 import { fetchMultiple } from "../utils/utils";
 
 export const useMovieService = () => {
@@ -7,6 +7,7 @@ export const useMovieService = () => {
   const movie = useSelector((state) => state.movie);
 
   const fetchMovieDetails = (slug) => {
+    dispatch(loadMovieDetails());
     const id = slug.split("-")[0];
 
     if (movie.info?.id.toString() === id.toString() || movie.loading) {
