@@ -1,9 +1,13 @@
 import { useSelector } from "react-redux";
+import { usePersonService } from '../services/personServices';
 import Card from "../ui/card";
-import { getImageFromId } from "../utils/utils";
+import { useNavigation } from '../utils/navigation';
+import { getImageFromId, handleize } from "../utils/utils";
 
 const ActorCard = ({ data, sub }) => {
   const config = useSelector((state) => state.config);
+  const navigate = useNavigation();
+  const { fetchPersonDetails } = usePersonService();
 
   const {
     images: { secure_base_url, poster_sizes },
@@ -11,8 +15,14 @@ const ActorCard = ({ data, sub }) => {
 
   const { id, profile_path, name, ...rest } = data;
 
+  const onClickPerson = () => {
+    const slug = `${id}-${handleize(name)}`;
+      fetchPersonDetails(slug);
+      navigate(`/person/${slug}`);
+  };
+
   return (
-    <Card className="actor-card">
+    <Card className="actor-card" onClick={onClickPerson}>
       <img
         src={
           profile_path

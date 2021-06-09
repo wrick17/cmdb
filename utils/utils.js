@@ -44,3 +44,19 @@ export const getRandomImage = () => `/placeholders/0${getRandomInt(8)}.jpg`;
 
 export const getImageFromId = (id) =>
   `/placeholders/0${id.toString()[id.toString().length - 1]}.jpg`;
+
+export const getAge = (date) => {
+  const today = dayjs();
+  const birthday = dayjs(date);
+  const diff = today.diff(birthday, "years");
+  return diff;
+};
+
+export const sortTitles = (list) => {
+  if (!list?.length) return list;
+  const tempList = [...list];
+  tempList.sort((a, b) => {
+    return dayjs(a.release_date).isBefore(dayjs(b.release_date)) ? 1 : -1;
+  });
+  return tempList;
+};

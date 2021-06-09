@@ -7,7 +7,8 @@ body {
 }
 
 @media (max-width: 768px) {
-  html, body {
+  html,
+  body {
     margin: 4px;
   }
 }
@@ -34,4 +35,16 @@ a {
 .figo.show {
   opacity: 1;
   transition: opacity 0ms;
+}
+
+.space-right {
+  margin-right: 16px;
+}
+
+.space-below {
+  margin-bottom: 16px;
+}
+
+.arwes-frame__structure {
+  pointer-events: none;
 }

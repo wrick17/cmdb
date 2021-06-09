@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useHomeService } from "../services/homeServices";
 import DiscoverSection from "../components/discoverSection";
 import Loading from "../ui/loading";
-import HomeTopic from '../components/homeTopic';
+import HomeTopic from "../components/homeTopic";
 
 const Home = () => {
   const { fetchDiscoverMovies } = useHomeService();
@@ -16,10 +16,9 @@ const Home = () => {
 
   if (!(config?.images && home?.movies)) {
     return (
-      <div className="loading-block">
+      <Loading>
         <h1>Hang on while we find things for you to watch</h1>
-        <Loading full={false} style={{ marginTop: "16px" }} />
-      </div>
+      </Loading>
     );
   }
 

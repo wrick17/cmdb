@@ -104,6 +104,12 @@
   width: 100%;
   top: 0;
   left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.frame .frame-content {
+  z-index: 10;
 }
 
 @keyframes expand {

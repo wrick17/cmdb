@@ -107,6 +107,7 @@
   width: 100%;
   height: 285px;
   object-fit: cover;
+  background-color: #00f8f8aa;
 }
 
 .movie-card .movie-card-details .rating-container {

@@ -9,7 +9,7 @@ import {
   FrameUnderline,
   StylesBaseline,
 } from "@arwes/core";
-import { memo } from 'react';
+import { memo } from "react";
 import { staggerDuration } from "../utils/constants";
 import { useAnimator } from "../utils/hooks";
 const animatorGeneral = {
@@ -36,11 +36,10 @@ const Frame = memo((props) => {
       <ArwesThemeProvider>
         <StylesBaseline />
         <AnimatorGeneralProvider animator={animatorGeneral}>
-          <FrameComponent animator={animator}>
-          </FrameComponent>
+          <FrameComponent animator={animator}></FrameComponent>
         </AnimatorGeneralProvider>
       </ArwesThemeProvider>
-      {children}
+      <div className="frame-content">{children}</div>
     </div>
   );
 });

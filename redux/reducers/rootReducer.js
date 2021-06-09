@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { personReducer } from "./personReducer";
 import { configReducer } from "./configReducer";
 import { homeReducer } from "./homeReducer";
 import { movieReducer } from "./movieReducer";
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   config: configReducer,
   movie: movieReducer,
   tv: tvReducer,
+  person: personReducer
 });
 
 export default rootReducer;

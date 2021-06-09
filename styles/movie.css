@@ -237,6 +237,53 @@
   box-shadow: 0 0 4px #00f8f8aa, 0 0 4px #00f8f8aa inset;
 }
 
+.movie-page .work {
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 16px 0;
+  align-items: baseline;
+}
+
+.movie-page .work .work-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.movie-page .work .year {
+  width: 60px;
+  text-align: center;
+  margin-right: 16px;
+}
+
+.movie-page .work .year::after {
+  content: '-';
+  margin-left: 16px;
+}
+
+.movie-page .work .work-type {
+  margin-right: 8px;
+  font-size: 10px;
+  display: inline-block;
+  padding: 2px 4px;
+  width: 40px;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 1px solid #00f8f8;
+}
+
+.movie-page .work .work-name {
+  font-weight: bold;
+  word-break: break-word;
+  display: inline !important;
+}
+
+.movie-page .work .as {
+  font-size: 14px;
+  margin: 0 8px;
+}
+
 @media (max-width: 768px) {
   .movie-page .movie-details {
     flex-direction: column;

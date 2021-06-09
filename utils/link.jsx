@@ -18,7 +18,7 @@ const Link = forwardRef(({ to, children, style }, ref) => {
         e.preventDefault();
         navigate(to);
       }}
-      style={style}
+      style={{ cursor: "pointer", ...style }}
     >
       {children}
     </a>

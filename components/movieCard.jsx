@@ -20,7 +20,15 @@ const MovieCard = memo((props) => {
   } = useAnimator(props);
 
   const { data, type, ...rest } = props;
-  const { id, name, title, poster_path, vote_average, release_date } = data;
+  const {
+    id,
+    name,
+    title,
+    poster_path,
+    vote_average,
+    release_date,
+    media_type,
+  } = data;
 
   const {
     images: { secure_base_url, poster_sizes },
@@ -28,21 +36,29 @@ const MovieCard = memo((props) => {
 
   const onClickMovie = () => {
     const slug = `${id}-${handleize(title || name)}`;
-    if (type === "tv") {
-      fetchTvDetails(slug);
-      navigate(`/tv/${slug}`);
-    } else {
+    let mediaType = type;
+    if (!type) {
+      mediaType = media_type;
+    }
+    if (mediaType === "movie") {
       fetchMovieDetails(slug);
       navigate(`/movie/${slug}`);
+    } else {
+      fetchTvDetails(slug);
+      navigate(`/tv/${slug}`);
     }
   };
 
   return (
     <Card className="movie-card" onClick={onClickMovie} {...rest}>
       <img
-        src={`${secure_base_url}${
-          poster_sizes[poster_sizes.length - 2]
-        }${poster_path}`}
+        src={
+          poster_path
+            ? `${secure_base_url}${
+                poster_sizes[poster_sizes.length - 2]
+              }${poster_path}`
+            : "/placeholders/placeholder.png"
+        }
         alt={title}
         className={`figo ${activate ? "show" : ""}`}
         ref={ref}

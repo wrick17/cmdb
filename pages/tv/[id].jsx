@@ -10,10 +10,10 @@ import ReviewList from "../../components/reviewList";
 import { useTvService } from "../../services/tvServices";
 import Seasons from "../../components/seasons";
 import { useAnimator } from "../../utils/hooks";
-import Section from '../../ui/section';
-import MovieCard from '../../components/movieCard';
-import CardsList from '../../components/cardsList';
-import { useRouter } from 'next/router';
+import Section from "../../ui/section";
+import MovieCard from "../../components/movieCard";
+import CardsList from "../../components/cardsList";
+import { useRouter } from "next/router";
 
 const Tv = (props) => {
   const router = useRouter();
@@ -31,16 +31,12 @@ const Tv = (props) => {
     fetchTvDetails(router.query.id || params.id);
   }, [router.query.id, params.id]);
 
-  if (!config?.images) {
-    return null;
+  if (!(config?.images && info && credits && reviews)) {
+    return <Loading />;
   }
 
   const { images } = config || {};
   const { secure_base_url, poster_sizes } = images || {};
-
-  if (!(info && credits && reviews)) {
-    return <Loading />;
-  }
 
   const {
     name,
@@ -59,7 +55,7 @@ const Tv = (props) => {
 
   return (
     <div className="movie-page">
-      <div className="movie-details" re={ref}>
+      <div className="movie-details" ref={ref}>
         <Image
           src={`${secure_base_url}${
             poster_sizes[poster_sizes.length - 2]
@@ -70,7 +66,7 @@ const Tv = (props) => {
         <div className="right-section">
           <Text as="h1" className="movie-name block">
             {title || name}{" "}
-            <span className="year">({formatYear(release_date)})</span>
+            <span className="year">[{formatYear(release_date)}]</span>
           </Text>
           <div className="movie-date">
             <div className="detail-block">

@@ -9,7 +9,7 @@ const Section = ({ title, children }) => {
       </Frame>
       <Frame frame="hexagon" className="section-title">
         <Text as="h6" className="secton-title-text">
-          {title}
+          <a>{title}</a>
         </Text>
       </Frame>
     </div>

@@ -27,11 +27,7 @@ const SeasonEpisodes = ({ season }) => {
   }
 
   if (loading) {
-    return (
-      <div className="loading-block">
-        <Loading full={false} style={{ marginTop: "16px" }} />
-      </div>
-    );
+    return <Loading />;
   }
 
   const { name, air_date, episodes } = details || {};

@@ -24,14 +24,10 @@ const Movie = ({ params }) => {
     fetchMovieDetails(router.query.id || params.id);
   }, [router.query.id, params.id]);
 
-  if (!config?.images) {
-    return null;
-  }
-
   const { images } = config || {};
   const { secure_base_url, poster_sizes } = images || {};
 
-  if (!(info && credits && reviews)) {
+  if (!(config?.images && info && credits && reviews)) {
     return <Loading />;
   }
 
@@ -70,7 +66,7 @@ const Movie = ({ params }) => {
         />
         <div className="right-section">
           <Text as="h1" className="movie-name block">
-            {title} <span className="year">({formatYear(release_date)})</span>
+            {title} <span className="year">[{formatYear(release_date)}]</span>
           </Text>
           <div className="movie-date">
             <div className="detail-block">
