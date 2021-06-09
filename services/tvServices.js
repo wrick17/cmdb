@@ -7,13 +7,13 @@ export const useTvService = () => {
   const tv = useSelector((state) => state.tv);
 
   const fetchTvDetails = (slug) => {
-    dispatch(loadTvDetails());
     const id = slug.split("-")[0];
 
     if (tv.info?.id.toString() === id || tv.loading) {
       return;
     }
 
+    dispatch(loadTvDetails());
     const apis = [
       `/api/tv/${id}`,
       `/api/tv/${id}/credits`,

@@ -7,13 +7,13 @@ export const useMovieService = () => {
   const movie = useSelector((state) => state.movie);
 
   const fetchMovieDetails = (slug) => {
-    dispatch(loadMovieDetails());
     const id = slug.split("-")[0];
-
+    
     if (movie.info?.id.toString() === id.toString() || movie.loading) {
       return;
     }
-
+    
+    dispatch(loadMovieDetails());
     const apis = [
       `/api/movie/${id}`,
       `/api/movie/${id}/credits`,

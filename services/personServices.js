@@ -10,13 +10,13 @@ export const usePersonService = () => {
   const person = useSelector((state) => state.person);
 
   const fetchPersonDetails = (slug) => {
-    dispatch(loadPersonDetails());
     const id = slug.split("-")[0];
 
     if (person.info?.id.toString() === id.toString() || person.loading) {
       return;
     }
 
+    dispatch(loadPersonDetails());
     const apis = [`/api/person/${id}`, `/api/person/${id}/combined_credits`];
 
     fetchMultiple(apis).then(([info, credits]) => {

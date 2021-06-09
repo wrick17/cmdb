@@ -26,8 +26,6 @@ const Movie = ({ params }) => {
 
   const { images } = config || {};
   const { secure_base_url, poster_sizes } = images || {};
-
-  console.log(loading, routing)
   
   if (!(config?.images && info && credits && reviews) || (loading && !routing)) {
     return <Loading />;
