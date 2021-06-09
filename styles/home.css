@@ -1,3 +1,30 @@
+.home-topic {
+  max-width: 1180px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
+.home-topic > .images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-topic .images > a {
+  display: inline-block;
+  margin: 16px 40px;
+}
+
+.home-topic .images > a > img {
+  height: 80px;
+}
+
+.home-topic .images > span {
+  font-size: 48px;
+  font-weight: bold;
+  margin-right: 12px;
+}
+
 .movies {
   width: 100%;
   margin: auto;
@@ -8,7 +35,8 @@
   padding-bottom: 8px;
 }
 
-.movies-frame, .movies-frame > .arwes-frame {
+.movies-frame,
+.movies-frame > .arwes-frame {
   padding: 0 !important;
 }
 

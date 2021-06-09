@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useHomeService } from "../services/homeServices";
-import DiscoverSection from '../components/discoverSection';
+import DiscoverSection from "../components/discoverSection";
+import Loading from "../ui/loading";
+import HomeTopic from '../components/homeTopic';
 
 const Home = () => {
   const { fetchDiscoverMovies } = useHomeService();
@@ -12,16 +14,22 @@ const Home = () => {
     fetchDiscoverMovies();
   }, []);
 
-  if (!config?.images) {
-    return null;
+  if (!(config?.images && home?.movies)) {
+    return (
+      <div className="loading-block">
+        <h1>Hang on while we find things for you to watch</h1>
+        <Loading full={false} style={{ marginTop: "16px" }} />
+      </div>
+    );
   }
 
   return (
-    <div>
+    <>
+      <HomeTopic />
       <DiscoverSection sectionData={home?.movies} type="movie" />
       <DiscoverSection sectionData={home?.tv} type="tv" />
       <DiscoverSection sectionData={home?.anime} type="tv" />
-    </div>
+    </>
   );
 };
 

@@ -1,4 +1,3 @@
-import Loading from "../ui/loading";
 import CardsList from "./cardsList";
 import CardsSection from "./cardsSection";
 import MovieCard from "./movieCard";
@@ -10,11 +9,7 @@ const DiscoverSection = ({ sectionData = {}, type }) => {
     <CardsSection title={label}>
       <CardsList card={MovieCard} data={data.results} type={type} />
     </CardsSection>
-  ) : (
-    <div className="loading-block bordered">
-      <Loading full={false} style={{ marginTop: "16px" }} />
-    </div>
-  );
+  ) : null;
 };
 
 export default DiscoverSection;

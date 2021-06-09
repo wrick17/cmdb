@@ -1,28 +1,17 @@
-import { memo, useState } from "react";
-import Button from "../ui/button";
+import { memo } from "react";
+import { useLazyListData } from "../utils/lazyLoadList";
 import MovieCard from "./movieCard";
 
 const CardsList = memo(({ data = [], ...props }) => {
-  const [showAll, setShowAll] = useState(false);
-
+  const { list, onScroll } = useLazyListData(data);
   return (
-    <div className="movies">
-      {data?.length
-        ? (showAll ? data : data.slice(0, 5)).map((movie) => (
+    <div className="movies" onScroll={onScroll}>
+      {list?.length
+        ? list.map((movie) => (
             <MovieCard data={movie} key={movie.id} {...props} />
           ))
         : null}
-      <Button
-        frame="pentagon"
-        containerStyles={{
-          display: "flex",
-          alignItems: "center",
-          paddingRight: "16px",
-        }}
-        style={{ fontSize: "12px" }}
-        text={showAll ? "Show Less" : "View More"}
-        onClick={() => setShowAll(!showAll)}
-      />
+      <div>&nbsp;</div>
     </div>
   );
 });

@@ -1,29 +1,14 @@
-// import { useEffect, useState } from "react";
-// import { useSelector } from "react-redux";
+import { useRef, useState } from 'react';
 
 export const useLazyListData = (data = []) => {
-  // const route = useSelector((state) => state.route);
-  // const [list, setList] = useState(data.slice(0, 5));
+  const [list, setList] = useState(data.slice(0, 6));
+  const firstTime = useRef(true);
 
-  // useEffect(() => {
-  //   if (data.length) {
-  //     const timeout = setTimeout(
-  //       (d) => {
-  //         setList(d);
-  //       },
-  //       1000,
-  //       data
-  //     );
+  const onScroll = () => {
+    if (!firstTime.current) return;
+    firstTime.current = true;
+    setList(data);
+  };
 
-  //     return () => clearTimeout(timeout);
-  //   }
-  // }, [data]);
-
-  // useEffect(() => {
-  //   if (route.routing) {
-  //     setList(data.slice(0, 5));
-  //   }
-  // }, [route.routing]);
-
-  return data;
+  return { list, onScroll };
 };
