@@ -28,13 +28,12 @@ a {
 
 .figo {
   opacity: 0;
-  transition: opacity 0ms;
-  transition-delay: 100ms;
+  transition: opacity 100ms ease-in-out 500ms;
 }
 
 .figo.show {
   opacity: 1;
-  transition: opacity 0ms;
+  transition: opacity 100ms ease-in-out 0ms;
 }
 
 .space-right {

@@ -3,7 +3,6 @@ import { useMovieService } from "../services/movieServices";
 import { useTvService } from "../services/tvServices";
 import { usePersonService } from "../services/personServices";
 import Frame from "../ui/frame";
-import Text from "../ui/text";
 import { useAnimator } from "../utils/hooks";
 import { useNavigation } from "../utils/navigation";
 import { formatDate, handleize } from "../utils/utils";
@@ -72,20 +71,22 @@ const SearchCard = (props) => {
           className={`figo ${activate ? "show" : ""}`}
           ref={ref}
         />
-        <div className="right-section">
-          <Text as="h6" className="block">
+        <div className={`right-section figo ${activate ? "show" : ""}`}>
+          <h6 as="h6" className="block">
             {title || name}
-          </Text>
-          <Text containerStyles={{ fontSize: 0 }} className="item-type">
+          </h6>
+          <span containerStyles={{ fontSize: 0 }} className="item-type">
             {isPerson ? known_for_department : media_type}
-          </Text>
-          {!isPerson && <Text>{formatDate(release_date)}</Text>}
-          {!isPerson && (
-            <Text className="rating">
-              Rating :{" "}
-              {vote_average ? `${vote_average * 10}% [${vote_count}]` : "NA"}
-            </Text>
-          )}
+          </span>
+          <div className="rating-container">
+            {!isPerson && <span>{formatDate(release_date)}</span>}
+            {!isPerson && (
+              <span className="rating">
+                Rating :{" "}
+                {vote_average ? `${vote_average * 10}% [${vote_count}]` : "NA"}
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </Frame>

@@ -65,6 +65,7 @@ const Header = () => {
           top: "50%",
           padding: "16px",
           transform: "translateY(-50%)",
+          zIndex: 10,
         }}
       >
         <Text>Search</Text>

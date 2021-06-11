@@ -20,7 +20,7 @@ export const handleize = (str) => {
 export const formatDate = (date) => {
   const parsedDate = dayjs(date);
   if (parsedDate.isValid()) {
-    return dayjs(date).format("DD MMMM, YYYY");
+    return dayjs(date).format("DD MMM, YYYY");
   }
   return null;
 };

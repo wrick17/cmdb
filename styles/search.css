@@ -3,7 +3,7 @@
   margin: auto;
 }
 
-.search-page h6  {
+.search-page h6 {
   width: 100%;
 }
 
@@ -39,7 +39,7 @@
   flex: 1;
 }
 
-.search-page .search-card  .right-section > span:not(:first-child) {
+.search-page .search-card .right-section > span:not(:first-child) {
   margin-right: 16px;
 }
 
@@ -51,4 +51,24 @@
   font-weight: bold;
   width: 80px;
   text-align: center;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+.search-page .search-card .rating-container {
+  display: inline-block;
+}
+
+.search-page .search-card .rating-container .rating {
+  margin-left: 16px;
+}
+
+@media (max-width: 768px) {
+  .search-page .search-card .search-content h6 {
+    margin-bottom: 8px;
+  }
+
+  .search-page .search-card .rating-container {
+    display: block;
+  }
 }
