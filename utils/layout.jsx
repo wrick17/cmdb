@@ -1,9 +1,19 @@
+import { ArwesThemeProvider, StylesBaseline } from '@arwes/core';
+import { AnimatorGeneralProvider } from "@arwes/animation";
 import Router, { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { navigateTransition } from "../redux/actions/routeActionCreators";
 import { useConfigService } from "../services/configServices";
 import { useNavigation } from "./navigation";
+import { staggerDuration } from './constants';
+
+const FONT_FAMILY_ROOT = '"Titillium Web", sans-serif';
+
+const globalStyles = { body: { fontFamily: FONT_FAMILY_ROOT } };
+const animatorGeneral = {
+  duration: { enter: staggerDuration, exit: staggerDuration },
+};
 
 if (typeof window === "undefined") {
   const error = console.error;
@@ -33,7 +43,16 @@ const Utils = ({ children }) => {
     fetchConfig();
   }, []);
 
-  return children;
+  return (
+    <>
+      <ArwesThemeProvider>
+        <StylesBaseline styles={globalStyles} />
+        <AnimatorGeneralProvider animator={animatorGeneral}>
+          {children}
+        </AnimatorGeneralProvider>
+      </ArwesThemeProvider>
+    </>
+  );
 };
 
 export default Utils;

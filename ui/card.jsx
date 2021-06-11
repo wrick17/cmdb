@@ -1,11 +1,5 @@
-import { ArwesThemeProvider, FramePentagon } from "@arwes/core";
-import { AnimatorGeneralProvider } from "@arwes/animation";
-import { staggerDuration } from "../utils/constants";
+import { FramePentagon } from "@arwes/core";
 import { useAnimator } from "../utils/hooks";
-
-const animatorGeneral = {
-  duration: { enter: staggerDuration, exit: staggerDuration },
-};
 
 const Card = (props) => {
   const { ref, animator } = useAnimator(props);
@@ -22,13 +16,11 @@ const Card = (props) => {
       }}
       {...rest}
     >
-      <ArwesThemeProvider>
-        <AnimatorGeneralProvider animator={animatorGeneral}>
-          <FramePentagon animator={animator} hover>
-            <div className={`figo ${animator.activate ? "show" : ""}`}>{children}</div>
-          </FramePentagon>
-        </AnimatorGeneralProvider>
-      </ArwesThemeProvider>
+      <FramePentagon animator={animator} hover>
+        <div className={`figo ${animator.activate ? "show" : ""}`}>
+          {children}
+        </div>
+      </FramePentagon>
     </div>
   );
 };

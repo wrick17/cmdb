@@ -1,20 +1,13 @@
-import { AnimatorGeneralProvider } from "@arwes/animation";
 import {
-  ArwesThemeProvider,
   FrameBox,
   FrameCorners,
   FrameHexagon,
   FrameLines,
   FramePentagon,
   FrameUnderline,
-  StylesBaseline,
 } from "@arwes/core";
 import { memo } from "react";
-import { staggerDuration } from "../utils/constants";
 import { useAnimator } from "../utils/hooks";
-const animatorGeneral = {
-  duration: { enter: staggerDuration, exit: staggerDuration },
-};
 
 const frameMap = {
   box: FrameBox,
@@ -33,12 +26,7 @@ const Frame = memo((props) => {
 
   return (
     <div className={`frame ${className}`} ref={ref}>
-      <ArwesThemeProvider>
-        <StylesBaseline />
-        <AnimatorGeneralProvider animator={animatorGeneral}>
-          <FrameComponent animator={animator}></FrameComponent>
-        </AnimatorGeneralProvider>
-      </ArwesThemeProvider>
+      <FrameComponent animator={animator}></FrameComponent>
       <div className="frame-content">{children}</div>
     </div>
   );
