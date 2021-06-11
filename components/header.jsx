@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Text from "../ui/text";
 import Link from "../utils/link";
+import Frame from "../ui/frame";
 
 const Header = () => {
   const [text, setText] = useState("CMDb");
@@ -24,26 +25,51 @@ const Header = () => {
   }, []);
 
   return (
-    <Link
-      to="/"
+    <header
       style={{
-        display: "block",
-        textAlign: "center",
+        position: "relative",
+        width: "100%",
+        maxWidth: "1180px",
         margin: "0 auto 48px",
-        borderBottom: "1px solid",
-        width: "80%",
-        maxWidth: "800px",
       }}
-      ref={ref}
     >
-      <Text
-        as="h1"
-        style={{ textAlign: "center", textTransform: "none" }}
-        stagger={1000}
+      <Frame frame="lines">
+        <Link
+          to="/"
+          style={{
+            display: "block",
+            textAlign: "center",
+          }}
+          ref={ref}
+        >
+          <Text
+            as="h1"
+            style={{
+              textAlign: "center",
+              textTransform: "none",
+              marginBottom: "0",
+            }}
+            stagger={1000}
+          >
+            {text}
+          </Text>
+        </Link>
+      </Frame>
+
+      <Link
+        to="/search"
+        className="search-trigger"
+        style={{
+          position: "absolute",
+          right: 0,
+          top: "50%",
+          padding: "16px",
+          transform: "translateY(-50%)",
+        }}
       >
-        {text}
-      </Text>
-    </Link>
+        <Text>Search</Text>
+      </Link>
+    </header>
   );
 };
 

@@ -122,3 +122,40 @@
     height: 285px;
   }
 }
+
+.input {
+  padding: 0;
+  position: relative;
+}
+
+.input input {
+  border: none;
+  height: 48px;
+  padding: 0 32px;
+  text-transform: uppercase;
+}
+
+.input input:hover,
+.input input:focus,
+.input input:active {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.input .clear {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  height: 32px;
+  width: 32px;
+  line-height: 28px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.input input[type="search" i]::-webkit-search-cancel-button {
+  display: none;
+}

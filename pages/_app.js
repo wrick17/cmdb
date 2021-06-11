@@ -2,13 +2,15 @@ import Head from "next/head";
 import { Provider } from "react-redux";
 import { useStore } from "../redux/store";
 import Layout from "../utils/layout";
+import Header from '../components/header';
+import Footer from '../components/footer';
 
 import "../styles/globals.css";
 import "../styles/ui.css";
 import "../styles/home.css";
 import "../styles/movie.css";
-import Header from '../components/header';
-import Footer from '../components/footer';
+import "../styles/search.css";
+
 
 function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState);
