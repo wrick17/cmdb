@@ -27,6 +27,7 @@ const MovieCard = memo((props) => {
     poster_path,
     vote_average,
     release_date,
+    first_air_date,
     media_type,
   } = data;
 
@@ -50,7 +51,7 @@ const MovieCard = memo((props) => {
   };
 
   return (
-    <Card className="movie-card" onClick={onClickMovie} {...rest}>
+    <Card className={`movie-card`} onClick={onClickMovie} {...rest}>
       <img
         src={
           poster_path
@@ -67,7 +68,6 @@ const MovieCard = memo((props) => {
         <Text
           className="movie-name"
           title={title || name}
-          containerStyles={{ display: "block" }}
         >
           {title || name}
         </Text>
@@ -85,7 +85,13 @@ const MovieCard = memo((props) => {
           </Text>
         </div>
         <Text className="release-date">
-          {release_date ? formatDate(release_date) : 'No Release Date'}
+          {media_type === "movie"
+            ? release_date
+              ? formatDate(release_date)
+              : "No Release Date"
+            : first_air_date
+            ? formatDate(first_air_date)
+            : "No Air Date"}
         </Text>
       </div>
     </Card>

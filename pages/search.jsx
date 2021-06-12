@@ -5,6 +5,7 @@ import Input from "../ui/input";
 import Text from "../ui/text";
 import Loading from "../ui/loading";
 import { useRouter } from "next/router";
+import Section from "../ui/section";
 
 const Search = () => {
   const [query, setQuery] = useState("");
@@ -43,7 +44,7 @@ const Search = () => {
 
   return (
     <div className="search-page">
-      <Text as="h6" containerStyles={{ display: "block", textAlign: "center" }}>
+      <Text as="h6" style={{ textAlign: "center" }}>
         Search
       </Text>
       <Input
@@ -53,15 +54,18 @@ const Search = () => {
         onChange={setQuery}
         onClear={onClear}
         autoFocus
+        placeholder="Search for Movies, TV Shows or just people..."
       />
       <div className="search-results">
         {loading ? (
           <Loading />
         ) : results ? (
           results?.length ? (
-            results?.map((result) => (
-              <SearchCard key={result.id} data={result} />
-            ))
+            <Section title="Results">
+              {results?.map((result) => (
+                <SearchCard key={result.id} data={result} />
+              ))}
+            </Section>
           ) : (
             <div className="no-results">
               <Text>No Results</Text>

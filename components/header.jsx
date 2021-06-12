@@ -33,7 +33,7 @@ const Header = () => {
         margin: "0 auto 48px",
       }}
     >
-      <Frame frame="lines">
+      <div>
         <Link
           to="/"
           style={{
@@ -54,7 +54,7 @@ const Header = () => {
             {text}
           </Text>
         </Link>
-      </Frame>
+      </div>
 
       <Link
         to="/search"

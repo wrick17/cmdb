@@ -1,6 +1,7 @@
 import { LoadingBars } from "@arwes/core";
+import { memo } from 'react';
 
-const Loading = ({ full, style, children }) => {
+const Loading = memo(({ full, style, children }) => {
   return (
     <div className="loading-block">
       {children}
@@ -13,6 +14,6 @@ const Loading = ({ full, style, children }) => {
       />
     </div>
   );
-};
+});
 
 export default Loading;

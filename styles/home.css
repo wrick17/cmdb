@@ -51,9 +51,26 @@
 .movie-card {
   flex: 0 0 200px;
   max-width: 200px;
-  margin-right: 16px;
+  padding: 0 16px;
   font-size: 0;
   cursor: pointer;
+  position: relative;
+}
+
+.movie-card.border:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  height: 10%;
+  transform: translateY(-50%);
+  border-right: 1px solid #00f8f8aa;
+  transition: height 300ms ease-in-out;
+}
+
+.movie-card.border.show:not(:last-child)::after {
+  height: 95%;
+  transition: height 300ms ease-in-out;
 }
 
 .movie-card .arwes-frame {
@@ -107,7 +124,7 @@
   width: 200px;
   height: 285px;
   object-fit: cover;
-  background-color: #00f8f8aa;
+  background-color: #00f8f855;
 }
 
 .movie-card .movie-card-details .rating-container {

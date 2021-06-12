@@ -1,10 +1,10 @@
 import Frame from "./frame";
 import Text from "./text";
 
-const Section = ({ title, children }) => {
+const Section = ({ title, children, className, contentClassName }) => {
   return (
-    <div className="section">
-      <Frame frame="box" className="section-frame">
+    <div className={`section ${className}`}>
+      <Frame frame="box" className={`section-frame ${contentClassName}`}>
         {children}
       </Frame>
       <Frame frame="hexagon" className="section-title">

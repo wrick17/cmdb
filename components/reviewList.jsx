@@ -1,4 +1,4 @@
-import Frame from "../ui/frame";
+import Card from "../ui/card";
 import Section from "../ui/section";
 import { formatDate } from "../utils/utils";
 
@@ -15,11 +15,11 @@ const ReviewList = ({ reviews }) => {
             ? reviews?.results?.slice(0, 5)?.map((review) => {
                 const { id, content, author, created_at } = review;
                 return (
-                  <Frame key={id} className="review">
+                  <Card key={id} className="review">
                     <p className="name">{author}</p>
                     <p className="time">{formatDate(created_at)}</p>
                     <p className="content">{content.slice(0, 500)}</p>
-                  </Frame>
+                  </Card>
                 );
               })
             : null}

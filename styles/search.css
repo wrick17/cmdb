@@ -20,7 +20,24 @@
 }
 
 .search-page .search-card {
-  margin-bottom: 16px;
+  padding: 16px;
+  position: relative;
+}
+
+.search-page .search-card.border:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 10%;
+  transform: translateX(-50%);
+  border-bottom: 1px solid #00f8f8aa;
+  transition: width 300ms ease-in-out;
+}
+
+.search-page .search-card.border.show:not(:last-child)::after {
+  width: 90%;
+  transition: width 300ms ease-in-out;
 }
 
 .search-page .search-card .search-content {

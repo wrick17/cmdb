@@ -32,13 +32,17 @@ const Seasons = ({ data }) => {
           );
         })}
       </div>
-      <Button
-        frame="corners"
-        onClick={() => setShowEpisodes(!showEpisodes)}
-        text={`${showEpisodes ? "Hide" : `Show ${seasonMap[season]}`} Episodes`}
-        style={{ width: "100%", marginTop: "8px" }}
-      />
-      {showEpisodes && <SeasonEpisodes season={season} />}
+      <div className="seasons-content">
+        <Button
+          frame="corners"
+          onClick={() => setShowEpisodes(!showEpisodes)}
+          text={`${
+            showEpisodes ? "Hide" : `Show ${seasonMap[season]}`
+          } Episodes`}
+          style={{ width: "100%", marginTop: "8px" }}
+        />
+        {showEpisodes && <SeasonEpisodes season={season} />}
+      </div>
     </Section>
   );
 };

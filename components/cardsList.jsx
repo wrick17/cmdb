@@ -4,6 +4,7 @@ import MovieCard from "./movieCard";
 
 const CardsList = memo(({ data = [], ...props }) => {
   const { list, onScroll } = useLazyListData(data);
+  console.log(data);
   return (
     <div className="movies" onScroll={onScroll}>
       {list?.length

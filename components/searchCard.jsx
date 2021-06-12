@@ -2,10 +2,11 @@ import { useSelector } from "react-redux";
 import { useMovieService } from "../services/movieServices";
 import { useTvService } from "../services/tvServices";
 import { usePersonService } from "../services/personServices";
-import Frame from "../ui/frame";
+import Text from "../ui/text";
 import { useAnimator } from "../utils/hooks";
 import { useNavigation } from "../utils/navigation";
 import { formatDate, handleize } from "../utils/utils";
+import Card from "../ui/card";
 
 const SearchCard = (props) => {
   const { data } = props;
@@ -57,7 +58,7 @@ const SearchCard = (props) => {
   const imageUrl = isPerson ? profile_path : poster_path;
 
   return (
-    <Frame className="search-card">
+    <Card className="search-card">
       <div className="search-content" onClick={onClickMovie}>
         <img
           src={
@@ -71,11 +72,11 @@ const SearchCard = (props) => {
           className={`figo ${activate ? "show" : ""}`}
           ref={ref}
         />
-        <div className={`right-section figo ${activate ? "show" : ""}`}>
-          <h6 as="h6" className="block">
+        <div className={`right-section`}>
+          <Text as="h6" className="block">
             {title || name}
-          </h6>
-          <span containerStyles={{ fontSize: 0 }} className="item-type">
+          </Text>
+          <span className={`item-type figo ${activate ? "show" : ""}`}>
             {isPerson ? known_for_department : media_type}
           </span>
           <div className="rating-container">
@@ -89,7 +90,7 @@ const SearchCard = (props) => {
           </div>
         </div>
       </div>
-    </Frame>
+    </Card>
   );
 };
 

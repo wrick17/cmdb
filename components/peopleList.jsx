@@ -18,7 +18,11 @@ const PeopleList = ({ title, list, sub }) => {
           {list.length > 10 && (
             <Button
               frame="pentagon"
-              containerStyles={{ display: "flex", alignItems: "center" }}
+              containerStyles={{
+                display: "flex",
+                alignItems: "center",
+                padding: "0 16px",
+              }}
               style={{ fontSize: "12px" }}
               text={showPeople ? "Show Less" : "View All"}
               onClick={() => setShowPeople(!showPeople)}

@@ -113,9 +113,28 @@
 }
 
 .movie-page .cast-list .actor-card {
-  flex: 0 0 120px;
-  margin-right: 16px;
+  flex: 0 0 140px;
+  padding: 0 16px;
   cursor: pointer;
+  position: relative;
+}
+
+.review.border:not(:last-child)::after,
+.actor-card.border:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  height: 10%;
+  transform: translateY(-50%);
+  border-right: 1px solid #00f8f8aa;
+  transition: height 300ms ease-in-out;
+}
+
+.review.border.show:not(:last-child)::after,
+.actor-card.border.show:not(:last-child)::after {
+  height: 90%;
+  transition: height 300ms ease-in-out;
 }
 
 .movie-page .cast-list .actor-card img {
@@ -168,16 +187,14 @@
   flex-wrap: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
-  padding-bottom: 8px;
+  padding-bottom: 16px;
   margin-top: 8px;
 }
 
 .movie-page .reviews-list .review {
   flex: 1 0 300px;
-}
-
-.movie-page .reviews-list .review:not(:last-child) {
-  margin-right: 24px;
+  position: relative;
+  padding: 0 16px;
 }
 
 .movie-page .reviews-list .review .arwes-frame {
@@ -205,12 +222,46 @@
   font-size: 24px;
 }
 
+.movie-page .seasons-content {
+  padding: 16px;
+}
+
+.movie-page .seasons-content button svg > g > g > path {
+  opacity: 0.1 !important;
+}
+
 .movie-page .episodes {
   margin-top: 32px;
 }
 
 .movie-page .episodes .episode {
-  margin-bottom: 16px;
+  padding: 16px 0;
+  position: relative;
+  display: flex;
+}
+
+.movie-page .episodes .episode.border:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 10%;
+  transform: translateX(-50%);
+  border-bottom: 1px solid #00f8f8aa;
+  transition: width 300ms ease-in-out;
+}
+
+.movie-page .episodes .episode.border.show:not(:last-child)::after {
+  width: 100%;
+  transition: width 300ms ease-in-out;
+}
+
+.movie-page .episodes .episode img {
+  flex: 0 0 100px;
+  height: 56px;
+  object-fit: cover;
+  margin-right: 16px;
+  background-color: #00f8f855;
 }
 
 .movie-page .episodes .episode .episode-name {
@@ -238,11 +289,31 @@
   box-shadow: 0 0 4px #00f8f8aa, 0 0 4px #00f8f8aa inset;
 }
 
+.movie-page .work-list {
+  position: relative;
+}
+
+.movie-page .work-list::before {
+  content: "";
+  position: absolute;
+  left: 90px;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background-color: #00f8f8;
+  z-index: -1;
+}
+
 .movie-page .work {
+  padding: 16px 16px;
+  width: 100%;
   display: flex;
   flex-wrap: nowrap;
-  margin: 16px 0;
   align-items: baseline;
+}
+
+.movie-page .work-section {
+  padding-bottom: 8px;
 }
 
 .movie-page .work .work-title {
@@ -252,14 +323,10 @@
 }
 
 .movie-page .work .year {
-  width: 60px;
+  min-width: 40px;
+  max-width: 40px;
   text-align: center;
   margin-right: 16px;
-}
-
-.movie-page .work .year::after {
-  content: '-';
-  margin-left: 16px;
 }
 
 .movie-page .work .work-type {
@@ -267,11 +334,13 @@
   font-size: 10px;
   display: inline-block;
   padding: 2px 4px;
-  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
   text-align: center;
   font-weight: bold;
   text-transform: uppercase;
   border: 1px solid #00f8f8;
+  background-color: #021114;
 }
 
 .movie-page .work .work-name {
@@ -310,5 +379,14 @@
   }
   .movie-page .rating-container {
     justify-content: center;
+  }
+  .movie-page .episodes .episode {
+    flex-direction: column;
+    padding: 24px 0;
+  }
+  .movie-page .episodes .episode img {
+    margin-bottom: 8px;
+    margin-right: 0;
+    height: auto;
   }
 }

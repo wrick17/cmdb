@@ -1,13 +1,13 @@
-import { FramePentagon } from "@arwes/core";
+import { memo } from "react";
 import { useAnimator } from "../utils/hooks";
 
-const Card = (props) => {
+const Card = memo((props) => {
   const { ref, animator } = useAnimator(props);
   const { className, children, onClick, ...rest } = props;
 
   return (
     <div
-      className={className}
+      className={`border ${animator.activate ? "show" : ""} ${className}`}
       ref={ref}
       onClick={() => {
         if (onClick) {
@@ -16,13 +16,11 @@ const Card = (props) => {
       }}
       {...rest}
     >
-      <FramePentagon animator={animator} hover>
-        <div className={`figo ${animator.activate ? "show" : ""}`}>
-          {children}
-        </div>
-      </FramePentagon>
+      <div className={`figo ${animator.activate ? "show" : ""}`}>
+        {children}
+      </div>
     </div>
   );
-};
+});
 
 export default Card;

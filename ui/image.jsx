@@ -1,7 +1,8 @@
 import { FrameLines } from "@arwes/core";
+import { memo } from 'react';
 import { useAnimator } from "../utils/hooks";
 
-const Image = (props) => {
+const Image = memo((props) => {
   const { ref, animator } = useAnimator(props);
 
   const { src, alt = "", style } = props;
@@ -19,6 +20,6 @@ const Image = (props) => {
       </FrameLines>
     </div>
   );
-};
+});
 
 export default Image;

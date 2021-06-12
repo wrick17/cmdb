@@ -4,6 +4,7 @@ import { useTvService } from "../services/tvServices";
 import Section from "../ui/section";
 import { useNavigation } from "../utils/navigation";
 import { formatYear, handleize } from "../utils/utils";
+import Text from "../ui/text";
 
 const Work = memo(({ data }) => {
   const { fetchMovieDetails } = useMovieService();
@@ -29,32 +30,34 @@ const Work = memo(({ data }) => {
   };
 
   return (
-    <Section title="Work">
-      {data.map((work) => (
-        <div className="work" key={work.id}>
-          <span className="year">
-            {work.release_date ? formatYear(work.release_date) : "Soon"}
-          </span>
-          <div className="work-title">
+    <Section title="Work" contentClassName="work-section">
+      <div className="work-list">
+        {data.map((work) => (
+          <div className="work" key={work.id}>
+            <span className="year">
+              {work.release_date ? formatYear(work.release_date) : "Soon"}
+            </span>
             <span className="work-type">{work.media_type}</span>
-            <a
-              href={`/${work.media_type}/${work.id}-${handleize(
-                work.title || work.name
-              )}`}
-              onClick={(e) => onClickLink(e, work)}
-              className="work-name"
-            >
-              {work.title || work.name}
-            </a>
-            {work.character || work.job ? (
-              <>
-                <span className="as"> as </span>
-                <span>{work.character || work.job}</span>
-              </>
-            ) : null}
+            <Text as="div" className="work-title">
+              <a
+                href={`/${work.media_type}/${work.id}-${handleize(
+                  work.title || work.name
+                )}`}
+                onClick={(e) => onClickLink(e, work)}
+                className="work-name"
+              >
+                {work.title || work.name}
+              </a>
+              {work.character || work.job ? (
+                <>
+                  <span className="as"> as </span>
+                  <span>{work.character || work.job}</span>
+                </>
+              ) : null}
+            </Text>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </Section>
   );
 });

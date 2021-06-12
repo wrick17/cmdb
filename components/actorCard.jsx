@@ -22,7 +22,10 @@ const ActorCard = ({ data, sub }) => {
   };
 
   return (
-    <Card className="actor-card" onClick={onClickPerson}>
+    <Card
+      className={`actor-card`}
+      onClick={onClickPerson}
+    >
       <img
         src={
           profile_path

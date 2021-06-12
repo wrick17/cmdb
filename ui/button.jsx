@@ -8,6 +8,7 @@ import {
   FrameUnderline,
   FrameLines,
 } from "@arwes/core";
+import { memo } from 'react';
 import { useAnimator } from "../utils/hooks";
 
 const frameMap = {
@@ -19,7 +20,7 @@ const frameMap = {
   lines: FrameLines,
 };
 
-const Button = (props) => {
+const Button = memo((props) => {
   const { ref, animator } = useAnimator(props);
   const { text, onClick, containerStyles, frame, ...rest } = props;
 
@@ -35,6 +36,6 @@ const Button = (props) => {
       </AButton>
     </span>
   );
-};
+});
 
 export default Button;
