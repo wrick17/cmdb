@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Text from "../ui/text";
 import Link from "../utils/link";
-import Frame from "../ui/frame";
 
 const Header = () => {
   const [text, setText] = useState("CMDb");
@@ -38,18 +37,15 @@ const Header = () => {
           to="/"
           style={{
             display: "block",
-            textAlign: "center",
           }}
           ref={ref}
         >
           <Text
             as="h1"
             style={{
-              textAlign: "center",
               textTransform: "none",
               marginBottom: "0",
             }}
-            stagger={1000}
           >
             {text}
           </Text>
