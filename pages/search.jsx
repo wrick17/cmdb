@@ -29,7 +29,7 @@ const Search = () => {
       });
       search(query)
         .then((data) => setResults(data.results))
-        .catch(console.log)
+        .catch(() => {})
         .finally(() => setLoading(false));
     }
   }, [query, router.query.query]);

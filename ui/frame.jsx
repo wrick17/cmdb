@@ -26,7 +26,7 @@ const Frame = memo((props) => {
 
   return (
     <div className={`frame ${className}`} ref={ref}>
-      <FrameComponent animator={animator}></FrameComponent>
+      <FrameComponent animator={animator} hover></FrameComponent>
       <div className="frame-content">{children}</div>
     </div>
   );

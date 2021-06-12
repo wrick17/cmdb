@@ -45,6 +45,7 @@
   width: 100%;
   max-width: 1180px;
   margin: auto;
+  background-color: #00000055;
 }
 
 .section .section-title {
@@ -100,6 +101,7 @@
 .frame {
   position: relative;
   padding: 8px;
+  background-color: #00000055;
 }
 
 .frame > .arwes-frame {

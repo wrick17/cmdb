@@ -4,7 +4,7 @@ import MovieCard from "./movieCard";
 
 const CardsList = memo(({ data = [], ...props }) => {
   const { list, onScroll } = useLazyListData(data);
-  console.log(data);
+
   return (
     <div className="movies" onScroll={onScroll}>
       {list?.length
@@ -12,7 +12,6 @@ const CardsList = memo(({ data = [], ...props }) => {
             <MovieCard data={movie} key={movie.id} {...props} />
           ))
         : null}
-      <div>&nbsp;</div>
     </div>
   );
 });

@@ -19,8 +19,6 @@ const Episode = (props) => {
   } = useAnimator(props);
   const { episode } = props;
 
-  console.log(episode);
-
   return (
     <div ref={ref} className={`episode  border ${activate ? "show" : ""}`}>
       <img

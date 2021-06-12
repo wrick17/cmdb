@@ -19,6 +19,7 @@
     "dayjs": "^1.10.5",
     "howler": "2.2",
     "next": "10.2.3",
+    "next-pwa": "^5.2.21",
     "polished": "4",
     "prop-types": "^15.7.2",
     "react": "17",
