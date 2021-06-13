@@ -56,7 +56,12 @@ export const sortTitles = (list) => {
   if (!list?.length) return list;
   const tempList = [...list];
   tempList.sort((a, b) => {
-    return dayjs(a.release_date).isBefore(dayjs(b.release_date)) ? 1 : -1;
+    return dayjs(a.release_date || a.first_air_date).isBefore(
+      dayjs(b.release_date || b.first_air_date)
+    )
+      ? 1
+      : -1;
   });
+  console.log(tempList);
   return tempList;
 };

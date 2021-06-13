@@ -35,7 +35,9 @@ const Work = memo(({ data }) => {
         {data.map((work) => (
           <div className="work" key={work.id}>
             <span className="year">
-              {work.release_date ? formatYear(work.release_date) : "Soon"}
+              {work.release_date || work.first_air_date
+                ? formatYear(work.release_date || work.first_air_date)
+                : "Soon"}
             </span>
             <span className="work-type">{work.media_type}</span>
             <Text as="div" className="work-title">

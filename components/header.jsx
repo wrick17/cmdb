@@ -1,27 +1,7 @@
-import { useEffect, useRef, useState } from "react";
 import Text from "../ui/text";
 import Link from "../utils/link";
 
 const Header = () => {
-  const [text, setText] = useState("CMDb");
-  const ref = useRef();
-
-  useEffect(() => {
-    if (ref.current) {
-      const mouseEnterHandler = () => {
-        setText("Cyber Movie Database");
-      };
-      ref.current.addEventListener("mouseenter", mouseEnterHandler);
-      const mouseLeaveHandler = () => {
-        setText("CMDb");
-      };
-      ref.current.addEventListener("mouseleave", mouseLeaveHandler);
-      return () => {
-        ref.current.removeEventListener("mouseenter", mouseEnterHandler);
-        ref.current.removeEventListener("mouseleave", mouseLeaveHandler);
-      };
-    }
-  }, []);
 
   return (
     <header
@@ -38,7 +18,6 @@ const Header = () => {
           style={{
             display: "block",
           }}
-          ref={ref}
         >
           <Text
             as="h1"
@@ -47,7 +26,7 @@ const Header = () => {
               marginBottom: "0",
             }}
           >
-            {text}
+            CMDb
           </Text>
         </Link>
       </div>

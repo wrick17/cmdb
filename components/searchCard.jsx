@@ -33,7 +33,6 @@ const SearchCard = (props) => {
     release_date,
     media_type,
     vote_average,
-    vote_count,
     known_for_department,
   } = data;
 
@@ -84,7 +83,7 @@ const SearchCard = (props) => {
             {!isPerson && (
               <span className="rating">
                 Rating :{" "}
-                {vote_average ? `${vote_average * 10}% [${vote_count}]` : "NA"}
+                {vote_average ? `${vote_average * 10}%` : "NA"}
               </span>
             )}
           </div>

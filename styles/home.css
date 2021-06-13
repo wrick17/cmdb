@@ -17,6 +17,7 @@
 
 .home-topic .images > a > img {
   height: 80px;
+  object-fit: contain;
 }
 
 .home-topic .images > span {
@@ -200,5 +201,11 @@
   .cards-section .section-name .frame {
     height: 100%;
     width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-topic .images > a {
+    margin: 16px;
   }
 }
