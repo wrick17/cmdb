@@ -44,8 +44,10 @@ const Episode = (props) => {
           <Text as="h1" className="movie-name block">
             {name}
           </Text>
-          <div>
-            <Text>{formatDate(air_date)}</Text>
+          <div className="movie-date">
+            <div className="detail-block">
+              <Text>{formatDate(air_date)}</Text>
+            </div>
           </div>
           <div className="rating-container">
             <ReactStars

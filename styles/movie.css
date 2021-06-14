@@ -237,6 +237,7 @@
   padding: 16px 0;
   position: relative;
   display: flex;
+  cursor: pointer;
 }
 
 .movie-page .episodes .episode.border:not(:last-child)::after {
