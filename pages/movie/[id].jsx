@@ -9,7 +9,7 @@ import PeopleList from "../../components/peopleList";
 import ReviewList from "../../components/reviewList";
 import CardsList from "../../components/cardsList";
 import MovieCard from "../../components/movieCard";
-import ImageList from "../../components/ImageList";
+import ImageList from "../../components/imageList";
 import Section from "../../ui/section";
 import { useRouter } from "next/router";
 
@@ -22,7 +22,14 @@ const Movie = ({ params }) => {
     route: { routing },
   } = useSelector((state) => state);
 
-  const { info, credits, reviews, similar, loading, images: movieImages } = movie;
+  const {
+    info,
+    credits,
+    reviews,
+    similar,
+    loading,
+    images: movieImages,
+  } = movie;
 
   useEffect(() => {
     fetchMovieDetails(router.query.id || params.id);

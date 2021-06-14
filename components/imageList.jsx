@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-// import Section from "../ui/section";
 import { useAnimator } from "../utils/hooks";
 
 const Image = (props) => {

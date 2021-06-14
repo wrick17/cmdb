@@ -11,7 +11,7 @@ import Section from "../../ui/section";
 import Text from "../../ui/text";
 import { useAnimator } from "../../utils/hooks";
 import { formatDate, getAge, sortTitles } from "../../utils/utils";
-import ImageList from "../../components/ImageList";
+import ImageList from "../../components/imageList";
 
 const Person = (props) => {
   const router = useRouter();

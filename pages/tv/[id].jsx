@@ -11,7 +11,7 @@ import Seasons from "../../components/seasons";
 import Section from "../../ui/section";
 import MovieCard from "../../components/movieCard";
 import CardsList from "../../components/cardsList";
-import ImageList from "../../components/ImageList";
+import ImageList from "../../components/imageList";
 import { useRouter } from "next/router";
 
 const Tv = (props) => {
