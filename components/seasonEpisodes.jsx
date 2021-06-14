@@ -1,13 +1,18 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useEpisodeService } from "../services/episodeServices";
 import { useTvService } from "../services/tvServices";
 import Loading from "../ui/loading";
 import Text from "../ui/text";
 import { useAnimator } from "../utils/hooks";
+import { useNavigation } from "../utils/navigation";
 import { formatDate } from "../utils/utils";
 
 const Episode = (props) => {
   const config = useSelector((state) => state.config);
+  const router = useRouter();
+  const { fetchEpisodeDetails } = useEpisodeService();
 
   const {
     images: { secure_base_url, poster_sizes },
@@ -17,10 +22,23 @@ const Episode = (props) => {
     ref,
     animator: { activate },
   } = useAnimator(props);
-  const { episode } = props;
+  const navigate = useNavigation();
+
+  const { episode, season } = props;
+
+  const viewEpisode = () => {
+    fetchEpisodeDetails(router.query.id, season, episode.episode_number);
+    navigate(
+      `/tv/${router.query.id}/season/${season}/episode/${episode.episode_number}`
+    );
+  };
 
   return (
-    <div ref={ref} className={`episode  border ${activate ? "show" : ""}`}>
+    <div
+      ref={ref}
+      className={`episode  border ${activate ? "show" : ""}`}
+      onClick={viewEpisode}
+    >
       <img
         src={
           episode.still_path
@@ -35,7 +53,7 @@ const Episode = (props) => {
       />
       <div className="episode-details">
         <Text className="episode-name block">
-          {episode.episode_number}. {episode.name}
+          {episode.episode_number}. <a>{episode.name}</a>
         </Text>
         <Text
           className="block"
@@ -84,7 +102,7 @@ const SeasonEpisodes = (props) => {
       <Text className="block">{formatDate(air_date)}</Text>
       <div className="episodes">
         {episodes?.map((episode) => (
-          <Episode episode={episode} key={episode.id} />
+          <Episode episode={episode} key={episode.id} season={season} />
         ))}
       </div>
     </div>

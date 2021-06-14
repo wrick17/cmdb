@@ -62,6 +62,5 @@ export const sortTitles = (list) => {
       ? 1
       : -1;
   });
-  console.log(tempList);
   return tempList;
 };

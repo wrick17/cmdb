@@ -354,6 +354,36 @@
   margin: 0 8px;
 }
 
+.episode-page .image {
+  width: 285px;
+  min-height: 200px;
+  max-height: 200px;
+}
+
+.episode-page .image .arwes-frame__content img.show {
+  height: 200px;
+}
+
+.episode-page .image-list .frame-content {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.episode-page .image-list .frame-content {
+  padding: 0 8px;
+}
+
+.episode-page .image-list .frame-content .image-container {
+  padding: 8px;
+}
+
+.episode-page .image-list .frame-content img {
+  max-height: 200px;
+  max-width: 80vw;
+}
+
 @media (max-width: 768px) {
   .movie-page .movie-details {
     flex-direction: column;

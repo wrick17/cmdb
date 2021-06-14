@@ -5,6 +5,7 @@ import { homeReducer } from "./homeReducer";
 import { movieReducer } from "./movieReducer";
 import { routeReducer } from "./routeReducer";
 import { tvReducer } from "./tvReducer";
+import { episodeReducer } from "./episodeReducer";
 
 const rootReducer = combineReducers({
   home: homeReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   config: configReducer,
   movie: movieReducer,
   tv: tvReducer,
-  person: personReducer
+  person: personReducer,
+  episode: episodeReducer,
 });
 
 export default rootReducer;

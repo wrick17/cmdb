@@ -41,7 +41,9 @@ const Seasons = ({ data }) => {
           } Episodes`}
           style={{ width: "100%", marginTop: "8px" }}
         />
-        {showEpisodes && <SeasonEpisodes season={season} />}
+        {showEpisodes && (
+          <SeasonEpisodes season={season} />
+        )}
       </div>
     </Section>
   );

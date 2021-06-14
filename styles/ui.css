@@ -117,6 +117,7 @@
 .frame .frame-content {
   z-index: 10;
   position: relative;
+  margin: 0 1px;
 }
 
 @keyframes expand {
