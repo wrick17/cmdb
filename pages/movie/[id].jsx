@@ -59,6 +59,7 @@ const Movie = ({ params }) => {
     genres,
     runtime,
     vote_average,
+    vote_count,
     overview,
     tagline,
   } = info;
@@ -95,7 +96,7 @@ const Movie = ({ params }) => {
               className="stars"
               char="⬤"
             />
-            <span className="rating">{vote_average * 10}%</span>
+            <span className="rating">{vote_average * 10}% [ {vote_count} ]</span>
           </div>
           <Text className="tagline block" as="p">
             {tagline}

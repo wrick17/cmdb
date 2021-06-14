@@ -431,4 +431,7 @@
   .movie-page .episodes .episode img.no-image {
     display: none;
   }
+  .image-container:first-child:last-child {
+    margin: auto;
+  }
 }

@@ -9,6 +9,7 @@ import { formatDate } from "../../../../../../utils/utils";
 import PeopleList from "../../../../../../components/peopleList";
 import { useTvService } from "../../../../../../services/tvServices";
 import ImageList from "../../../../../../components/imageList";
+import Link from "../../../../../../utils/link";
 
 const Episode = (props) => {
   const router = useRouter();
@@ -34,7 +35,7 @@ const Episode = (props) => {
   if (!(config?.images && info && episodeImages) || (loading && !routing)) {
     return <Loading />;
   }
-  const { name, air_date, vote_average, overview, crew, guest_stars } = info;
+  const { name, air_date, vote_average, vote_count, overview, crew, guest_stars } = info;
 
   return (
     <div className="movie-page episode-page">
@@ -44,12 +45,13 @@ const Episode = (props) => {
           <Text as="h1" className="movie-name block">
             {name}
           </Text>
-          <div className="movie-date">
-            <div className="detail-block">
-              <Text>{formatDate(air_date)}</Text>
-            </div>
-          </div>
+          <Text className="block" as="h6">
+            <Link to={`/tv/${id}`}>
+              {tv.info.name} [ S{seasonId}.E{episodeId} ]
+            </Link>
+          </Text>
           <div className="rating-container">
+            <Text className="space-right">{formatDate(air_date)}</Text>
             <ReactStars
               count={5}
               value={vote_average / 2}
@@ -58,7 +60,9 @@ const Episode = (props) => {
               className="stars"
               char="⬤"
             />
-            <span className="rating">{vote_average * 10}%</span>
+            <span className="rating">
+              {vote_average * 10}% [ {vote_count} ]
+            </span>
           </div>
           <Text as="h6" className="sub-heading block">
             Overview

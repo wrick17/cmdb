@@ -28,7 +28,14 @@ const Seasons = ({ data }) => {
       <div className="seasons cast-list">
         {data.map((season) => {
           return (
-            <SeasonCard data={season} onClick={setSeason} key={season.id} />
+            <SeasonCard
+              data={season}
+              onClick={(seasonNumber) => {
+                setSeason(seasonNumber);
+                setShowEpisodes(true);
+              }}
+              key={season.id}
+            />
           );
         })}
       </div>
@@ -41,9 +48,7 @@ const Seasons = ({ data }) => {
           } Episodes`}
           style={{ width: "100%", marginTop: "8px" }}
         />
-        {showEpisodes && (
-          <SeasonEpisodes season={season} />
-        )}
+        {showEpisodes && <SeasonEpisodes season={season} />}
       </div>
     </Section>
   );

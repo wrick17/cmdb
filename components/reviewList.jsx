@@ -1,6 +1,7 @@
 import Card from "../ui/card";
 import Section from "../ui/section";
 import { formatDate } from "../utils/utils";
+import Text from "../ui/text";
 
 const ReviewList = ({ reviews }) => {
   if (!reviews?.results?.length) {
@@ -16,9 +17,9 @@ const ReviewList = ({ reviews }) => {
                 const { id, content, author, created_at } = review;
                 return (
                   <Card key={id} className="review">
-                    <p className="name">{author}</p>
-                    <p className="time">{formatDate(created_at)}</p>
-                    <p className="content">{content.slice(0, 500)}</p>
+                    <Text as="p" className="block name">{author}</Text>
+                    <Text as="p" className="block time">{formatDate(created_at)}</Text>
+                    <Text as="p" className="block content">{content.slice(0, 500)}</Text>
                   </Card>
                 );
               })

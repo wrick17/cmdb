@@ -65,10 +65,7 @@ const MovieCard = memo((props) => {
         ref={ref}
       />
       <div className="movie-card-details">
-        <Text
-          className="movie-name"
-          title={title || name}
-        >
+        <Text className="movie-name" title={title || name}>
           {title || name}
         </Text>
         <div className={`rating-container figo ${activate ? "show" : ""}`}>
@@ -85,13 +82,9 @@ const MovieCard = memo((props) => {
           </Text>
         </div>
         <Text className="release-date">
-          {media_type === "movie"
-            ? release_date
-              ? formatDate(release_date)
-              : "No Release Date"
-            : first_air_date
-            ? formatDate(first_air_date)
-            : "No Air Date"}
+          {release_date || first_air_date
+            ? formatDate(release_date || first_air_date)
+            : "No Date"}
         </Text>
       </div>
     </Card>

@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
-import { usePersonService } from '../services/personServices';
+import { usePersonService } from "../services/personServices";
 import Card from "../ui/card";
-import { useNavigation } from '../utils/navigation';
+import { useNavigation } from "../utils/navigation";
 import { getImageFromId, handleize } from "../utils/utils";
+import Text from "../ui/text";
 
 const ActorCard = ({ data, sub }) => {
   const config = useSelector((state) => state.config);
@@ -17,15 +18,12 @@ const ActorCard = ({ data, sub }) => {
 
   const onClickPerson = () => {
     const slug = `${id}-${handleize(name)}`;
-      fetchPersonDetails(slug);
-      navigate(`/person/${slug}`);
+    fetchPersonDetails(slug);
+    navigate(`/person/${slug}`);
   };
 
   return (
-    <Card
-      className={`actor-card`}
-      onClick={onClickPerson}
-    >
+    <Card className={`actor-card`} onClick={onClickPerson}>
       <img
         src={
           profile_path
@@ -37,9 +35,9 @@ const ActorCard = ({ data, sub }) => {
         alt={name}
       />
       <div className="actor-details">
-        <p className="name" title={name}>
+        <Text className="name" title={name}>
           {name}
-        </p>
+        </Text>
         {sub && <p className="character">{rest[sub]}</p>}
       </div>
     </Card>

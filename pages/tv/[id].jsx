@@ -49,6 +49,7 @@ const Tv = (props) => {
     seasons,
     last_air_date,
     next_episode_to_air,
+    vote_count,
   } = info;
 
   return (
@@ -88,7 +89,7 @@ const Tv = (props) => {
               className="stars"
               char="⬤"
             />
-            <span className="rating">{vote_average * 10}%</span>
+            <span className="rating">{vote_average * 10}% [ {vote_count} ]</span>
           </div>
           <Text className="tagline block" as="p">
             {tagline}
