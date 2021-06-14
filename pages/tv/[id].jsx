@@ -8,7 +8,6 @@ import PeopleList from "../../components/peopleList";
 import ReviewList from "../../components/reviewList";
 import { useTvService } from "../../services/tvServices";
 import Seasons from "../../components/seasons";
-import { useAnimator } from "../../utils/hooks";
 import Section from "../../ui/section";
 import MovieCard from "../../components/movieCard";
 import CardsList from "../../components/cardsList";
@@ -23,10 +22,6 @@ const Tv = (props) => {
     tv,
     route: { routing },
   } = useSelector((state) => state);
-  const {
-    ref,
-    animator: { activate },
-  } = useAnimator(props);
 
   const { params } = props;
   const { info, credits, reviews, similar, loading, images: tvImages } = tv;
@@ -59,7 +54,7 @@ const Tv = (props) => {
   return (
     <div className="movie-page">
       <ImageList data={tvImages.backdrops} />
-      <div className="movie-details" ref={ref}>
+      <div className="movie-details">
         <div className="right-section">
           <Text as="h1" className="movie-name block">
             {title || name}{" "}
