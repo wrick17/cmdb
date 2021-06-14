@@ -35,7 +35,15 @@ const Episode = (props) => {
   if (!(config?.images && info && episodeImages) || (loading && !routing)) {
     return <Loading />;
   }
-  const { name, air_date, vote_average, vote_count, overview, crew, guest_stars } = info;
+  const {
+    name,
+    air_date,
+    vote_average,
+    vote_count,
+    overview,
+    crew,
+    guest_stars,
+  } = info;
 
   return (
     <div className="movie-page episode-page">
@@ -45,11 +53,13 @@ const Episode = (props) => {
           <Text as="h1" className="movie-name block">
             {name}
           </Text>
-          <Text className="block" as="h6">
-            <Link to={`/tv/${id}`}>
-              {tv.info.name} [ S{seasonId}.E{episodeId} ]
-            </Link>
-          </Text>
+          <div className="rating-container">
+            <Text className="block" as="h6">
+              <Link to={`/tv/${id}`}>
+                {tv.info.name} [ S{seasonId}.E{episodeId} ]
+              </Link>
+            </Text>
+          </div>
           <div className="rating-container">
             <Text className="space-right">{formatDate(air_date)}</Text>
             <ReactStars
