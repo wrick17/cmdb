@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useMovieService } from "../../services/movieServices";
 import Loading from "../../ui/loading";
 import Text from "../../ui/text";
-import Image from "../../ui/image";
 import { useSelector } from "react-redux";
 import { formatDate, formatYear } from "../../utils/utils";
 import ReactStars from "react-stars";
@@ -10,6 +9,7 @@ import PeopleList from "../../components/peopleList";
 import ReviewList from "../../components/reviewList";
 import CardsList from "../../components/cardsList";
 import MovieCard from "../../components/movieCard";
+import ImageList from "../../components/ImageList";
 import Section from "../../ui/section";
 import { useRouter } from "next/router";
 
@@ -22,17 +22,14 @@ const Movie = ({ params }) => {
     route: { routing },
   } = useSelector((state) => state);
 
-  const { info, credits, reviews, similar, loading } = movie;
+  const { info, credits, reviews, similar, loading, images: movieImages } = movie;
 
   useEffect(() => {
     fetchMovieDetails(router.query.id || params.id);
   }, [router.query.id, params.id]);
 
-  const { images } = config || {};
-  const { secure_base_url, poster_sizes } = images || {};
-
   if (
-    !(config?.images && info && credits && reviews) ||
+    !(config?.images && info && credits && reviews && movieImages) ||
     (loading && !routing)
   ) {
     return <Loading />;
@@ -50,7 +47,6 @@ const Movie = ({ params }) => {
 
   const {
     title,
-    poster_path,
     release_date,
     status,
     genres,
@@ -64,17 +60,8 @@ const Movie = ({ params }) => {
 
   return (
     <div className="movie-page">
+      <ImageList data={movieImages.backdrops} />
       <div className="movie-details">
-        <Image
-          src={
-            poster_path
-              ? `${secure_base_url}${
-                  poster_sizes[poster_sizes.length - 2]
-                }${poster_path}`
-              : "/placeholders/placeholder.png"
-          }
-          alt={title}
-        />
         <div className="right-section">
           <Text as="h1" className="movie-name block">
             {title}{" "}

@@ -11,6 +11,7 @@ import Section from "../../ui/section";
 import Text from "../../ui/text";
 import { useAnimator } from "../../utils/hooks";
 import { formatDate, getAge, sortTitles } from "../../utils/utils";
+import ImageList from "../../components/ImageList";
 
 const Person = (props) => {
   const router = useRouter();
@@ -26,7 +27,7 @@ const Person = (props) => {
   } = useSelector((state) => state);
 
   const { params } = props;
-  const { info, credits, loading } = person;
+  const { info, credits, loading, images: personImages } = person;
 
   useEffect(() => {
     fetchPersonDetails(router.query.id || params.id);
@@ -71,6 +72,11 @@ const Person = (props) => {
       </div>
       <Section title="Movies and Shows">
         <CardsList card={MovieCard} data={credits.cast} />
+      </Section>
+      <Section title="Images">
+        <div className="person-image-container">
+          <ImageList data={personImages.profiles} />
+        </div>
       </Section>
       <Work data={sortTitles([...credits?.cast, ...credits?.crew])} />
     </div>

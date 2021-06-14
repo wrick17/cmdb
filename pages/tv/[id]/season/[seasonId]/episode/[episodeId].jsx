@@ -56,6 +56,7 @@ const Episode = (props) => {
 
   return (
     <div className="movie-page episode-page">
+      <ImageList data={episodeImages.stills} title="Frames from the Episode" />
       <div className="movie-details" ref={ref}>
         <Image
           src={
@@ -94,7 +95,6 @@ const Episode = (props) => {
           </Text>
         </div>
       </div>
-      <ImageList data={episodeImages.stills} title="Frames from the Episode" />
       <PeopleList title="Cast" list={tv.credits.cast} sub="character" />
       <PeopleList title="Guest Stars" list={guest_stars} sub="character" />
       <PeopleList title="Crew" list={crew} sub="job" />

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import Section from "../ui/section";
+// import Section from "../ui/section";
 import { useAnimator } from "../utils/hooks";
 
 const Image = (props) => {
@@ -30,17 +30,16 @@ const Image = (props) => {
 };
 
 const ImageList = ({ title, data }) => {
-  if (data?.length < 2) {
+  if (!data?.length) {
     return null;
   }
-  const [, ...rest] = data;
 
   return (
-    <Section title={title} className="image-list">
-      {rest?.map((image, idx) => {
+    <div title={title} className="image-list">
+      {data.slice(0, 20)?.map((image, idx) => {
         return <Image image={image} key={image.file_path + idx} />;
       })}
-    </Section>
+    </div>
   );
 };
 

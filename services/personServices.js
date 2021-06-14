@@ -17,13 +17,18 @@ export const usePersonService = () => {
     }
 
     dispatch(loadPersonDetails());
-    const apis = [`/api/person/${id}`, `/api/person/${id}/combined_credits`];
+    const apis = [
+      `/api/person/${id}`,
+      `/api/person/${id}/combined_credits`,
+      `/api/person/${id}/images`,
+    ];
 
-    fetchMultiple(apis).then(([info, credits]) => {
+    fetchMultiple(apis).then(([info, credits, images]) => {
       dispatch(
         setPersonDetails({
           info,
           credits,
+          images,
         })
       );
     });

@@ -18,7 +18,6 @@
 
 .movie-page .movie-details .right-section .movie-name {
   font-size: 36px;
-  /* margin-top: 24px; */
 }
 
 .movie-page .movie-name .year {
@@ -364,24 +363,33 @@
   height: 200px;
 }
 
-.episode-page .image-list .frame-content {
+.image-list {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
+  margin-bottom: 16px;
 }
 
-.episode-page .image-list .frame-content {
+.image-list .image-container {
   padding: 0 8px;
 }
 
-.episode-page .image-list .frame-content .image-container {
-  padding: 8px;
+.image-list .image-container:first-child {
+  padding-left: 0;
 }
 
-.episode-page .image-list .frame-content img {
+.image-list .image-container:last-child {
+  padding-right: 0;
+}
+
+.image-list img {
   max-height: 200px;
   max-width: 80vw;
+}
+
+.person-image-container {
+  padding: 8px 16px;
 }
 
 @media (max-width: 768px) {

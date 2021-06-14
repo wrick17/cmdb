@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import Loading from "../../ui/loading";
 import Text from "../../ui/text";
-import Image from "../../ui/image";
 import { useSelector } from "react-redux";
 import { formatDate, formatYear } from "../../utils/utils";
 import ReactStars from "react-stars";
@@ -13,6 +12,7 @@ import { useAnimator } from "../../utils/hooks";
 import Section from "../../ui/section";
 import MovieCard from "../../components/movieCard";
 import CardsList from "../../components/cardsList";
+import ImageList from "../../components/ImageList";
 import { useRouter } from "next/router";
 
 const Tv = (props) => {
@@ -29,7 +29,7 @@ const Tv = (props) => {
   } = useAnimator(props);
 
   const { params } = props;
-  const { info, credits, reviews, similar, loading } = tv;
+  const { info, credits, reviews, similar, loading, images: tvImages } = tv;
 
   useEffect(() => {
     fetchTvDetails(router.query.id || params.id);
@@ -42,13 +42,9 @@ const Tv = (props) => {
     return <Loading />;
   }
 
-  const { images } = config || {};
-  const { secure_base_url, poster_sizes } = images || {};
-
   const {
     name,
     title,
-    poster_path,
     release_date,
     status,
     genres,
@@ -62,18 +58,8 @@ const Tv = (props) => {
 
   return (
     <div className="movie-page">
+      <ImageList data={tvImages.backdrops} />
       <div className="movie-details" ref={ref}>
-        <Image
-          src={
-            poster_path
-              ? `${secure_base_url}${
-                  poster_sizes[poster_sizes.length - 2]
-                }${poster_path}`
-              : "/placeholders/placeholder.png"
-          }
-          alt={title || name}
-          className={`figo ${activate ? "show" : ""}`}
-        />
         <div className="right-section">
           <Text as="h1" className="movie-name block">
             {title || name}{" "}
