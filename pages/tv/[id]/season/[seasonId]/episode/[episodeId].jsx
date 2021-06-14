@@ -4,9 +4,7 @@ import { useSelector } from "react-redux";
 import ReactStars from "react-stars";
 import { useEpisodeService } from "../../../../../../services/episodeServices";
 import Loading from "../../../../../../ui/loading";
-import Image from "../../../../../../ui/image";
 import Text from "../../../../../../ui/text";
-import { useAnimator } from "../../../../../../utils/hooks";
 import { formatDate } from "../../../../../../utils/utils";
 import PeopleList from "../../../../../../components/peopleList";
 import { useTvService } from "../../../../../../services/tvServices";
@@ -20,10 +18,6 @@ const Episode = (props) => {
     tv,
     route: { routing },
   } = useSelector((state) => state);
-  const {
-    ref,
-    animator: { activate },
-  } = useAnimator(props);
 
   const { fetchEpisodeDetails } = useEpisodeService();
   const { fetchTvDetails } = useTvService();
@@ -40,35 +34,12 @@ const Episode = (props) => {
   if (!(config?.images && info && episodeImages) || (loading && !routing)) {
     return <Loading />;
   }
-
-  const { images } = config || {};
-  const { secure_base_url, poster_sizes } = images || {};
-
-  const {
-    still_path,
-    name,
-    air_date,
-    vote_average,
-    overview,
-    crew,
-    guest_stars,
-  } = info;
+  const { name, air_date, vote_average, overview, crew, guest_stars } = info;
 
   return (
     <div className="movie-page episode-page">
       <ImageList data={episodeImages.stills} title="Frames from the Episode" />
-      <div className="movie-details" ref={ref}>
-        <Image
-          src={
-            still_path
-              ? `${secure_base_url}${
-                  poster_sizes[poster_sizes.length - 2]
-                }${still_path}`
-              : "/placeholders/placeholder.png"
-          }
-          alt={name}
-          className={`figo ${activate ? "show" : ""}`}
-        />
+      <div className="movie-details">
         <div className="right-section">
           <Text as="h1" className="movie-name block">
             {name}
