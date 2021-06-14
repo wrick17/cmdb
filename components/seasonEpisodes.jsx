@@ -48,7 +48,7 @@ const Episode = (props) => {
             : "/placeholders/placeholder.png"
         }
         alt={episode.name}
-        className={`figo ${activate ? "show" : ""}`}
+        className={`figo ${activate ? "show" : ""} ${episode.still_path ? '' : 'no-image'}`}
         ref={ref}
       />
       <div className="episode-details">
@@ -93,13 +93,14 @@ const SeasonEpisodes = (props) => {
     return <Loading />;
   }
 
-  const { name, air_date, episodes } = details || {};
+  const { name, air_date, episodes, overview } = details || {};
 
   return (
     <div className="season-episodes">
       <br style={{ margin: "8px 0" }} />
       <Text className="season-name">{name}</Text>
-      <Text className="block">{formatDate(air_date)}</Text>
+      <Text className="block space-below">{formatDate(air_date)}</Text>
+      {overview && <Text>{overview}</Text>}
       <div className="episodes">
         {episodes?.map((episode) => (
           <Episode episode={episode} key={episode.id} season={season} />

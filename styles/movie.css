@@ -231,7 +231,7 @@
 }
 
 .movie-page .episodes {
-  margin-top: 32px;
+  margin-top: 24px;
 }
 
 .movie-page .episodes .episode {
@@ -418,5 +418,8 @@
     margin-bottom: 8px;
     margin-right: 0;
     height: auto;
+  }
+  .movie-page .episodes .episode img.no-image {
+    display: none;
   }
 }
