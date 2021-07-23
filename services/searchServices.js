@@ -1,17 +1,24 @@
 import axios from "axios";
 
-const CancelToken = axios.CancelToken;
-const source = CancelToken.source();
-
+let cancelTokenSource = null;
 export const useSearchService = () => {
+
   const search = (query) => {
+    if (cancelTokenSource) {
+      cancelTokenSource.cancel();
+    }
+    cancelTokenSource = axios.CancelToken.source();
     return axios
-      .get("/api/search/multi", {
-        cancelToken: source.token,
-        params: {
-          query,
+      .get(
+        "/api/search/multi",
+        {
+          params: {
+            query,
+          },
+          cancelToken: cancelTokenSource.token,
         },
-      })
+        {}
+      )
       .then((res) => res.data);
   };
 

@@ -32,7 +32,7 @@ const Search = () => {
         .catch(() => {})
         .finally(() => setLoading(false));
     }
-  }, [query, router.query.query]);
+  }, [query]);
 
   const onClear = () => {
     setQuery("");
