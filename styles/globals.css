@@ -57,5 +57,5 @@ a {
 }
 
 [type="search"] {
-  appearance: none;
+  appearance: none !important;
 }
