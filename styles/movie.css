@@ -365,7 +365,8 @@
   height: 200px;
 }
 
-.image-list, .video-list {
+.image-list,
+.video-list {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
@@ -373,7 +374,7 @@
   margin-bottom: 16px;
 }
 
-.image-list .image-container, 
+.image-list .image-container,
 .video-list .video-container {
   padding: 0 8px;
   position: relative;
@@ -389,12 +390,13 @@
   padding-right: 0;
 }
 
-.image-list img {
+.image-list img, .video-list img {
   max-height: 200px;
   max-width: 80vw;
 }
 
-.image-list img:first-child {
+.image-list img:first-child,
+.video-list img:first-child {
   border: 1px solid #00f8f855;
 }
 
@@ -404,8 +406,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   height: 42px;
+  opacity: 0.8;
 }
-
 
 .person-image-container {
   padding: 8px 16px;
