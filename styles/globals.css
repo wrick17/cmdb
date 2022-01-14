@@ -55,3 +55,7 @@ a {
 .arwes-frame__structure {
   pointer-events: none;
 }
+
+[type="search"] {
+  appearance: none;
+}
