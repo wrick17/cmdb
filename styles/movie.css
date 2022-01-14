@@ -376,6 +376,7 @@
 .image-list .image-container, 
 .video-list .video-container {
   padding: 0 8px;
+  position: relative;
 }
 
 .image-list .image-container:first-child,
@@ -393,8 +394,16 @@
   max-width: 80vw;
 }
 
-.image-list img, .image-list iframe {
+.image-list img:first-child {
   border: 1px solid #00f8f855;
+}
+
+.image-list img:last-child:not(:first-child) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 42px;
 }
 
 

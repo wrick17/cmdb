@@ -40,15 +40,15 @@ const Video = (props) => {
       className={`video-container figo ${animator.activate ? "show" : ""}`}
       ref={ref}
     >
-      <iframe
-        width="355"
-        height="200"
-        src={`https://www.youtube.com/embed/${key}`}
-        title={name}
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      />
+      <a href={`https://www.youtube.com/watch?v=${key}`} target='_blank' rel="noreferrer">
+        <img
+          src={`https://img.youtube.com/vi/${key}/0.jpg`}
+          alt={name}
+          title={name}
+          style={{ height: 200, width: 355, objectFit: "cover" }}
+        />
+        <img src="/youtube.svg" alt="Youtube" />
+      </a>
     </div>
   );
 };
