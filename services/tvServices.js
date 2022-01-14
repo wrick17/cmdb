@@ -20,19 +20,23 @@ export const useTvService = () => {
       `/api/tv/${id}/reviews`,
       `/api/tv/${id}/similar`,
       `/api/tv/${id}/images`,
+      `/api/tv/${id}/videos`,
     ];
 
-    fetchMultiple(apis).then(([info, credits, reviews, similar, images]) => {
-      dispatch(
-        setTvDetails({
-          info,
-          credits,
-          reviews,
-          similar,
-          images,
-        })
-      );
-    });
+    fetchMultiple(apis).then(
+      ([info, credits, reviews, similar, images, videos]) => {
+        dispatch(
+          setTvDetails({
+            info,
+            credits,
+            reviews,
+            similar,
+            images,
+            videos: videos.results,
+          })
+        );
+      }
+    );
   };
 
   const fetchSeasonEpisodes = (id, season) => {

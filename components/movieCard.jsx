@@ -78,7 +78,7 @@ const MovieCard = memo((props) => {
             char="⬤"
           />
           <Text className="rating">
-            {vote_average ? `${vote_average * 10}%` : "NA"}
+            {vote_average ? `${(vote_average * 10).toFixed(2)}%` : "NA"}
           </Text>
         </div>
         <Text className="release-date">

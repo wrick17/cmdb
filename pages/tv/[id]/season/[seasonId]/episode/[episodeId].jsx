@@ -8,8 +8,8 @@ import Text from "../../../../../../ui/text";
 import { formatDate } from "../../../../../../utils/utils";
 import PeopleList from "../../../../../../components/peopleList";
 import { useTvService } from "../../../../../../services/tvServices";
-import ImageList from "../../../../../../components/imageList";
 import Link from "../../../../../../utils/link";
+import MediaList from '../../../../../../components/mediaList';
 
 const Episode = (props) => {
   const router = useRouter();
@@ -25,7 +25,7 @@ const Episode = (props) => {
 
   const { params } = props;
   const { id, episodeId, seasonId } = router.query || params;
-  const { loading, info, images: episodeImages } = episode;
+  const { loading, info, images: episodeImages, videos } = episode;
 
   useEffect(() => {
     fetchTvDetails(id);
@@ -47,7 +47,11 @@ const Episode = (props) => {
 
   return (
     <div className="movie-page episode-page">
-      <ImageList data={episodeImages.stills} title="Frames from the Episode" />
+      <MediaList
+        images={episodeImages.stills}
+        videos={videos}
+        title="Frames from the Episode"
+      />
       <div className="movie-details">
         <div className="right-section">
           <Text as="h1" className="movie-name block">

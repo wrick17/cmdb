@@ -8,12 +8,12 @@ import { useRouter } from "next/router";
 import Section from "../ui/section";
 
 const Search = () => {
-  const [query, setQuery] = useState("");
+  const router = useRouter();
+  const [query, setQuery] = useState(router?.query?.query);
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState(null);
 
   const { search } = useSearchService();
-  const router = useRouter();
 
   useEffect(() => {
     if (router.query.query !== query) {
@@ -23,37 +23,39 @@ const Search = () => {
 
   useEffect(() => {
     if (query?.length > 2) {
-      setLoading(true);
-      router.replace(`/search?query=${query}`, `/search?query=${query}`, {
-        shallow: true,
-      });
-      search(query)
-        .then((data) => setResults(data.results))
-        .catch(() => {})
-        .finally(() => setLoading(false));
+      router[router?.pathname === "/" ? "push" : "replace"](
+        `/search?query=${query}`,
+        `/search?query=${query}`,
+        {
+          shallow: true,
+        }
+      );
+      if (router?.pathname === "/search") {
+        setLoading(true);
+        search(query)
+          .then((data) => setResults(data.results))
+          .catch(() => {})
+          .finally(() => setLoading(false));
+      }
+    } else if (query?.length === 0 && router.pathname === "/search") {
+      router.push("/", "/", { shallow: true });
     }
   }, [query]);
 
   const onClear = () => {
     setQuery("");
     setResults();
-    router.replace("/search", "/search", {
-      shallow: true,
-    });
   };
 
   return (
     <div className="search-page">
-      <Text as="h6" style={{ textAlign: "center" }}>
-        Search
-      </Text>
       <Input
         type="search"
         className="search-input"
         value={query}
         onChange={setQuery}
         onClear={onClear}
-        autoFocus
+        autoFocus={router?.pathname === "/search"}
         placeholder="Search for Movies, TV Shows or just people..."
       />
       <div className="search-results">
@@ -71,11 +73,7 @@ const Search = () => {
               <Text>No Results</Text>
             </div>
           )
-        ) : (
-          <div className="no-results">
-            <Text>Search for something</Text>
-          </div>
-        )}
+        ) : null}
       </div>
     </div>
   );

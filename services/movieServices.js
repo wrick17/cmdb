@@ -23,19 +23,23 @@ export const useMovieService = () => {
       `/api/movie/${id}/reviews`,
       `/api/movie/${id}/similar`,
       `/api/movie/${id}/images`,
+      `/api/movie/${id}/videos`,
     ];
 
-    fetchMultiple(apis).then(([info, credits, reviews, similar, images]) => {
-      dispatch(
-        setMovieDetails({
-          info,
-          credits,
-          reviews,
-          similar,
-          images,
-        })
-      );
-    });
+    fetchMultiple(apis).then(
+      ([info, credits, reviews, similar, images, videos]) => {
+        dispatch(
+          setMovieDetails({
+            info,
+            credits,
+            reviews,
+            similar,
+            images,
+            videos: videos.results,
+          })
+        );
+      }
+    );
   };
 
   return { fetchMovieDetails };

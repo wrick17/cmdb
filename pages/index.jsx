@@ -4,6 +4,7 @@ import { useHomeService } from "../services/homeServices";
 import DiscoverSection from "../components/discoverSection";
 import Loading from "../ui/loading";
 import HomeTopic from "../components/homeTopic";
+import Search from './search';
 
 const Home = () => {
   const { fetchDiscoverMovies } = useHomeService();
@@ -25,6 +26,7 @@ const Home = () => {
   return (
     <>
       <HomeTopic />
+      <Search />
       <DiscoverSection sectionData={home?.movies} type="movie" />
       <DiscoverSection sectionData={home?.tv} type="tv" />
       <DiscoverSection sectionData={home?.anime} type="tv" />

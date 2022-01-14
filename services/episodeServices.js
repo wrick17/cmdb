@@ -20,13 +20,15 @@ export const useEpisodeService = () => {
     const apis = [
       `/api/tv/${id}/season/${season}/episode/${epi}`,
       `/api/tv/${id}/season/${season}/episode/${epi}/images`,
+      `/api/tv/${id}/season/${season}/episode/${epi}/videos`,
     ];
 
-    fetchMultiple(apis).then(([info, images]) => {
+    fetchMultiple(apis).then(([info, images, videos]) => {
       dispatch(
         setEpisodeDetails({
           info,
           images,
+          videos: videos.results,
         })
       );
     });

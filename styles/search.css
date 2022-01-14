@@ -11,10 +11,6 @@
   margin-bottom: 32px;
 }
 
-.search-page .search-results {
-  min-height: 400px;
-}
-
 .search-page .search-results .no-results {
   text-align: center;
 }
@@ -22,6 +18,7 @@
 .search-page .search-card {
   padding: 16px;
   position: relative;
+  cursor: pointer;
 }
 
 .search-page .search-card.border:not(:last-child)::after {

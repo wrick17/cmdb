@@ -12,12 +12,9 @@ const Header = () => {
         margin: "0 auto 48px",
       }}
     >
-      <div>
+      <div style={{ textAlign: 'center' }}>
         <Link
           to="/"
-          style={{
-            display: "block",
-          }}
         >
           <Text
             as="h1"
@@ -30,21 +27,6 @@ const Header = () => {
           </Text>
         </Link>
       </div>
-
-      <Link
-        to="/search"
-        className="search-trigger"
-        style={{
-          position: "absolute",
-          right: 0,
-          top: "50%",
-          padding: "16px",
-          transform: "translateY(-50%)",
-          zIndex: 10,
-        }}
-      >
-        <Text>Search</Text>
-      </Link>
     </header>
   );
 };

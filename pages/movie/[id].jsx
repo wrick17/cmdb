@@ -9,9 +9,9 @@ import PeopleList from "../../components/peopleList";
 import ReviewList from "../../components/reviewList";
 import CardsList from "../../components/cardsList";
 import MovieCard from "../../components/movieCard";
-import ImageList from "../../components/imageList";
 import Section from "../../ui/section";
 import { useRouter } from "next/router";
+import MediaList from '../../components/mediaList';
 
 const Movie = ({ params }) => {
   const router = useRouter();
@@ -29,6 +29,7 @@ const Movie = ({ params }) => {
     similar,
     loading,
     images: movieImages,
+    videos,
   } = movie;
 
   useEffect(() => {
@@ -68,7 +69,7 @@ const Movie = ({ params }) => {
 
   return (
     <div className="movie-page">
-      <ImageList data={movieImages.backdrops} />
+      <MediaList images={movieImages.backdrops} videos={videos} />
       <div className="movie-details">
         <div className="right-section">
           <Text as="h1" className="movie-name block">
@@ -96,7 +97,9 @@ const Movie = ({ params }) => {
               className="stars"
               char="⬤"
             />
-            <span className="rating">{vote_average * 10}% [ {vote_count} ]</span>
+            <span className="rating">
+              {vote_average * 10}% [ {vote_count} ]
+            </span>
           </div>
           <Text className="tagline block" as="p">
             {tagline}

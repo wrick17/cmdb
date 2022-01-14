@@ -3,7 +3,7 @@ import Text from "../ui/text";
 const HomeTopic = () => {
   return (
     <div className="home-topic">
-      <Text as="h6">
+      <Text as="h4" style={{ textTransform: 'initial' }}>
         The Cyber Movie Database is built using Arwes with TMDb as the data
         source
       </Text>

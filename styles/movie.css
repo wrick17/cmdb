@@ -140,6 +140,7 @@
   height: 130px;
   object-fit: cover;
   width: 100%;
+  border: 1px solid #00f8f855;
 }
 
 .movie-page .cast-list .actor-card .arwes-frame {
@@ -364,7 +365,7 @@
   height: 200px;
 }
 
-.image-list {
+.image-list, .video-list {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
@@ -372,15 +373,18 @@
   margin-bottom: 16px;
 }
 
-.image-list .image-container {
+.image-list .image-container, 
+.video-list .video-container {
   padding: 0 8px;
 }
 
-.image-list .image-container:first-child {
+.image-list .image-container:first-child,
+.video-list .video-container:first-child {
   padding-left: 0;
 }
 
-.image-list .image-container:last-child {
+.image-list .image-container:last-child,
+.video-list .video-container:last-child {
   padding-right: 0;
 }
 
@@ -388,6 +392,11 @@
   max-height: 200px;
   max-width: 80vw;
 }
+
+.image-list img, .image-list iframe {
+  border: 1px solid #00f8f855;
+}
+
 
 .person-image-container {
   padding: 8px 16px;
@@ -431,7 +440,8 @@
   .movie-page .episodes .episode img.no-image {
     display: none;
   }
-  .image-container:first-child:last-child {
+  .image-container:first-child:last-child,
+  .video-container:first-child:last-child {
     margin: auto;
   }
 }
