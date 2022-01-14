@@ -376,7 +376,7 @@
 
 .image-list .image-container,
 .video-list .video-container {
-  padding: 0 8px;
+  padding: 0 4px;
   position: relative;
 }
 
@@ -390,9 +390,11 @@
   padding-right: 0;
 }
 
-.image-list img, .video-list img {
-  max-height: 200px;
-  max-width: 80vw;
+.image-list img:first-child, 
+.video-list img:first-child {
+  height: 200px;
+  width: 355px;
+  max-width: 100vw;
 }
 
 .image-list img:first-child,
@@ -414,6 +416,10 @@
 }
 
 @media (max-width: 768px) {
+  .image-list.video-list {
+    margin-left: -12px;
+    margin-right: -12px;
+  }
   .movie-page .movie-details {
     flex-direction: column;
     align-items: center;
