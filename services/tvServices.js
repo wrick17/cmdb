@@ -21,10 +21,11 @@ export const useTvService = () => {
       `/api/tv/${id}/similar`,
       `/api/tv/${id}/images`,
       `/api/tv/${id}/videos`,
+      `/api/tv/${id}/watch/providers`,
     ];
 
     fetchMultiple(apis).then(
-      ([info, credits, reviews, similar, images, videos]) => {
+      ([info, credits, reviews, similar, images, videos, providers]) => {
         dispatch(
           setTvDetails({
             info,
@@ -33,6 +34,7 @@ export const useTvService = () => {
             similar,
             images,
             videos: videos.results,
+            providers: providers.results,
           })
         );
       }

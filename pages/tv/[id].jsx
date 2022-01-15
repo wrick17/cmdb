@@ -12,7 +12,7 @@ import Section from "../../ui/section";
 import MovieCard from "../../components/movieCard";
 import CardsList from "../../components/cardsList";
 import { useRouter } from "next/router";
-import MediaList from '../../components/mediaList';
+import MediaList from "../../components/mediaList";
 
 const Tv = (props) => {
   const router = useRouter();
@@ -24,7 +24,16 @@ const Tv = (props) => {
   } = useSelector((state) => state);
 
   const { params } = props;
-  const { info, credits, reviews, similar, loading, images: tvImages, videos } = tv;
+  const {
+    info,
+    credits,
+    reviews,
+    similar,
+    loading,
+    images: tvImages,
+    videos,
+    providers,
+  } = tv;
 
   useEffect(() => {
     fetchTvDetails(router.query.id || params.id);
@@ -102,6 +111,16 @@ const Tv = (props) => {
           <Text className="overview block" as="p">
             {overview}
           </Text>
+          {providers?.IN?.flatrate?.length && (
+            <Text as="h6" className="sub-heading block">
+              Streaming on -{" "}
+              {providers?.IN?.flatrate?.map(
+                ({ provider_name, provider_id }) => (
+                  <span key={provider_id}>{provider_name}</span>
+                )
+              )}
+            </Text>
+          )}
         </div>
       </div>
       <PeopleList title="Cast" list={credits.cast} sub="character" />

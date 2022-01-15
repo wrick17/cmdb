@@ -393,8 +393,11 @@
 .image-list img:first-child, 
 .video-list img:first-child {
   height: 200px;
-  width: 355px;
   max-width: 100vw;
+}
+
+.video-list img:first-child {
+  width: 355px;
 }
 
 .image-list img:first-child,

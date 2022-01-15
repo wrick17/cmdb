@@ -11,7 +11,7 @@ import CardsList from "../../components/cardsList";
 import MovieCard from "../../components/movieCard";
 import Section from "../../ui/section";
 import { useRouter } from "next/router";
-import MediaList from '../../components/mediaList';
+import MediaList from "../../components/mediaList";
 
 const Movie = ({ params }) => {
   const router = useRouter();
@@ -30,6 +30,7 @@ const Movie = ({ params }) => {
     loading,
     images: movieImages,
     videos,
+    providers,
   } = movie;
 
   useEffect(() => {
@@ -110,6 +111,16 @@ const Movie = ({ params }) => {
           <Text className="overview block" as="p">
             {overview}
           </Text>
+          {providers?.IN?.flatrate?.length && (
+            <Text as="h6" className="sub-heading block">
+              Streaming on -{" "}
+              {providers?.IN?.flatrate?.map(
+                ({ provider_name, provider_id }) => (
+                  <span key={provider_id}>{provider_name}</span>
+                )
+              )}
+            </Text>
+          )}
           <Text as="h6" className="sub-heading block">
             Crew
           </Text>

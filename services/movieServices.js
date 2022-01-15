@@ -24,10 +24,11 @@ export const useMovieService = () => {
       `/api/movie/${id}/similar`,
       `/api/movie/${id}/images`,
       `/api/movie/${id}/videos`,
+      `/api/movie/${id}/watch/providers`,
     ];
 
     fetchMultiple(apis).then(
-      ([info, credits, reviews, similar, images, videos]) => {
+      ([info, credits, reviews, similar, images, videos, providers]) => {
         dispatch(
           setMovieDetails({
             info,
@@ -36,6 +37,7 @@ export const useMovieService = () => {
             similar,
             images,
             videos: videos.results,
+            providers: providers.results,
           })
         );
       }
