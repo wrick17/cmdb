@@ -27,7 +27,7 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>CMDb | Home</title>
+        <title>CMDb - Home</title>
       </Head>
       <HomeTopic />
       <Search />
