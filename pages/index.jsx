@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useHomeService } from "../services/homeServices";
@@ -25,6 +26,9 @@ const Home = () => {
 
   return (
     <>
+      <Head>
+        <title>CMDb | Home</title>
+      </Head>
       <HomeTopic />
       <Search />
       <DiscoverSection sectionData={home?.movies} type="movie" />

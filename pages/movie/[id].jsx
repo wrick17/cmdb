@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useEffect } from "react";
 import { useMovieService } from "../../services/movieServices";
 import Loading from "../../ui/loading";
@@ -70,6 +71,11 @@ const Movie = ({ params }) => {
 
   return (
     <div className="movie-page">
+      <Head>
+        <title>
+          {title} ({formatYear(release_date)})
+        </title>
+      </Head>
       <MediaList images={movieImages.backdrops} videos={videos} />
       <div className="movie-details">
         <div className="right-section">
@@ -116,7 +122,9 @@ const Movie = ({ params }) => {
               Streaming on -{" "}
               {providers?.IN?.flatrate?.map(
                 ({ provider_name, provider_id }) => (
-                  <span key={provider_id}>{provider_name}</span>
+                  <span key={provider_id} className="streaming-on">
+                    {provider_name}
+                  </span>
                 )
               )}
             </Text>

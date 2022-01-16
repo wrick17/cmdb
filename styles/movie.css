@@ -465,3 +465,10 @@
     margin: auto;
   }
 }
+.streaming-on:not(:last-child) {
+  margin-right: 8px;
+}
+
+.streaming-on:not(:last-child)::after {
+  content: ',';
+}

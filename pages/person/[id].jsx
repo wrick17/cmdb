@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -45,6 +46,11 @@ const Person = (props) => {
 
   return (
     <div className="movie-page">
+      <Head>
+        <title>
+          {name}
+        </title>
+      </Head>
       <div className="movie-details" re={ref}>
         <Image
           src={

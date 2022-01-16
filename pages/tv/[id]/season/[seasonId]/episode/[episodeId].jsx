@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -9,7 +10,7 @@ import { formatDate } from "../../../../../../utils/utils";
 import PeopleList from "../../../../../../components/peopleList";
 import { useTvService } from "../../../../../../services/tvServices";
 import Link from "../../../../../../utils/link";
-import MediaList from '../../../../../../components/mediaList';
+import MediaList from "../../../../../../components/mediaList";
 
 const Episode = (props) => {
   const router = useRouter();
@@ -47,6 +48,9 @@ const Episode = (props) => {
 
   return (
     <div className="movie-page episode-page">
+      <Head>
+        <title>{`S${seasonId}.E${episodeId} - ${name} - ${tv.info.name}`}</title>
+      </Head>
       <MediaList
         images={episodeImages.stills}
         videos={videos}
