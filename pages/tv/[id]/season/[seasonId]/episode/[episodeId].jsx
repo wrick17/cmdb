@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -11,6 +10,7 @@ import PeopleList from "../../../../../../components/peopleList";
 import { useTvService } from "../../../../../../services/tvServices";
 import Link from "../../../../../../utils/link";
 import MediaList from "../../../../../../components/mediaList";
+import Meta from '../../../../../../components/meta';
 
 const Episode = (props) => {
   const router = useRouter();
@@ -44,13 +44,16 @@ const Episode = (props) => {
     overview,
     crew,
     guest_stars,
+    poster_path,
   } = info;
 
   return (
     <div className="movie-page episode-page">
-      <Head>
-        <title>{`S${seasonId}.E${episodeId} - ${name} - ${tv.info.name}`}</title>
-      </Head>
+      <Meta
+        name={`S${seasonId}.E${episodeId} - ${name} - ${tv.info.name}`}
+        description={overview}
+        image={poster_path}
+      />
       <MediaList
         images={episodeImages.stills}
         videos={videos}

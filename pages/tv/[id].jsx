@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { useEffect } from "react";
 import Loading from "../../ui/loading";
 import Text from "../../ui/text";
@@ -10,10 +9,10 @@ import ReviewList from "../../components/reviewList";
 import { useTvService } from "../../services/tvServices";
 import Seasons from "../../components/seasons";
 import Section from "../../ui/section";
-import MovieCard from "../../components/movieCard";
 import CardsList from "../../components/cardsList";
 import { useRouter } from "next/router";
 import MediaList from "../../components/mediaList";
+import Meta from "../../components/meta";
 
 const Tv = (props) => {
   const router = useRouter();
@@ -50,7 +49,6 @@ const Tv = (props) => {
   const {
     name,
     title,
-    release_date,
     status,
     genres,
     vote_average,
@@ -60,22 +58,24 @@ const Tv = (props) => {
     last_air_date,
     next_episode_to_air,
     vote_count,
+    poster_path,
+    first_air_date,
   } = info;
 
   return (
     <div className="movie-page">
-      <Head>
-        <title>
-          {title || name} ({formatYear(release_date)})
-        </title>
-      </Head>
+      <Meta
+        name={`${title || name} (${formatYear(first_air_date)})`}
+        description={overview}
+        image={poster_path}
+      />
       <MediaList images={tvImages.backdrops} videos={videos} />
       <div className="movie-details">
         <div className="right-section">
           <Text as="h1" className="movie-name block">
             {title || name}{" "}
-            {release_date && (
-              <span className="year">[{formatYear(release_date)}]</span>
+            {first_air_date && (
+              <span className="year">[{formatYear(first_air_date)}]</span>
             )}
           </Text>
           <div className="movie-date">
@@ -131,13 +131,13 @@ const Tv = (props) => {
           )}
         </div>
       </div>
+      <Seasons data={seasons} />
       <PeopleList title="Cast" list={credits.cast} sub="character" />
       <PeopleList title="Crew" list={credits.crew} sub="job" />
-      <Seasons data={seasons} />
       <ReviewList reviews={reviews} />
       {similar?.results?.length ? (
         <Section title="Similar TV Shows">
-          <CardsList card={MovieCard} data={similar.results} type="tv" />
+          <CardsList data={similar.results} type="tv" />
         </Section>
       ) : null}
     </div>

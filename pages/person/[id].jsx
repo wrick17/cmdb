@@ -1,9 +1,7 @@
-import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import CardsList from "../../components/cardsList";
-import MovieCard from "../../components/movieCard";
 import Work from "../../components/work";
 import { usePersonService } from "../../services/personServices";
 import Image from "../../ui/image";
@@ -13,6 +11,7 @@ import Text from "../../ui/text";
 import { useAnimator } from "../../utils/hooks";
 import { formatDate, getAge, sortTitles } from "../../utils/utils";
 import ImageList from "../../components/imageList";
+import Meta from '../../components/meta';
 
 const Person = (props) => {
   const router = useRouter();
@@ -46,11 +45,7 @@ const Person = (props) => {
 
   return (
     <div className="movie-page">
-      <Head>
-        <title>
-          {name}
-        </title>
-      </Head>
+      <Meta name={name} description={biography} image={profile_path} />
       <div className="movie-details" re={ref}>
         <Image
           src={
@@ -77,7 +72,7 @@ const Person = (props) => {
         </div>
       </div>
       <Section title="Movies and Shows">
-        <CardsList card={MovieCard} data={credits.cast} />
+        <CardsList data={credits.cast} />
       </Section>
       <Section title="Images">
         <div className="person-image-container">

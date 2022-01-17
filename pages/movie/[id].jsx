@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { useEffect } from "react";
 import { useMovieService } from "../../services/movieServices";
 import Loading from "../../ui/loading";
@@ -9,10 +8,10 @@ import ReactStars from "react-stars";
 import PeopleList from "../../components/peopleList";
 import ReviewList from "../../components/reviewList";
 import CardsList from "../../components/cardsList";
-import MovieCard from "../../components/movieCard";
 import Section from "../../ui/section";
 import { useRouter } from "next/router";
 import MediaList from "../../components/mediaList";
+import Meta from '../../components/meta';
 
 const Movie = ({ params }) => {
   const router = useRouter();
@@ -65,17 +64,18 @@ const Movie = ({ params }) => {
     vote_count,
     overview,
     tagline,
+    poster_path,
   } = info;
 
   const runTime = `${Math.floor(runtime / 60)}hrs ${runtime % 60}mins`;
 
   return (
     <div className="movie-page">
-      <Head>
-        <title>
-          {title} ({formatYear(release_date)})
-        </title>
-      </Head>
+      <Meta
+        name={`${title} (${formatYear(release_date)})`}
+        description={overview}
+        image={poster_path}
+      />
       <MediaList images={movieImages.backdrops} videos={videos} />
       <div className="movie-details">
         <div className="right-section">
@@ -147,7 +147,7 @@ const Movie = ({ params }) => {
       <ReviewList reviews={reviews} />
       {similar?.results?.length ? (
         <Section title="Similar Movies">
-          <CardsList card={MovieCard} data={similar.results} type="movie" />
+          <CardsList data={similar.results} type="movie" />
         </Section>
       ) : null}
     </div>
