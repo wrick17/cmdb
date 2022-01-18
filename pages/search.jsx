@@ -56,7 +56,7 @@ const Search = () => {
         onChange={setQuery}
         onClear={onClear}
         autoFocus={router?.pathname === "/search"}
-        placeholder="Search for Movies, TV Shows or just people..."
+        placeholder="Search for Movies, Shows or People"
       />
       <div className="search-results">
         {loading ? (
