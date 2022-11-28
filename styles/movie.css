@@ -376,6 +376,13 @@
   margin-bottom: 16px;
 }
 
+@media (max-width: 768px) {
+  .image-list,
+  .video-list {
+    padding: 0 8px;
+  }
+}
+
 .image-list .image-container,
 .video-list .video-container {
   padding: 0 4px;
@@ -392,7 +399,7 @@
   padding-right: 0;
 }
 
-.image-list img:first-child, 
+.image-list img:first-child,
 .video-list img:first-child {
   height: 200px;
   max-width: 100vw;
@@ -472,5 +479,6 @@
 }
 
 .streaming-on:not(:last-child)::after {
-  content: ',';
+  content: ",";
 }
+

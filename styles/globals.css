@@ -66,3 +66,17 @@ a {
 [type="search"] {
   appearance: none !important;
 }
+
+header {
+  position: relative;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto 48px;
+}
+
+@media (max-width: 600px) {
+  header {
+    margin-bottom: 24px;
+  }
+}
+

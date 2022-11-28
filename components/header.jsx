@@ -4,14 +4,7 @@ import SearchIcon from "./searchIcon";
 
 const Header = () => {
   return (
-    <header
-      style={{
-        position: "relative",
-        width: "100%",
-        maxWidth: "1180px",
-        margin: "0 auto 48px",
-      }}
-    >
+    <header>
       <Link to="/">
         <Text
           as="h1"
