@@ -9,8 +9,8 @@ export const useNavigation = () => {
 
   const navigate = (to) => {
     dispatch(startNavigationTransition());
+    router.push(to, to, { shallow: true });
     setTimeout(() => {
-      router.push(to, to, { shallow: true });
       scrollTo(0, 0);
     }, staggerDuration);
   };
