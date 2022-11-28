@@ -136,7 +136,7 @@
 
 .movie-card .movie-card-details .rating-container {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   margin: 0;
 }
 
@@ -151,6 +151,7 @@
 .movie-card .rating {
   font-size: 10px;
   font-weight: bold;
+  margin-left: 4px;
 }
 
 .movie-card .release-date {

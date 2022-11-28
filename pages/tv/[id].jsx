@@ -3,7 +3,6 @@ import Loading from "../../ui/loading";
 import Text from "../../ui/text";
 import { useSelector } from "react-redux";
 import { formatDate, formatYear } from "../../utils/utils";
-import ReactStars from "react-stars";
 import PeopleList from "../../components/peopleList";
 import ReviewList from "../../components/reviewList";
 import { useTvService } from "../../services/tvServices";
@@ -13,6 +12,7 @@ import CardsList from "../../components/cardsList";
 import { useRouter } from "next/router";
 import MediaList from "../../components/mediaList";
 import Meta from "../../components/meta";
+import { Rating } from '../../components/rating';
 
 const Tv = (props) => {
   const router = useRouter();
@@ -96,14 +96,7 @@ const Tv = (props) => {
             </div>
           </div>
           <div className="rating-container">
-            <ReactStars
-              count={5}
-              value={vote_average / 2}
-              size={14}
-              color2={"#00f8f8"}
-              className="stars"
-              char="⬤"
-            />
+            <Rating value={vote_average * 10} />
             <span className="rating">
               {parseInt(vote_average * 10)}% [ {vote_count} ]
             </span>
@@ -149,4 +142,5 @@ export const getServerSideProps = async ({ params }) => {
 };
 
 export default Tv;
+
 

@@ -1,6 +1,5 @@
 import { memo } from "react";
 import { useSelector } from "react-redux";
-import ReactStars from "react-stars";
 import Card from "../ui/card";
 import Text from "../ui/text";
 import { formatDate, handleize } from "../utils/utils";
@@ -9,6 +8,7 @@ import { useMovieService } from "../services/movieServices";
 import { useTvService } from "../services/tvServices";
 import { useAnimator } from "../utils/hooks";
 import Link from "next/link";
+import { Rating } from './rating';
 
 const MovieCard = memo((props) => {
   const config = useSelector((state) => state.config);
@@ -76,14 +76,7 @@ const MovieCard = memo((props) => {
           {title || name}
         </Text>
         <div className={`rating-container figo ${activate ? "show" : ""}`}>
-          <ReactStars
-            count={5}
-            value={vote_average / 2}
-            size={8}
-            color2={"#00f8f8"}
-            className="stars"
-            char="⬤"
-          />
+          <Rating value={vote_average * 10} />
           <Text className="rating">
             {vote_average ? `${parseInt(vote_average * 10)}%` : "NA"}
           </Text>
@@ -99,5 +92,10 @@ const MovieCard = memo((props) => {
 });
 
 export default MovieCard;
+
+
+
+
+
 
 

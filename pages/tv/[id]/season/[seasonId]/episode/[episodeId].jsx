@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import ReactStars from "react-stars";
 import { useEpisodeService } from "../../../../../../services/episodeServices";
 import Loading from "../../../../../../ui/loading";
 import Text from "../../../../../../ui/text";
@@ -11,6 +10,7 @@ import { useTvService } from "../../../../../../services/tvServices";
 import Link from "../../../../../../utils/link";
 import MediaList from "../../../../../../components/mediaList";
 import Meta from "../../../../../../components/meta";
+import { Rating } from '../../../../../../components/rating';
 
 const Episode = (props) => {
   const router = useRouter();
@@ -73,14 +73,7 @@ const Episode = (props) => {
           </div>
           <div className="rating-container">
             <Text className="space-right">{formatDate(air_date)}</Text>
-            <ReactStars
-              count={5}
-              value={vote_average / 2}
-              size={14}
-              color2={"#00f8f8"}
-              className="stars"
-              char="⬤"
-            />
+            <Rating value={vote_average * 10} />
             <span className="rating">
               {parseInt(vote_average * 10)}% [ {vote_count} ]
             </span>
@@ -105,4 +98,5 @@ export const getServerSideProps = async ({ params }) => {
 };
 
 export default Episode;
+
 

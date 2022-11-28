@@ -9,19 +9,12 @@
   "extends": [
     "eslint:recommended",
     "next"
-    // "plugin:react/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
-  "parserOptions": {
-    // "ecmaFeatures": {
-    //   "jsx": true // enable linting for jsx files
-    // },
-    // "ecmaVersion": 11,
-    // "sourceType": "module"
-  },
+  "parserOptions": {},
   "settings": {
     "react": {
       "version": "detect"
