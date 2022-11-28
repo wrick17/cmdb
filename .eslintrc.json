@@ -7,9 +7,9 @@
   },
   "parser": "babel-eslint",
   "extends": [
-    // "eslint:recommended",
+    "eslint:recommended",
+    "next"
     // "plugin:react/recommended"
-    "plugin:@next/next/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
