@@ -60,6 +60,7 @@
   font-size: 0;
   cursor: pointer;
   position: relative;
+  color: inherit;
 }
 
 .movie-card.border:not(:last-child)::after {

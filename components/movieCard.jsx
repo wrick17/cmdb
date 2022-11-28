@@ -8,6 +8,7 @@ import { useNavigation } from "../utils/navigation";
 import { useMovieService } from "../services/movieServices";
 import { useTvService } from "../services/tvServices";
 import { useAnimator } from "../utils/hooks";
+import Link from "next/link";
 
 const MovieCard = memo((props) => {
   const config = useSelector((state) => state.config);
@@ -34,10 +35,10 @@ const MovieCard = memo((props) => {
   const {
     images: { secure_base_url, poster_sizes },
   } = config || {};
+  const slug = `${id}-${handleize(title || name)}`;
+  let mediaType = type;
 
   const onClickMovie = () => {
-    const slug = `${id}-${handleize(title || name)}`;
-    let mediaType = type;
     if (!type) {
       mediaType = media_type;
     }
@@ -51,7 +52,12 @@ const MovieCard = memo((props) => {
   };
 
   return (
-    <Card className={`movie-card`} onClick={onClickMovie} {...rest}>
+    <Card
+      className={`movie-card`}
+      onClick={onClickMovie}
+      href={`/${mediaType}/${slug}`}
+      {...rest}
+    >
       <img
         src={
           poster_path
@@ -63,6 +69,7 @@ const MovieCard = memo((props) => {
         alt={title}
         className={`figo ${activate ? "show" : ""}`}
         ref={ref}
+        loading="lazy"
       />
       <div className="movie-card-details">
         <Text className="movie-name" title={title || name}>
@@ -92,4 +99,5 @@ const MovieCard = memo((props) => {
 });
 
 export default MovieCard;
+
 
