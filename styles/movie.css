@@ -276,7 +276,7 @@
 }
 
 .loading-block {
-  height: 400px;
+  flex: 1;
   max-width: 1180px;
   display: flex;
   flex-direction: column;
