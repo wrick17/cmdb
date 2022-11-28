@@ -8,7 +8,7 @@ import HomeTopic from "../components/homeTopic";
 import Search from "./search";
 
 const Home = () => {
-  const { fetchDiscoverMovies } = useHomeService();
+const { fetchDiscoverMovies } = useHomeService();
   const home = useSelector((state) => state.home);
   const config = useSelector((state) => state.config);
 

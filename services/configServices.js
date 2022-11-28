@@ -1,4 +1,4 @@
-import axios from 'axios';
+import fetch from "../utils/fetch";
 import { useDispatch } from "react-redux";
 import { setConfig } from "../redux/actions/configActionCreators";
 
@@ -6,11 +6,11 @@ export const useConfigService = () => {
   const dispatch = useDispatch();
 
   const fetchConfig = () => {
-    axios
-      .get("/api/configuration")
-      .then((res) => dispatch(setConfig(res.data)))
+    fetch("/api/configuration")
+      .then((data) => dispatch(setConfig(data)))
       .catch((err) => dispatch(setConfig({ err: err.message })));
   };
 
   return { fetchConfig };
 };
+

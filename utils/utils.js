@@ -1,4 +1,4 @@
-import axios from "axios";
+import fetch from "../utils/fetch";
 import dayjs from "dayjs";
 
 export const handleize = (str) => {
@@ -34,9 +34,7 @@ export const formatYear = (date) => {
 };
 
 export const fetchMultiple = (arr) =>
-  Promise.all(arr.map((api) => axios.get(api))).then((responses) =>
-    responses.map((response) => response.data)
-  );
+  Promise.all(arr.map((api) => fetch(api)));
 
 export const getRandomInt = (max) => Math.floor(Math.random() * max);
 
@@ -64,4 +62,6 @@ export const sortTitles = (list) => {
   });
   return tempList;
 };
+
+
 
