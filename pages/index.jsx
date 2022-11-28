@@ -1,11 +1,11 @@
-import Head from 'next/head'
+import Head from "next/head";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useHomeService } from "../services/homeServices";
 import DiscoverSection from "../components/discoverSection";
 import Loading from "../ui/loading";
 import HomeTopic from "../components/homeTopic";
-import Search from './search';
+import Search from "./search";
 
 const Home = () => {
   const { fetchDiscoverMovies } = useHomeService();
@@ -31,11 +31,14 @@ const Home = () => {
       </Head>
       <HomeTopic />
       <Search />
-      <DiscoverSection sectionData={home?.movies} type="movie" />
-      <DiscoverSection sectionData={home?.tv} type="tv" />
-      <DiscoverSection sectionData={home?.anime} type="tv" />
+      <div className="section-wrapper">
+        <DiscoverSection sectionData={home?.movies} type="movie" />
+        <DiscoverSection sectionData={home?.tv} type="tv" />
+        {/* <DiscoverSection sectionData={home?.anime} type="tv" /> */}
+      </div>
     </>
   );
 };
 
 export default Home;
+

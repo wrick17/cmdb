@@ -4,8 +4,8 @@ const HomeTopic = () => {
   return (
     <div className="home-topic">
       <Text as="h4" style={{ textTransform: "initial" }}>
-        The Cyber Movie Database is built using Arwes with TMDb as the data
-        source
+        The &#8220;Cyber Movie Database&#8221; is built using Arwes with TMDb as
+        the data source
       </Text>
       <div className="images">
         <a target="_blank" rel="noreferrer" href="https://arwes.dev">
@@ -21,3 +21,6 @@ const HomeTopic = () => {
 };
 
 export default HomeTopic;
+
+
+
