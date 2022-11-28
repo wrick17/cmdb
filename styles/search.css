@@ -1,6 +1,8 @@
 .search-page {
+  width: 100%;
   max-width: 1180px;
   margin: auto;
+  flex: 1;
 }
 
 .search-page h6 {
@@ -86,3 +88,4 @@
     display: block;
   }
 }
+

@@ -25,7 +25,7 @@ const MovieCard = memo((props) => {
     name,
     title,
     poster_path,
-    vote_average,
+    vote_average = 0,
     release_date,
     first_air_date,
     media_type,
@@ -78,7 +78,7 @@ const MovieCard = memo((props) => {
             char="⬤"
           />
           <Text className="rating">
-            {vote_average ? `${(vote_average * 10).toFixed(2)}%` : "NA"}
+            {vote_average ? `${parseInt(vote_average * 10)}%` : "NA"}
           </Text>
         </div>
         <Text className="release-date">
@@ -92,3 +92,4 @@ const MovieCard = memo((props) => {
 });
 
 export default MovieCard;
+

@@ -1,8 +1,8 @@
 import Text from "../ui/text";
 import Link from "../utils/link";
+import SearchIcon from "./searchIcon";
 
 const Header = () => {
-
   return (
     <header
       style={{
@@ -12,10 +12,8 @@ const Header = () => {
         margin: "0 auto 48px",
       }}
     >
-      <div style={{ textAlign: 'center' }}>
-        <Link
-          to="/"
-        >
+      <div style={{ textAlign: "center" }}>
+        <Link to="/">
           <Text
             as="h1"
             style={{
@@ -27,8 +25,21 @@ const Header = () => {
           </Text>
         </Link>
       </div>
+      <Link to="/search">
+        <span
+          style={{
+            position: "absolute",
+            right: 0,
+            top: "50%",
+            transform: "translateY(-50%)",
+          }}
+        >
+          <SearchIcon />
+        </span>
+      </Link>
     </header>
   );
 };
 
 export default Header;
+

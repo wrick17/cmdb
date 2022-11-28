@@ -166,3 +166,31 @@
 .input input[type="search" i]::-webkit-search-cancel-button {
   display: none;
 }
+
+.search-icon {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  font-size: 0;
+  display: block;
+}
+
+.search-icon .round {
+  height: 85%;
+  width: 85%;
+  aspect-ratio: 1;
+  border: 2px solid #00f8f8;
+  border-radius: 50%;
+}
+
+.search-icon .stick {
+  position: absolute;
+  bottom: 3px;
+  right: -1px;
+  border: 1px solid #00f8f8;
+  width: 40%;
+  transform: rotate(40deg);
+  border-radius: 10px;
+  background-color: #00f8f8;
+}
+

@@ -7,6 +7,13 @@ body {
   width: calc(100vw - 16px);
 }
 
+body > div {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  height: calc(100vh - 16px);
+}
+
 @media (hover: none) {
   html,
   body {

@@ -105,7 +105,7 @@ const Tv = (props) => {
               char="⬤"
             />
             <span className="rating">
-              {vote_average * 10}% [ {vote_count} ]
+              {parseInt(vote_average * 10)}% [ {vote_count} ]
             </span>
           </div>
           <Text className="tagline block" as="p">
@@ -149,3 +149,4 @@ export const getServerSideProps = async ({ params }) => {
 };
 
 export default Tv;
+

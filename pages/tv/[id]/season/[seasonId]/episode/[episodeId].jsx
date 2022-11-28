@@ -10,7 +10,7 @@ import PeopleList from "../../../../../../components/peopleList";
 import { useTvService } from "../../../../../../services/tvServices";
 import Link from "../../../../../../utils/link";
 import MediaList from "../../../../../../components/mediaList";
-import Meta from '../../../../../../components/meta';
+import Meta from "../../../../../../components/meta";
 
 const Episode = (props) => {
   const router = useRouter();
@@ -82,7 +82,7 @@ const Episode = (props) => {
               char="⬤"
             />
             <span className="rating">
-              {vote_average * 10}% [ {vote_count} ]
+              {parseInt(vote_average * 10)}% [ {vote_count} ]
             </span>
           </div>
           <Text as="h6" className="sub-heading block">
@@ -105,3 +105,4 @@ export const getServerSideProps = async ({ params }) => {
 };
 
 export default Episode;
+

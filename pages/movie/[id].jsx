@@ -11,7 +11,7 @@ import CardsList from "../../components/cardsList";
 import Section from "../../ui/section";
 import { useRouter } from "next/router";
 import MediaList from "../../components/mediaList";
-import Meta from '../../components/meta';
+import Meta from "../../components/meta";
 
 const Movie = ({ params }) => {
   const router = useRouter();
@@ -60,7 +60,7 @@ const Movie = ({ params }) => {
     status,
     genres,
     runtime,
-    vote_average,
+    vote_average = 0,
     vote_count,
     overview,
     tagline,
@@ -105,7 +105,7 @@ const Movie = ({ params }) => {
               char="⬤"
             />
             <span className="rating">
-              {vote_average * 10}% [ {vote_count} ]
+              {parseInt(vote_average * 10)}% [ {vote_count} ]
             </span>
           </div>
           <Text className="tagline block" as="p">
@@ -159,3 +159,4 @@ export const getServerSideProps = async ({ params }) => {
 };
 
 export default Movie;
+
