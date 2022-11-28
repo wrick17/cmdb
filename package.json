@@ -14,6 +14,7 @@
     "@arwes/sounds": "^1.0.0-alpha.19",
     "@emotion/css": "11",
     "@emotion/react": "11",
+    "@next/eslint-plugin-next": "^13.0.5",
     "animejs": "3",
     "axios": "^0.21.1",
     "dayjs": "^1.10.5",
