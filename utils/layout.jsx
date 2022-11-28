@@ -1,4 +1,4 @@
-import { ArwesThemeProvider, StylesBaseline } from '@arwes/core';
+import { ArwesThemeProvider, StylesBaseline } from "@arwes/core";
 import { AnimatorGeneralProvider } from "@arwes/animation";
 import Router, { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { navigateTransition } from "../redux/actions/routeActionCreators";
 import { useConfigService } from "../services/configServices";
 import { useNavigation } from "./navigation";
-import { staggerDuration } from './constants';
+import { staggerDuration } from "./constants";
 
 const FONT_FAMILY_ROOT = '"Titillium Web", sans-serif';
 
@@ -29,6 +29,13 @@ const Utils = ({ children }) => {
   const dispatch = useDispatch();
   const navigate = useNavigation();
   const { fetchConfig } = useConfigService();
+
+  useEffect(() => {
+    router.prefetch("/movie/0");
+    router.prefetch("/tv/0");
+    router.prefetch("/person/0");
+    router.prefetch("/tv/0/season/0/episode/0");
+  }, []);
 
   useEffect(() => {
     router.beforePopState(({ as }) => {
@@ -56,3 +63,4 @@ const Utils = ({ children }) => {
 };
 
 export default Utils;
+
