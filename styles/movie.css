@@ -5,6 +5,7 @@
 
 .movie-page .movie-details {
   display: flex;
+  margin-bottom: 48px;
 }
 
 .movie-page .image {

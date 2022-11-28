@@ -12,19 +12,18 @@ const Header = () => {
         margin: "0 auto 48px",
       }}
     >
-      <div style={{ textAlign: "center" }}>
-        <Link to="/">
-          <Text
-            as="h1"
-            style={{
-              textTransform: "none",
-              marginBottom: "0",
-            }}
-          >
-            CMDb
-          </Text>
-        </Link>
-      </div>
+      <Link to="/">
+        <Text
+          as="h1"
+          style={{
+            textTransform: "none",
+            marginBottom: "0",
+          }}
+        >
+          CMDb
+        </Text>
+      </Link>
+
       <Link to="/search">
         <span
           style={{

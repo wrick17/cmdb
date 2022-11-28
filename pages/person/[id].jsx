@@ -11,7 +11,7 @@ import Text from "../../ui/text";
 import { useAnimator } from "../../utils/hooks";
 import { formatDate, getAge, sortTitles } from "../../utils/utils";
 import ImageList from "../../components/imageList";
-import Meta from '../../components/meta';
+import Meta from "../../components/meta";
 
 const Person = (props) => {
   const router = useRouter();
@@ -89,3 +89,4 @@ export const getServerSideProps = async ({ params }) => {
 };
 
 export default Person;
+
