@@ -1,18 +1,29 @@
 import axios from "axios";
 
-const apiKey = "f4fcbbc0d3afaea558736f65edfdb7ad";
-const baseUrl = "https://api.themoviedb.org/3";
+export const apiKey = "f4fcbbc0d3afaea558736f65edfdb7ad";
+export const baseUrl = "https://api.themoviedb.org/3";
 
-const fetch = async (url, method = "GET") => {
+let cancelTokenSource = null;
+
+const fetch = async (url, options = {}, oneInstance) => {
   const apiSlug =
     url.replace("/api", "") +
     `${url.indexOf("?") !== -1 ? "&" : "?"}api_key=${apiKey}`;
   const apiUrl = `${baseUrl}${apiSlug}`;
 
+  if (oneInstance) {
+    if (cancelTokenSource) {
+      cancelTokenSource.cancel();
+    }
+    cancelTokenSource = axios.CancelToken.source();
+  }
+
   try {
     const response = await axios({
-      method: method,
+      method: "GET",
       url: apiUrl,
+      ...(oneInstance ? { cancelToken: cancelTokenSource.token } : {}),
+      ...options,
     });
     return response.data;
   } catch (err) {
