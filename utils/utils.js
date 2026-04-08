@@ -8,11 +8,11 @@ export const handleize = (str) => {
     str = str.replace(toReplace[i], "");
   }
   str = str.replace(/\W+/g, "-");
-  if (str.charAt(str.length - 1) == "-") {
-    str = str.replace(/-+z/, "");
+  if (str.charAt(str.length - 1) === "-") {
+    str = str.replace(/-+$/, "");
   }
-  if (str.charAt(0) == "-") {
-    str = str.replace(/A-+/, "");
+  if (str.charAt(0) === "-") {
+    str = str.replace(/^-+/, "");
   }
   return str;
 };
@@ -20,7 +20,7 @@ export const handleize = (str) => {
 export const formatDate = (date) => {
   const parsedDate = dayjs(date);
   if (parsedDate.isValid()) {
-    return dayjs(date).format("DD MMM, YYYY");
+    return parsedDate.format("DD MMM, YYYY");
   }
   return null;
 };
@@ -28,17 +28,19 @@ export const formatDate = (date) => {
 export const formatYear = (date) => {
   const parsedDate = dayjs(date);
   if (parsedDate.isValid()) {
-    return dayjs(date).format("YYYY");
+    return parsedDate.format("YYYY");
   }
   return null;
 };
 
-export const fetchMultiple = (arr) =>
-  Promise.all(arr.map((api) => fetch(api)));
+export const fetchMultiple = (arr) => Promise.all(arr.map((api) => fetch(api)));
 
 export const getRandomInt = (max) => Math.floor(Math.random() * max);
 
-export const getRandomImage = () => `/placeholders/0${getRandomInt(8)}.jpg`;
+export const getRandomImage = () => {
+  const value = getRandomInt(10);
+  return `/placeholders/${value.toString().padStart(2, "0")}.jpg`;
+};
 
 export const getImageFromId = (id) =>
   `/placeholders/0${id.toString()[id.toString().length - 1]}.jpg`;
@@ -55,13 +57,10 @@ export const sortTitles = (list) => {
   const tempList = [...list];
   tempList.sort((a, b) => {
     return dayjs(a.release_date || a.first_air_date).isBefore(
-      dayjs(b.release_date || b.first_air_date)
+      dayjs(b.release_date || b.first_air_date),
     )
       ? 1
       : -1;
   });
   return tempList;
 };
-
-
-

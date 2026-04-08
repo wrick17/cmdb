@@ -35,20 +35,26 @@ const Utils = ({ children }) => {
     router.prefetch("/tv/0");
     router.prefetch("/person/0");
     router.prefetch("/tv/0/season/0/episode/0");
-  }, []);
+  }, [router]);
 
   useEffect(() => {
-    router.beforePopState(({ as }) => {
+    const handleBeforePopState = ({ as }) => {
       navigate(as);
       return false;
-    });
+    };
+    router.beforePopState(handleBeforePopState);
 
-    Router.events.on("routeChangeComplete", () => {
+    const onRouteChangeComplete = () => {
       dispatch(navigateTransition());
-    });
+    };
+    Router.events.on("routeChangeComplete", onRouteChangeComplete);
 
     fetchConfig();
-  }, []);
+    return () => {
+      Router.events.off("routeChangeComplete", onRouteChangeComplete);
+      router.beforePopState(() => true);
+    };
+  }, [dispatch, fetchConfig, navigate, router]);
 
   return (
     <>
@@ -63,4 +69,3 @@ const Utils = ({ children }) => {
 };
 
 export default Utils;
-

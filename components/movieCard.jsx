@@ -7,8 +7,10 @@ import { useNavigation } from "../utils/navigation";
 import { useMovieService } from "../services/movieServices";
 import { useTvService } from "../services/tvServices";
 import { useAnimator } from "../utils/hooks";
-import Link from "next/link";
-import { Rating } from './rating';
+import { Rating } from "./rating";
+
+export const resolveCardMediaType = (type, dataMediaType) =>
+  type ?? dataMediaType;
 
 const MovieCard = memo((props) => {
   const config = useSelector((state) => state.config);
@@ -36,12 +38,9 @@ const MovieCard = memo((props) => {
     images: { secure_base_url, poster_sizes },
   } = config || {};
   const slug = `${id}-${handleize(title || name)}`;
-  let mediaType = type;
+  const mediaType = resolveCardMediaType(type, media_type);
 
   const onClickMovie = () => {
-    if (!type) {
-      mediaType = media_type;
-    }
     if (mediaType === "movie") {
       fetchMovieDetails(slug);
       navigate(`/movie/${slug}`);
@@ -92,10 +91,3 @@ const MovieCard = memo((props) => {
 });
 
 export default MovieCard;
-
-
-
-
-
-
-

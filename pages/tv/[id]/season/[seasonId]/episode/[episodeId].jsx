@@ -10,16 +10,14 @@ import { useTvService } from "../../../../../../services/tvServices";
 import Link from "../../../../../../utils/link";
 import MediaList from "../../../../../../components/mediaList";
 import Meta from "../../../../../../components/meta";
-import { Rating } from '../../../../../../components/rating';
+import { Rating } from "../../../../../../components/rating";
 
 const Episode = (props) => {
   const router = useRouter();
-  const {
-    config,
-    episode,
-    tv,
-    route: { routing },
-  } = useSelector((state) => state);
+  const config = useSelector((state) => state.config);
+  const episode = useSelector((state) => state.episode);
+  const tv = useSelector((state) => state.tv);
+  const routing = useSelector((state) => state.route.routing);
 
   const { fetchEpisodeDetails } = useEpisodeService();
   const { fetchTvDetails } = useTvService();
@@ -31,7 +29,7 @@ const Episode = (props) => {
   useEffect(() => {
     fetchTvDetails(id);
     fetchEpisodeDetails(id, seasonId, episodeId);
-  }, [id, seasonId, episodeId]);
+  }, [id, seasonId, episodeId, fetchEpisodeDetails, fetchTvDetails]);
 
   if (!(config?.images && info && episodeImages) || (loading && !routing)) {
     return <Loading />;
@@ -98,5 +96,3 @@ export const getServerSideProps = async ({ params }) => {
 };
 
 export default Episode;
-
-

@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useSelector } from "react-redux";
 
 const Meta = ({ name, description, image }) => {
-  const { config } = useSelector((state) => state);
+  const config = useSelector((state) => state.config);
   const { images } = config || {};
   const { secure_base_url, poster_sizes } = images || {};
 

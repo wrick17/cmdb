@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 
 export const useLazyListData = (data = []) => {
   const [list, setList] = useState(data.slice(0, 6));
@@ -6,7 +6,7 @@ export const useLazyListData = (data = []) => {
 
   const onScroll = () => {
     if (!firstTime.current) return;
-    firstTime.current = true;
+    firstTime.current = false;
     setList(data);
   };
 

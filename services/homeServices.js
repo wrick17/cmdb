@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useCallback } from "react";
 import { loadHome, setHome } from "../redux/actions/homeActionCreators";
 import { fetchMultiple } from "../utils/utils";
 
@@ -6,7 +7,7 @@ export const useHomeService = () => {
   const dispatch = useDispatch();
   const home = useSelector((state) => state.home);
 
-  const fetchDiscoverMovies = () => {
+  const fetchDiscoverMovies = useCallback(() => {
     if (home.movies) {
       return null;
     }
@@ -19,20 +20,22 @@ export const useHomeService = () => {
 
     dispatch(loadHome());
     fetchMultiple(apis)
-      .then(([movies, tv
-        // , anime
-      ]) =>
-        dispatch(
-          setHome({
-            movies: { label: "Trending Movies", data: movies },
-            tv: { label: "Trending TV", data: tv },
-            // anime: { label: "Discover Anime", data: anime },
-          })
-        )
+      .then(
+        ([
+          movies,
+          tv,
+          // , anime
+        ]) =>
+          dispatch(
+            setHome({
+              movies: { label: "Trending Movies", data: movies },
+              tv: { label: "Trending TV", data: tv },
+              // anime: { label: "Discover Anime", data: anime },
+            }),
+          ),
       )
       .catch((err) => dispatch(setHome({ err: err.message })));
-  };
+  }, [dispatch, home.movies]);
 
   return { fetchDiscoverMovies };
 };
-

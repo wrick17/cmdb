@@ -1,34 +1,85 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CMDb
 
-## Getting Started
+Cyber-themed movie database built with Next.js (Pages Router), Redux, Arwes UI, and TMDb APIs.
 
-First, run the development server:
+## Current Stack (April 8, 2026)
+
+- Runtime: Next.js `16.2.2` + React `19.2.4`
+- State: Redux `5` + React Redux `9`
+- Networking: Axios `1.14.0`
+- PWA: `next-pwa` `5.6.0`
+- Tooling: Bun, ESLint 10 flat config, Prettier 3, Bun test
+
+## Development
+
+Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
+bun install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Start local dev server:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```bash
+bun run dev
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Build for production:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+bun run build
+```
 
-## Learn More
+Start production server:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+bun run start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Quality Checks
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Lint:
 
-## Deploy on Vercel
+```bash
+bun run lint
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Test:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+bun test
+```
+
+Format check:
+
+```bash
+bun run format
+```
+
+## Upgrade and Refactor Notes
+
+- Upgraded dependencies with Bun and resolved compatibility blockers.
+- Explicitly run Next in webpack mode (`next dev/build --webpack`) because `next-pwa` uses webpack plugin hooks.
+- Migrated linting to ESLint flat config (`eslint.config.mjs`) and removed legacy `.eslintrc.json`.
+- Added baseline Bun tests in `utils/utils.test.js`.
+- Moved global Google Font links from `_app` to `_document` for better loading behavior.
+- Added API response cache headers in `pages/api/[...slug].js`.
+- Fixed utility bugs:
+  - `handleize` now correctly trims leading and trailing dashes.
+  - `getRandomImage` now correctly maps to `00..09`.
+  - `useLazyListData` now stops re-expanding after first trigger.
+- Improved request behavior:
+  - Replaced Axios cancel tokens with `AbortController` signals.
+  - Added stable `useCallback` service methods and corrected effect dependency arrays.
+  - Fixed person page ref typo (`re` -> `ref`) and unsafe optional spread usage.
+  - Fixed search page request loop by removing unstable router dependency usage.
+  - Fixed search router hydration/state synchronization race causing URL/input/result mismatch.
+  - Fixed search page empty-query behavior to keep `/search` open instead of redirecting to home.
+  - Fixed search clear behavior to reset URL to `/search` (removing stale `?query=...` params).
+  - Fixed person page "Movies and Shows" card links to resolve media type correctly (`/movie/...` or `/tv/...` instead of `/undefined/...`).
+  - Fixed search result date rendering to use `first_air_date` fallback for TV results.
+  - Added default `name` attribute for search inputs to resolve browser form-field accessibility issues.
+
+## Known Follow-ups
+
+- Lint currently reports `@next/next/no-img-element` warnings in multiple files. This is non-blocking. Converting image surfaces to `next/image` is a separate optimization track.

@@ -1,11 +1,22 @@
 import Frame from "./frame";
 
-const Input = ({ type, className, value, onChange, onClear, ...props }) => {
+const Input = ({
+  type,
+  className,
+  value,
+  onChange,
+  onClear,
+  name,
+  ...props
+}) => {
+  const inputName = name || (type === "search" ? "search" : undefined);
+
   return (
     <Frame className={`input ${className}`} frame="hexagon">
       <input
         type={type}
-        value={value}
+        value={value ?? ""}
+        name={inputName}
         onChange={(e) => onChange(e.target.value)}
         {...props}
       />

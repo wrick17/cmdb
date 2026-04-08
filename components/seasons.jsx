@@ -21,7 +21,7 @@ const Seasons = ({ data }) => {
     if (data?.length && !season) {
       setSeason(data[0].season_number);
     }
-  }, [data]);
+  }, [data, season]);
 
   return (
     <Section title="Seasons">

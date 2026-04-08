@@ -12,16 +12,14 @@ import CardsList from "../../components/cardsList";
 import { useRouter } from "next/router";
 import MediaList from "../../components/mediaList";
 import Meta from "../../components/meta";
-import { Rating } from '../../components/rating';
+import { Rating } from "../../components/rating";
 
 const Tv = (props) => {
   const router = useRouter();
   const { fetchTvDetails } = useTvService();
-  const {
-    config,
-    tv,
-    route: { routing },
-  } = useSelector((state) => state);
+  const config = useSelector((state) => state.config);
+  const tv = useSelector((state) => state.tv);
+  const routing = useSelector((state) => state.route.routing);
 
   const { params } = props;
   const {
@@ -37,7 +35,7 @@ const Tv = (props) => {
 
   useEffect(() => {
     fetchTvDetails(router.query.id || params.id);
-  }, [router.query.id, params.id]);
+  }, [fetchTvDetails, router.query.id, params.id]);
 
   if (
     !(config?.images && info && credits && reviews) ||
@@ -118,7 +116,7 @@ const Tv = (props) => {
                   <span key={provider_id} className="streaming-on">
                     {provider_name}
                   </span>
-                )
+                ),
               )}
             </Text>
           )}
@@ -142,5 +140,3 @@ export const getServerSideProps = async ({ params }) => {
 };
 
 export default Tv;
-
-

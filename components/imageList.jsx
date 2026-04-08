@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useAnimator } from "../utils/hooks";
 
 const Image = (props) => {
-  const { config } = useSelector((state) => state);
+  const config = useSelector((state) => state.config);
   const { ref, animator } = useAnimator(props);
 
   const { image } = props;

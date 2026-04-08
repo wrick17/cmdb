@@ -11,16 +11,14 @@ import Section from "../../ui/section";
 import { useRouter } from "next/router";
 import MediaList from "../../components/mediaList";
 import Meta from "../../components/meta";
-import { Rating } from '../../components/rating';
+import { Rating } from "../../components/rating";
 
 const Movie = ({ params }) => {
   const router = useRouter();
   const { fetchMovieDetails } = useMovieService();
-  const {
-    config,
-    movie,
-    route: { routing },
-  } = useSelector((state) => state);
+  const config = useSelector((state) => state.config);
+  const movie = useSelector((state) => state.movie);
+  const routing = useSelector((state) => state.route.routing);
 
   const {
     info,
@@ -35,7 +33,7 @@ const Movie = ({ params }) => {
 
   useEffect(() => {
     fetchMovieDetails(router.query.id || params.id);
-  }, [router.query.id, params.id]);
+  }, [fetchMovieDetails, router.query.id, params.id]);
 
   if (
     !(config?.images && info && credits && reviews && movieImages) ||
@@ -118,7 +116,7 @@ const Movie = ({ params }) => {
                   <span key={provider_id} className="streaming-on">
                     {provider_name}
                   </span>
-                )
+                ),
               )}
             </Text>
           )}
@@ -152,5 +150,3 @@ export const getServerSideProps = async ({ params }) => {
 };
 
 export default Movie;
-
-

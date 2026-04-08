@@ -8,6 +8,9 @@ import { useNavigation } from "../utils/navigation";
 import { formatDate, handleize } from "../utils/utils";
 import Card from "../ui/card";
 
+export const resolveSearchResultDate = ({ release_date, first_air_date }) =>
+  release_date || first_air_date;
+
 const SearchCard = (props) => {
   const { data } = props;
   const config = useSelector((state) => state.config);
@@ -31,6 +34,7 @@ const SearchCard = (props) => {
     poster_path,
     profile_path,
     release_date,
+    first_air_date,
     media_type,
     vote_average,
     known_for_department,
@@ -79,11 +83,16 @@ const SearchCard = (props) => {
             {isPerson ? known_for_department : media_type}
           </span>
           <div className="rating-container">
-            {!isPerson && <span>{formatDate(release_date)}</span>}
+            {!isPerson && (
+              <span>
+                {formatDate(
+                  resolveSearchResultDate({ release_date, first_air_date }),
+                )}
+              </span>
+            )}
             {!isPerson && (
               <span className="rating">
-                Rating :{" "}
-                {vote_average ? `${vote_average * 10}%` : "NA"}
+                Rating : {vote_average ? `${vote_average * 10}%` : "NA"}
               </span>
             )}
           </div>

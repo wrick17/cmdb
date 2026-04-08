@@ -8,13 +8,13 @@ import HomeTopic from "../components/homeTopic";
 import Search from "./search";
 
 const Home = () => {
-const { fetchDiscoverMovies } = useHomeService();
+  const { fetchDiscoverMovies } = useHomeService();
   const home = useSelector((state) => state.home);
   const config = useSelector((state) => state.config);
 
   useEffect(() => {
     fetchDiscoverMovies();
-  }, []);
+  }, [fetchDiscoverMovies]);
 
   if (!(config?.images && home?.movies)) {
     return (
@@ -41,4 +41,3 @@ const { fetchDiscoverMovies } = useHomeService();
 };
 
 export default Home;
-

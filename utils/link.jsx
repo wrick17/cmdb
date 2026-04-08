@@ -8,7 +8,7 @@ const Link = forwardRef(({ to, children, style }, ref) => {
 
   useEffect(() => {
     router.prefetch(to);
-  }, []);
+  }, [router, to]);
 
   return (
     <a

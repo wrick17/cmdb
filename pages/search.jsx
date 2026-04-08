@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SearchCard from "../components/searchCard";
 import { useSearchService } from "../services/searchServices";
 import Input from "../ui/input";
@@ -9,42 +9,67 @@ import Section from "../ui/section";
 
 const Search = () => {
   const router = useRouter();
-  const [query, setQuery] = useState(router?.query?.query);
+  const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState(null);
+  const initializedFromUrlRef = useRef(false);
 
   const { search } = useSearchService();
 
   useEffect(() => {
-    if (router.query.query !== query) {
-      setQuery(router.query.query);
+    if (!router.isReady || initializedFromUrlRef.current) {
+      return;
     }
-  }, [router.query.query]);
+    const urlQuery = router.query.query;
+    const nextQuery = Array.isArray(urlQuery)
+      ? urlQuery[0] || ""
+      : urlQuery || "";
+    if (nextQuery) {
+      setQuery(nextQuery);
+    }
+    initializedFromUrlRef.current = true;
+  }, [router.isReady, router.query.query]);
 
   useEffect(() => {
-    if (query?.length > 2) {
-      router[router?.pathname === "/" ? "push" : "replace"](
-        `/search?query=${query}`,
-        `/search?query=${query}`,
-        {
-          shallow: true,
-        }
-      );
-      if (router?.pathname === "/search") {
+    if (!router.isReady) {
+      return;
+    }
+    const normalizedQuery = query.trim();
+    if (normalizedQuery.length > 2) {
+      const encodedQuery = encodeURIComponent(normalizedQuery);
+      const nextPath = `/search?query=${encodedQuery}`;
+
+      if (router.asPath !== nextPath) {
+        router[router.pathname === "/" ? "push" : "replace"](
+          nextPath,
+          nextPath,
+          {
+            shallow: true,
+          },
+        );
+      }
+
+      if (router.pathname === "/search") {
         setLoading(true);
-        search(query)
-          .then((data) => setResults(data.results))
-          .catch(() => {})
+        search(normalizedQuery)
+          .then((data) => setResults(data.results || []))
+          .catch(() => setResults([]))
           .finally(() => setLoading(false));
       }
-    } else if (query?.length === 0 && router.pathname === "/search") {
-      router.push("/", "/", { shallow: true });
+    } else if (normalizedQuery.length === 0) {
+      if (router.pathname === "/search" && router.asPath !== "/search") {
+        router.replace("/search", "/search", {
+          shallow: true,
+        });
+      }
+      setResults(null);
+      setLoading(false);
     }
-  }, [query]);
+  }, [query, router.asPath, router.isReady, router.pathname, search]);
 
   const onClear = () => {
     setQuery("");
-    setResults();
+    setResults(null);
   };
 
   return (
@@ -80,4 +105,3 @@ const Search = () => {
 };
 
 export default Search;
-

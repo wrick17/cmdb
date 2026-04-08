@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useAnimator } from "../utils/hooks";
 
 const Image = (props) => {
-  const { config } = useSelector((state) => state);
+  const config = useSelector((state) => state.config);
   const { ref, animator } = useAnimator(props);
 
   const { image } = props;
@@ -40,7 +40,12 @@ const Video = (props) => {
       className={`video-container figo ${animator.activate ? "show" : ""}`}
       ref={ref}
     >
-      <a href={`https://www.youtube.com/watch?v=${key}`} target='_blank' rel="noreferrer" style={{ display: 'block' }}>
+      <a
+        href={`https://www.youtube.com/watch?v=${key}`}
+        target="_blank"
+        rel="noreferrer"
+        style={{ display: "block" }}
+      >
         <img
           src={`https://img.youtube.com/vi/${key}/0.jpg`}
           alt={name}

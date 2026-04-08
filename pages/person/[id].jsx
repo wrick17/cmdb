@@ -20,18 +20,18 @@ const Person = (props) => {
     ref,
     animator: { activate },
   } = useAnimator(props);
-  const {
-    config,
-    person,
-    route: { routing },
-  } = useSelector((state) => state);
+  const config = useSelector((state) => state.config);
+  const person = useSelector((state) => state.person);
+  const routing = useSelector((state) => state.route.routing);
 
   const { params } = props;
   const { info, credits, loading, images: personImages } = person;
+  const cast = credits?.cast || [];
+  const crew = credits?.crew || [];
 
   useEffect(() => {
     fetchPersonDetails(router.query.id || params.id);
-  }, [router.query.id, params.id]);
+  }, [fetchPersonDetails, router.query.id, params.id]);
 
   if (!(config?.images && person.info) || (loading && !routing)) {
     return <Loading />;
@@ -46,7 +46,7 @@ const Person = (props) => {
   return (
     <div className="movie-page">
       <Meta name={name} description={biography} image={profile_path} />
-      <div className="movie-details" re={ref}>
+      <div className="movie-details" ref={ref}>
         <Image
           src={
             profile_path
@@ -72,14 +72,14 @@ const Person = (props) => {
         </div>
       </div>
       <Section title="Movies and Shows">
-        <CardsList data={credits.cast} />
+        <CardsList data={cast} />
       </Section>
       <Section title="Images">
         <div className="person-image-container">
           <ImageList data={personImages.profiles} />
         </div>
       </Section>
-      <Work data={sortTitles([...credits?.cast, ...credits?.crew])} />
+      <Work data={sortTitles([...cast, ...crew])} />
     </div>
   );
 };
@@ -89,4 +89,3 @@ export const getServerSideProps = async ({ params }) => {
 };
 
 export default Person;
-

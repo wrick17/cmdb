@@ -10,15 +10,17 @@ export default async ({ url, method }, res) => {
   const apiUrl = `${baseUrl}${apiSlug}`;
 
   try {
-    const response = await axios({
-      method: method,
-      url: apiUrl,
-    });
+    const response = await axios({ method, url: apiUrl });
+    res.setHeader(
+      "Cache-Control",
+      "public, s-maxage=300, stale-while-revalidate=3600",
+    );
     return res.status(200).json(response.data);
   } catch (err) {
-    const {
-      response: { status, data },
-    } = err;
+    const status = err?.response?.status || 500;
+    const data = err?.response?.data || {
+      status_message: "Upstream request failed",
+    };
     return res.status(status).json(data);
   }
 };

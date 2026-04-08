@@ -3,7 +3,7 @@ import axios from "axios";
 export const apiKey = "f4fcbbc0d3afaea558736f65edfdb7ad";
 export const baseUrl = "https://api.themoviedb.org/3";
 
-let cancelTokenSource = null;
+let currentController = null;
 
 const fetch = async (url, options = {}, oneInstance) => {
   const apiSlug =
@@ -12,24 +12,19 @@ const fetch = async (url, options = {}, oneInstance) => {
   const apiUrl = `${baseUrl}${apiSlug}`;
 
   if (oneInstance) {
-    if (cancelTokenSource) {
-      cancelTokenSource.cancel();
+    if (currentController) {
+      currentController.abort();
     }
-    cancelTokenSource = axios.CancelToken.source();
+    currentController = new AbortController();
   }
 
-  try {
-    const response = await axios({
-      method: "GET",
-      url: apiUrl,
-      ...(oneInstance ? { cancelToken: cancelTokenSource.token } : {}),
-      ...options,
-    });
-    return response.data;
-  } catch (err) {
-    return err;
-  }
+  const response = await axios({
+    method: "GET",
+    url: apiUrl,
+    ...(oneInstance ? { signal: currentController.signal } : {}),
+    ...options,
+  });
+  return response.data;
 };
 
 export default fetch;
-

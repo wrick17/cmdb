@@ -29,7 +29,7 @@ const Episode = (props) => {
   const viewEpisode = () => {
     fetchEpisodeDetails(router.query.id, season, episode.episode_number);
     navigate(
-      `/tv/${router.query.id}/season/${season}/episode/${episode.episode_number}`
+      `/tv/${router.query.id}/season/${season}/episode/${episode.episode_number}`,
     );
   };
 
@@ -48,7 +48,7 @@ const Episode = (props) => {
             : "/placeholders/placeholder.png"
         }
         alt={episode.name}
-        className={`figo ${activate ? "show" : ""} ${episode.still_path ? '' : 'no-image'}`}
+        className={`figo ${activate ? "show" : ""} ${episode.still_path ? "" : "no-image"}`}
         ref={ref}
       />
       <div className="episode-details">
@@ -83,7 +83,7 @@ const SeasonEpisodes = (props) => {
         .then(setDetails)
         .finally(() => setLoading(false));
     }
-  }, [season]);
+  }, [fetchSeasonEpisodes, info.id, season]);
 
   if (!season && season !== 0) {
     return null;
