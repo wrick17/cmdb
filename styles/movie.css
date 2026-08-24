@@ -166,13 +166,6 @@
   overflow-wrap: anywhere;
 }
 
-.movie-page .people-list-action {
-  grid-column: 1 / -1;
-  display: flex;
-  justify-content: center;
-  padding-top: 8px;
-}
-
 .movie-page .cast-list .actor-card:hover {
   transform: translateY(-4px);
 }
