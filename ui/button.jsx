@@ -1,39 +1,60 @@
 import {
-  Text,
-  Button as AButton,
-  FrameBox,
+  Animator,
   FrameCorners,
-  FramePentagon,
-  FrameHexagon,
-  FrameUnderline,
   FrameLines,
-} from "@arwes/core";
-import { memo } from 'react';
+  FrameOctagon,
+  FrameUnderline,
+} from "@arwes/react";
+import { memo } from "react";
 import { useAnimator } from "../utils/hooks";
+import { staggerDuration } from "../utils/constants";
 
 const frameMap = {
-  box: FrameBox,
+  box: FrameCorners,
   corners: FrameCorners,
-  pentagon: FramePentagon,
-  hexagon: FrameHexagon,
+  pentagon: FrameCorners,
+  hexagon: FrameOctagon,
   underline: FrameUnderline,
   lines: FrameLines,
 };
 
 const Button = memo((props) => {
-  const { ref, animator } = useAnimator(props);
-  const { text, onClick, containerStyles, frame, ...rest } = props;
+  const {
+    text,
+    onClick,
+    containerStyles,
+    frame,
+    activated = false,
+    onEnterViewport,
+    onLeaveViewport,
+    ...rest
+  } = props;
+  const { ref, animator } = useAnimator({
+    onEnterViewport,
+    onLeaveViewport,
+  });
+  const FrameComponent = frameMap[frame] || FrameCorners;
 
   return (
     <span ref={ref} style={containerStyles}>
-      <AButton
-        animator={animator}
-        onClick={onClick}
-        FrameComponent={frameMap[frame]}
-        {...rest}
+      <Animator
+        active={animator.activate}
+        disabled={activated}
+        duration={{
+          enter: staggerDuration / 1000,
+          exit: staggerDuration / 1000,
+        }}
       >
-        <Text style={{ whiteSpace: "nowrap" }}>{text}</Text>
-      </AButton>
+        <button
+          type="button"
+          className="cmdb-button"
+          onClick={onClick}
+          {...rest}
+        >
+          <FrameComponent className="cmdb-button-frame" />
+          <span className="cmdb-button-content">{text}</span>
+        </button>
+      </Animator>
     </span>
   );
 });

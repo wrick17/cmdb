@@ -4,4 +4,3 @@ export const Rating = ({ value }) =>
   ) : (
     <span style={{ fontSize: 12 }}>{value > 50 ? "🔥" : "❄️"}</span>
   );
-

@@ -1,8 +1,6 @@
 const Footer = () => {
   return (
-    <footer
-      style={{ marginTop: "80px", marginBottom: "40px", textAlign: "center" }}
-    >
+    <footer className="site-footer">
       <p>
         This is a <a>WORK IN PROGRESS</a>. Please don&apos;t take it to heart if
         something breaks. And don&apos; forget to enjoy.

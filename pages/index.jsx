@@ -15,6 +15,10 @@ const Home = () => {
     fetchDiscoverMovies();
   }, [fetchDiscoverMovies]);
 
+  useEffect(() => {
+    document.title = "CMDb - Home";
+  }, []);
+
   if (!(config?.images && home?.movies)) {
     return (
       <Loading>
@@ -25,7 +29,6 @@ const Home = () => {
 
   return (
     <>
-      <title>CMDb - Home</title>
       <HomeTopic />
       <Search />
       <div className="section-wrapper">

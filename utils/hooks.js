@@ -10,14 +10,13 @@ export const useAnimator = (props) => {
     ref,
     null,
     { disconnectOnLeave: false },
-    props
+    props,
   );
 
   return {
     ref,
     animator: {
       activate: !routing && inViewport,
-      animate: props.activated ? false : true,
     },
     inViewport,
   };

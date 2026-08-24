@@ -11,6 +11,18 @@
 
 .search-page .search-input {
   margin-bottom: 48px;
+  position: relative;
+}
+
+.search-page .search-input::after {
+  content: "SCAN ARCHIVE";
+  position: absolute;
+  right: 12px;
+  bottom: -17px;
+  color: #8fb9bb;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
 }
 
 .search-page .search-results .no-results {
@@ -21,6 +33,15 @@
   padding: 16px;
   position: relative;
   cursor: pointer;
+  background: linear-gradient(90deg, #061318aa, transparent);
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.search-page .search-card:hover {
+  background-color: #00f8f811;
+  transform: translateX(4px);
 }
 
 .search-page .search-card.border:not(:last-child)::after {
@@ -49,10 +70,12 @@
   margin-right: 16px;
   object-fit: cover;
   background-color: #00f8f8aa;
+  border: 1px solid #00f8f855;
 }
 
 .search-page .search-card .search-content .right-section {
   flex: 1;
+  overflow-wrap: anywhere;
 }
 
 .search-page .search-card .right-section > span:not(:first-child) {
@@ -69,6 +92,9 @@
   text-align: center;
   margin-bottom: 8px;
   display: inline-block;
+  color: var(--cmdb-orange);
+  border-color: var(--cmdb-orange);
+  letter-spacing: 0.08em;
 }
 
 .search-page .search-card .rating-container {
@@ -77,6 +103,7 @@
 
 .search-page .search-card .rating-container .rating {
   margin-left: 16px;
+  color: var(--cmdb-orange);
 }
 
 @media (max-width: 768px) {
@@ -88,4 +115,3 @@
     display: block;
   }
 }
-

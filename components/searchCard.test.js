@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { resolveSearchResultDate } from "./searchCard";
+import { formatSearchRating, resolveSearchResultDate } from "./searchCard";
 
 describe("resolveSearchResultDate", () => {
   test("prefers movie release_date when available", () => {
@@ -18,5 +18,15 @@ describe("resolveSearchResultDate", () => {
         first_air_date: "2008-07-20",
       }),
     ).toBe("2008-07-20");
+  });
+});
+
+describe("formatSearchRating", () => {
+  test("uses the same integer percentage as movie cards", () => {
+    expect(formatSearchRating(8.255)).toBe("82%");
+  });
+
+  test("returns NA for a missing rating", () => {
+    expect(formatSearchRating(0)).toBe("NA");
   });
 });

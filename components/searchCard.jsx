@@ -11,6 +11,9 @@ import Card from "../ui/card";
 export const resolveSearchResultDate = ({ release_date, first_air_date }) =>
   release_date || first_air_date;
 
+export const formatSearchRating = (voteAverage) =>
+  voteAverage ? `${parseInt(voteAverage * 10)}%` : "NA";
+
 const SearchCard = (props) => {
   const { data } = props;
   const config = useSelector((state) => state.config);
@@ -92,7 +95,7 @@ const SearchCard = (props) => {
             )}
             {!isPerson && (
               <span className="rating">
-                Rating : {vote_average ? `${vote_average * 10}%` : "NA"}
+                Rating : {formatSearchRating(vote_average)}
               </span>
             )}
           </div>

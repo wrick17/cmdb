@@ -4,8 +4,8 @@ import SearchIcon from "./searchIcon";
 
 const Header = () => {
   return (
-    <header>
-      <Link to="/">
+    <header className="site-header">
+      <Link to="/" className="brand" aria-label="CMDb home">
         <Text
           as="h1"
           style={{
@@ -15,23 +15,16 @@ const Header = () => {
         >
           CMDb
         </Text>
+        <span className="brand-signal" aria-hidden="true">
+          // archive
+        </span>
       </Link>
 
-      <Link to="/search">
-        <span
-          style={{
-            position: "absolute",
-            right: 0,
-            top: "50%",
-            transform: "translateY(-50%)",
-          }}
-        >
-          <SearchIcon />
-        </span>
+      <Link to="/search" className="header-search" aria-label="Search CMDb">
+        <SearchIcon />
       </Link>
     </header>
   );
 };
 
 export default Header;
-

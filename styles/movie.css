@@ -7,6 +7,9 @@
 .movie-page .movie-details {
   display: flex;
   margin-bottom: 48px;
+  padding: 20px;
+  background: linear-gradient(135deg, #06131899, transparent 68%);
+  border-left: 1px solid var(--cmdb-cyan-soft);
 }
 
 .movie-page .image {
@@ -20,6 +23,8 @@
 
 .movie-page .movie-details .right-section .movie-name {
   font-size: 36px;
+  letter-spacing: 0.035em;
+  text-shadow: 0 0 18px #00f8f844;
 }
 
 .movie-page .movie-name .year {
@@ -32,15 +37,20 @@
   font-weight: bold;
 }
 
-.movie-page .movie-date .arwes-text {
+.movie-page .movie-date .cmdb-text {
   margin-right: 32px;
 }
 
 .movie-page .status {
   border: 1px solid #00f8f8;
-  box-shadow: 0 0 4px #00f8f8aa, 0 0 4px #00f8f8aa inset;
+  box-shadow:
+    0 0 4px #00f8f8aa,
+    0 0 4px #00f8f8aa inset;
   padding: 2px 8px;
   text-transform: uppercase;
+  color: var(--cmdb-orange);
+  border-color: var(--cmdb-orange);
+  letter-spacing: 0.08em;
 }
 
 .movie-page .rating-container {
@@ -63,10 +73,19 @@
   font-style: italic;
 }
 
+.movie-page .overview,
+.movie-page .tagline,
+.movie-page .crew-member {
+  overflow-wrap: anywhere;
+}
+
 .movie-page .sub-heading {
   margin-bottom: 8px;
   border-bottom: 1px solid #00f8f855;
   padding-bottom: 4px;
+  color: var(--cmdb-orange);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .movie-page .crew {
@@ -97,7 +116,7 @@
   align-items: flex-start;
 }
 
-.movie-page .detail-block .arwes-text {
+.movie-page .detail-block .cmdb-text {
   margin: 8px;
 }
 
@@ -110,7 +129,17 @@
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 8px 0;
+  padding: 8px 0 12px;
+  scroll-snap-type: x proximity;
+}
+
+.movie-page .people-list .cast-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+  overflow: visible;
+  padding: 8px 0 16px;
+  scroll-snap-type: none;
 }
 
 .movie-page .cast-list .actor-card {
@@ -118,6 +147,34 @@
   padding: 0 16px;
   cursor: pointer;
   position: relative;
+  scroll-snap-align: start;
+  transition: transform 180ms ease;
+}
+
+.movie-page .people-list .cast-list .actor-card {
+  min-width: 0;
+  flex: none;
+  padding: 0;
+}
+
+.movie-page .people-list .actor-card.border::after {
+  display: none;
+}
+
+.movie-page .people-list .actor-details {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.movie-page .people-list-action {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.movie-page .cast-list .actor-card:hover {
+  transform: translateY(-4px);
 }
 
 .review.border:not(:last-child)::after,
@@ -145,26 +202,9 @@
   border: 1px solid #00f8f855;
 }
 
-.movie-page .cast-list .actor-card .arwes-frame {
-  padding: 0 !important;
-  height: 100%;
-  max-width: 100%;
-}
-
-.movie-page .cast-list .actor-card .arwes-frame__structure {
-  z-index: 1;
-}
-
-.movie-page .cast-list .actor-card .arwes-frame__structure svg > g > g {
-  display: none;
-}
-
-.movie-page .cast-list .actor-card .arwes-frame__content {
-  padding: 0;
-}
-
 .movie-page .actor-details {
   padding: 8px;
+  background: linear-gradient(180deg, #061318cc, #02070bee);
 }
 
 .movie-page .actor-details .name {
@@ -197,12 +237,11 @@
   flex: 1 0 300px;
   position: relative;
   padding: 0 16px;
+  transition: transform 180ms ease;
 }
 
-.movie-page .reviews-list .review .arwes-frame {
-  height: 100%;
-  width: 100%;
-  word-break: break-word;
+.movie-page .reviews-list .review:hover {
+  transform: translateY(-3px);
 }
 
 .movie-page .reviews-list .review p {
@@ -226,10 +265,6 @@
 
 .movie-page .seasons-content {
   padding: 16px;
-}
-
-.movie-page .seasons-content button svg > g > g > path {
-  opacity: 0.1 !important;
 }
 
 .movie-page .episodes {
@@ -272,10 +307,6 @@
   font-weight: bold;
 }
 
-.movie-page .episodes .episode .arwes-frame {
-  width: 100%;
-}
-
 .loading-block {
   flex: 1;
   max-width: 1180px;
@@ -289,7 +320,9 @@
 
 .loading-block.bordered {
   border: 1px solid #00f8f8;
-  box-shadow: 0 0 4px #00f8f8aa, 0 0 4px #00f8f8aa inset;
+  box-shadow:
+    0 0 4px #00f8f8aa,
+    0 0 4px #00f8f8aa inset;
 }
 
 .movie-page .work-list {
@@ -303,7 +336,7 @@
   top: 0;
   width: 1px;
   height: 100%;
-  background-color: #00f8f8;
+  background: linear-gradient(var(--cmdb-cyan), transparent);
   z-index: -1;
 }
 
@@ -344,6 +377,7 @@
   text-transform: uppercase;
   border: 1px solid #00f8f8;
   background-color: #021114;
+  color: var(--cmdb-orange);
 }
 
 .movie-page .work .work-name {
@@ -363,7 +397,7 @@
   max-height: 200px;
 }
 
-.episode-page .image .arwes-frame__content img.show {
+.episode-page .image .image-content img.show {
   height: 200px;
 }
 
@@ -428,6 +462,15 @@
 }
 
 @media (max-width: 768px) {
+  .movie-page .people-list .cast-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .movie-page .movie-details {
+    padding: 12px;
+  }
+
   .image-list.video-list {
     margin-left: -12px;
     margin-right: -12px;
@@ -449,7 +492,7 @@
     display: flex;
     justify-content: space-evenly;
   }
-  .movie-page .detail-block .arwes-text {
+  .movie-page .detail-block .cmdb-text {
     text-align: center;
     margin-right: 0;
     white-space: nowrap;
@@ -481,4 +524,3 @@
 .streaming-on:not(:last-child)::after {
   content: ",";
 }
-

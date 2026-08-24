@@ -17,9 +17,15 @@ const ReviewList = ({ reviews }) => {
                 const { id, content, author, created_at } = review;
                 return (
                   <Card key={id} className="review">
-                    <Text as="p" className="block name">{author}</Text>
-                    <Text as="p" className="block time">{formatDate(created_at)}</Text>
-                    <Text as="p" className="block content">{content.slice(0, 500)}</Text>
+                    <Text as="p" className="block name">
+                      {author}
+                    </Text>
+                    <Text as="p" className="block time">
+                      {formatDate(created_at)}
+                    </Text>
+                    <Text as="p" className="block content">
+                      {content.slice(0, 500)}
+                    </Text>
                   </Card>
                 );
               })

@@ -43,7 +43,7 @@ const Work = memo(({ data }) => {
             <Text as="div" className="work-title">
               <a
                 href={`/${work.media_type}/${work.id}-${handleize(
-                  work.title || work.name
+                  work.title || work.name,
                 )}`}
                 onClick={(e) => onClickLink(e, work)}
                 className="work-name"

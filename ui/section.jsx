@@ -7,7 +7,7 @@ const Section = ({ title, children, className, contentClassName }) => {
       <Frame frame="box" className={`section-frame ${contentClassName}`}>
         {children}
       </Frame>
-      <Frame frame="hexagon" className="section-title">
+      <Frame frame="corners" className="section-title">
         <Text as="h6" className="secton-title-text">
           <a>{title}</a>
         </Text>

@@ -21,6 +21,3 @@ const HomeTopic = () => {
 };
 
 export default HomeTopic;
-
-
-

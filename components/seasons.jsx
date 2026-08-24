@@ -46,7 +46,12 @@ const Seasons = ({ data }) => {
           text={`${
             showEpisodes ? "Hide" : `Show ${seasonMap[season]}`
           } Episodes`}
-          style={{ width: "100%", marginTop: "8px" }}
+          containerStyles={{
+            display: "block",
+            marginTop: "8px",
+            width: "100%",
+          }}
+          style={{ width: "100%" }}
         />
         {showEpisodes && <SeasonEpisodes season={season} />}
       </div>

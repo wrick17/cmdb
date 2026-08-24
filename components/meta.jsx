@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const Meta = ({ name, description, image }) => {
@@ -9,24 +10,48 @@ const Meta = ({ name, description, image }) => {
     ? `${secure_base_url}${poster_sizes[poster_sizes.length - 2]}${image}`
     : "/placeholders/placeholder.png";
 
-  return (
-    <>
-      <title>{name}</title>
-      <meta name="description" content={description} />
-      <meta property="og:title" content={name} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={src} />
+  useEffect(() => {
+    const previousTitle = document.title;
+    const entries = [
+      ["name", "description", description],
+      ["property", "og:title", name],
+      ["property", "og:description", description],
+      ["property", "og:image", src],
+      ["property", "og:site_name", "CMDb"],
+      ["property", "og:type", "website"],
+      ["name", "twitter:card", "summary"],
+      ["name", "twitter:title", name],
+      ["name", "twitter:description", description],
+      ["name", "twitter:image", src],
+      ["name", "twitter:creator", "@wrick7132"],
+    ];
+    const nodes = entries.map(([attribute, key, content]) => {
+      const selector = `meta[${attribute}="${key}"]`;
+      const node =
+        document.head.querySelector(selector) || document.createElement("meta");
+      const created = !node.parentNode;
+      const previousContent = node.getAttribute("content");
 
-      <meta property="og:site_name" content="CMDb" />
-      <meta property="og:type" content="website" />
+      node.setAttribute(attribute, key);
+      node.setAttribute("content", content || "");
+      if (created) document.head.append(node);
 
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:title" content={name} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={src} />
-      <meta name="twitter:creator" content="@wrick7132" />
-    </>
-  );
+      return { node, created, previousContent };
+    });
+
+    document.title = name || "CMDb";
+
+    return () => {
+      document.title = previousTitle;
+      nodes.forEach(({ node, created, previousContent }) => {
+        if (created) node.remove();
+        else if (previousContent === null) node.removeAttribute("content");
+        else node.setAttribute("content", previousContent);
+      });
+    };
+  }, [description, name, src]);
+
+  return null;
 };
 
 export default Meta;

@@ -80,16 +80,11 @@ export default defineConfig({
         tag: "link",
         attrs: {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap",
+          href: "https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap",
         },
         publicPath: false,
       },
     ],
-  },
-  source: {
-    alias: {
-      animejs$: "animejs/lib/anime.js",
-    },
   },
   server: {
     proxy: tmdbApiKey

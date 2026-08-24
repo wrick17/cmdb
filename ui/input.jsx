@@ -12,7 +12,7 @@ const Input = ({
   const inputName = name || (type === "search" ? "search" : undefined);
 
   return (
-    <Frame className={`input ${className}`} frame="hexagon">
+    <Frame className={`input ${className}`} frame="corners">
       <input
         type={type}
         value={value ?? ""}

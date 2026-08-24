@@ -4,7 +4,8 @@ Cyber-themed movie database built with React, Rsbuild, Redux, Arwes UI, and the 
 
 ## Stack
 
-- Runtime: React `19.2.4` + React Router `8`
+- Runtime: React `18.3.1` + React Router `7` + Arwes `1.0.0-next.25020502`
+- UI font: Orbitron via Google Fonts
 - Build: Rsbuild `2`
 - State: Redux `5` + React Redux `9`
 - Hosting: Cloudflare Pages + Pages Functions
