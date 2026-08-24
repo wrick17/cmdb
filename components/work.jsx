@@ -32,8 +32,11 @@ const Work = memo(({ data }) => {
   return (
     <Section title="Work" contentClassName="work-section">
       <div className="work-list">
-        {data.map((work) => (
-          <div className="work" key={work.id}>
+        {data.map((work, index) => (
+          <div
+            className="work"
+            key={work.credit_id || `${work.id}-${work.media_type}-${index}`}
+          >
             <span className="year">
               {work.release_date || work.first_air_date
                 ? formatYear(work.release_date || work.first_air_date)

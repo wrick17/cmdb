@@ -325,7 +325,7 @@
 .movie-page .work-list::before {
   content: "";
   position: absolute;
-  left: 90px;
+  left: 100px;
   top: 0;
   width: 1px;
   height: 100%;
@@ -363,8 +363,8 @@
   font-size: 10px;
   display: inline-block;
   padding: 2px 4px;
-  min-width: 40px;
-  max-width: 40px;
+  min-width: 56px;
+  max-width: 56px;
   text-align: center;
   font-weight: bold;
   text-transform: uppercase;
