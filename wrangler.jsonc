@@ -3,7 +3,4 @@
   "name": "cmdb",
   "pages_build_output_dir": "./dist",
   "compatibility_date": "2026-08-24",
-  "secrets": {
-    "required": ["TMDB_API_KEY"],
-  },
 }
