@@ -71,8 +71,10 @@ Cloudflare Pages is configured by `wrangler.jsonc`. The Git project settings are
 
 - Production: https://cmdb-6kc.pages.dev
 - Production branch: `master`
-- Build command: `bun run build`
+- Build command: `bun install --frozen-lockfile && bun run build`
 - Build output: `dist`
+
+Set `BUN_VERSION=1.3.8` and `SKIP_DEPENDENCY_INSTALL=1` as build variables so Pages uses Bun instead of its automatic npm install.
 
 Set the encrypted API key for both production and preview environments as `TMDB_API_KEY`. For a manual deployment:
 
