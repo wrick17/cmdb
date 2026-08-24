@@ -69,7 +69,7 @@ bun run format
 
 Cloudflare Pages is configured by `wrangler.jsonc`. The Git project settings are:
 
-- Production: https://cmdb-6kc.pages.dev
+- Production: https://cmdb.wrick17.com
 - Production branch: `master`
 - Build command: `bun install --frozen-lockfile && bun run build`
 - Build output: `dist`
