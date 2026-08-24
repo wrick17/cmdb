@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { useSelector } from "react-redux";
 
 const Meta = ({ name, description, image }) => {
@@ -11,14 +10,14 @@ const Meta = ({ name, description, image }) => {
     : "/placeholders/placeholder.png";
 
   return (
-    <Head>
+    <>
       <title>{name}</title>
       <meta name="description" content={description} />
-      <meta name="og:title" content={name} />
-      <meta name="og:description" content={description} />
-      <meta name="og:image" content={src} />
+      <meta property="og:title" content={name} />
+      <meta property="og:description" content={description} />
+      <meta property="og:image" content={src} />
 
-      <meta name="og:site_name" content="CMDb" />
+      <meta property="og:site_name" content="CMDb" />
       <meta property="og:type" content="website" />
 
       <meta name="twitter:card" content="summary" />
@@ -26,7 +25,7 @@ const Meta = ({ name, description, image }) => {
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={src} />
       <meta name="twitter:creator" content="@wrick7132" />
-    </Head>
+    </>
   );
 };
 

@@ -1,11 +1,10 @@
 import { ArwesThemeProvider, StylesBaseline } from "@arwes/core";
 import { AnimatorGeneralProvider } from "@arwes/animation";
-import Router, { useRouter } from "next/router";
+import { useLocation } from "react-router";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { navigateTransition } from "../redux/actions/routeActionCreators";
 import { useConfigService } from "../services/configServices";
-import { useNavigation } from "./navigation";
 import { staggerDuration } from "./constants";
 
 const FONT_FAMILY_ROOT = '"Titillium Web", sans-serif';
@@ -15,46 +14,18 @@ const animatorGeneral = {
   duration: { enter: staggerDuration, exit: staggerDuration },
 };
 
-if (typeof window === "undefined") {
-  const error = console.error;
-  console.error = (...args) => {
-    if (typeof args?.[0] === "string" && !args?.[0]?.startsWith("Warning")) {
-      error(...args);
-    }
-  };
-}
-
 const Utils = ({ children }) => {
-  const router = useRouter();
+  const location = useLocation();
   const dispatch = useDispatch();
-  const navigate = useNavigation();
   const { fetchConfig } = useConfigService();
 
   useEffect(() => {
-    router.prefetch("/movie/0");
-    router.prefetch("/tv/0");
-    router.prefetch("/person/0");
-    router.prefetch("/tv/0/season/0/episode/0");
-  }, [router]);
+    fetchConfig();
+  }, [fetchConfig]);
 
   useEffect(() => {
-    const handleBeforePopState = ({ as }) => {
-      navigate(as);
-      return false;
-    };
-    router.beforePopState(handleBeforePopState);
-
-    const onRouteChangeComplete = () => {
-      dispatch(navigateTransition());
-    };
-    Router.events.on("routeChangeComplete", onRouteChangeComplete);
-
-    fetchConfig();
-    return () => {
-      Router.events.off("routeChangeComplete", onRouteChangeComplete);
-      router.beforePopState(() => true);
-    };
-  }, [dispatch, fetchConfig, navigate, router]);
+    dispatch(navigateTransition());
+  }, [dispatch, location.pathname, location.search]);
 
   return (
     <>

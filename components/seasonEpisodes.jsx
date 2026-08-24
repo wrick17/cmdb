@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useEpisodeService } from "../services/episodeServices";
@@ -11,7 +11,7 @@ import { formatDate } from "../utils/utils";
 
 const Episode = (props) => {
   const config = useSelector((state) => state.config);
-  const router = useRouter();
+  const { id } = useParams();
   const { fetchEpisodeDetails } = useEpisodeService();
 
   const {
@@ -27,10 +27,8 @@ const Episode = (props) => {
   const { episode, season } = props;
 
   const viewEpisode = () => {
-    fetchEpisodeDetails(router.query.id, season, episode.episode_number);
-    navigate(
-      `/tv/${router.query.id}/season/${season}/episode/${episode.episode_number}`,
-    );
+    fetchEpisodeDetails(id, season, episode.episode_number);
+    navigate(`/tv/${id}/season/${season}/episode/${episode.episode_number}`);
   };
 
   return (

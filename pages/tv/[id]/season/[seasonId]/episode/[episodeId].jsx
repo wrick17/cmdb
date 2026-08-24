@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { useParams } from "react-router";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useEpisodeService } from "../../../../../../services/episodeServices";
@@ -12,8 +12,8 @@ import MediaList from "../../../../../../components/mediaList";
 import Meta from "../../../../../../components/meta";
 import { Rating } from "../../../../../../components/rating";
 
-const Episode = (props) => {
-  const router = useRouter();
+const Episode = () => {
+  const { id, episodeId, seasonId } = useParams();
   const config = useSelector((state) => state.config);
   const episode = useSelector((state) => state.episode);
   const tv = useSelector((state) => state.tv);
@@ -22,8 +22,6 @@ const Episode = (props) => {
   const { fetchEpisodeDetails } = useEpisodeService();
   const { fetchTvDetails } = useTvService();
 
-  const { params } = props;
-  const { id, episodeId, seasonId } = router.query || params;
   const { loading, info, images: episodeImages, videos } = episode;
 
   useEffect(() => {
@@ -89,10 +87,6 @@ const Episode = (props) => {
       <PeopleList title="Crew" list={crew} sub="job" />
     </div>
   );
-};
-
-export const getServerSideProps = async ({ params }) => {
-  return { props: { params } };
 };
 
 export default Episode;

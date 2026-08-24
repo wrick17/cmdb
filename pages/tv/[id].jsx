@@ -9,19 +9,18 @@ import { useTvService } from "../../services/tvServices";
 import Seasons from "../../components/seasons";
 import Section from "../../ui/section";
 import CardsList from "../../components/cardsList";
-import { useRouter } from "next/router";
+import { useParams } from "react-router";
 import MediaList from "../../components/mediaList";
 import Meta from "../../components/meta";
 import { Rating } from "../../components/rating";
 
-const Tv = (props) => {
-  const router = useRouter();
+const Tv = () => {
+  const { id } = useParams();
   const { fetchTvDetails } = useTvService();
   const config = useSelector((state) => state.config);
   const tv = useSelector((state) => state.tv);
   const routing = useSelector((state) => state.route.routing);
 
-  const { params } = props;
   const {
     info,
     credits,
@@ -34,8 +33,8 @@ const Tv = (props) => {
   } = tv;
 
   useEffect(() => {
-    fetchTvDetails(router.query.id || params.id);
-  }, [fetchTvDetails, router.query.id, params.id]);
+    fetchTvDetails(id);
+  }, [fetchTvDetails, id]);
 
   if (
     !(config?.images && info && credits && reviews) ||
@@ -133,10 +132,6 @@ const Tv = (props) => {
       ) : null}
     </div>
   );
-};
-
-export const getServerSideProps = async ({ params }) => {
-  return { props: { params } };
 };
 
 export default Tv;

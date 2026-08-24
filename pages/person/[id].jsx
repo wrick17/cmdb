@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { useParams } from "react-router";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import CardsList from "../../components/cardsList";
@@ -14,7 +14,7 @@ import ImageList from "../../components/imageList";
 import Meta from "../../components/meta";
 
 const Person = (props) => {
-  const router = useRouter();
+  const { id } = useParams();
   const { fetchPersonDetails } = usePersonService();
   const {
     ref,
@@ -24,14 +24,13 @@ const Person = (props) => {
   const person = useSelector((state) => state.person);
   const routing = useSelector((state) => state.route.routing);
 
-  const { params } = props;
   const { info, credits, loading, images: personImages } = person;
   const cast = credits?.cast || [];
   const crew = credits?.crew || [];
 
   useEffect(() => {
-    fetchPersonDetails(router.query.id || params.id);
-  }, [fetchPersonDetails, router.query.id, params.id]);
+    fetchPersonDetails(id);
+  }, [fetchPersonDetails, id]);
 
   if (!(config?.images && person.info) || (loading && !routing)) {
     return <Loading />;
@@ -82,10 +81,6 @@ const Person = (props) => {
       <Work data={sortTitles([...cast, ...crew])} />
     </div>
   );
-};
-
-export const getServerSideProps = async ({ params }) => {
-  return { props: { params } };
 };
 
 export default Person;

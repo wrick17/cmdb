@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "../utils/link";
 import { memo } from "react";
 import { useAnimator } from "../utils/hooks";
 
@@ -6,18 +6,14 @@ const Card = memo((props) => {
   const { ref, animator } = useAnimator(props);
   const { className, children, onClick, href, ...rest } = props;
 
-  const Component = href ? Link : 'div';
+  const Component = href ? Link : "div";
 
   return (
     <Component
       className={`border ${animator.activate ? "show" : ""} ${className}`}
       ref={ref}
-      href={href}
-      onClick={() => {
-        if (onClick) {
-          onClick();
-        }
-      }}
+      {...(href ? { to: href } : {})}
+      onClick={onClick}
       {...rest}
     >
       <div className={`figo ${animator.activate ? "show" : ""}`}>
@@ -28,4 +24,3 @@ const Card = memo((props) => {
 });
 
 export default Card;
-

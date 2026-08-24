@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import Card from "../ui/card";
 import Text from "../ui/text";
 import { formatDate, handleize } from "../utils/utils";
-import { useNavigation } from "../utils/navigation";
 import { useMovieService } from "../services/movieServices";
 import { useTvService } from "../services/tvServices";
 import { useAnimator } from "../utils/hooks";
@@ -14,7 +13,6 @@ export const resolveCardMediaType = (type, dataMediaType) =>
 
 const MovieCard = memo((props) => {
   const config = useSelector((state) => state.config);
-  const navigate = useNavigation();
   const { fetchMovieDetails } = useMovieService();
   const { fetchTvDetails } = useTvService();
   const {
@@ -43,10 +41,8 @@ const MovieCard = memo((props) => {
   const onClickMovie = () => {
     if (mediaType === "movie") {
       fetchMovieDetails(slug);
-      navigate(`/movie/${slug}`);
     } else {
       fetchTvDetails(slug);
-      navigate(`/tv/${slug}`);
     }
   };
 

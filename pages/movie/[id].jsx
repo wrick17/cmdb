@@ -8,13 +8,13 @@ import PeopleList from "../../components/peopleList";
 import ReviewList from "../../components/reviewList";
 import CardsList from "../../components/cardsList";
 import Section from "../../ui/section";
-import { useRouter } from "next/router";
+import { useParams } from "react-router";
 import MediaList from "../../components/mediaList";
 import Meta from "../../components/meta";
 import { Rating } from "../../components/rating";
 
-const Movie = ({ params }) => {
-  const router = useRouter();
+const Movie = () => {
+  const { id } = useParams();
   const { fetchMovieDetails } = useMovieService();
   const config = useSelector((state) => state.config);
   const movie = useSelector((state) => state.movie);
@@ -32,8 +32,8 @@ const Movie = ({ params }) => {
   } = movie;
 
   useEffect(() => {
-    fetchMovieDetails(router.query.id || params.id);
-  }, [fetchMovieDetails, router.query.id, params.id]);
+    fetchMovieDetails(id);
+  }, [fetchMovieDetails, id]);
 
   if (
     !(config?.images && info && credits && reviews && movieImages) ||
@@ -143,10 +143,6 @@ const Movie = ({ params }) => {
       ) : null}
     </div>
   );
-};
-
-export const getServerSideProps = async ({ params }) => {
-  return { props: { params } };
 };
 
 export default Movie;
